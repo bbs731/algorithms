@@ -10,7 +10,7 @@ int n, k;
 int ranks[MAX_N + 1];
 int tmp[MAX_N + 1];
 
-// 这是倍增发吗？
+// 这是倍增法吗？
 bool compare_sa(int i, int j){
     if (ranks[i] != ranks[j])
         return ranks[i] < ranks[j];
