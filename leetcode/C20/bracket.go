@@ -1,5 +1,8 @@
 package C20
 
+// Show how to use slice to simulate stack in golang.
+// push : using append
+// pop  : shrink the index
 func isValid(s string) bool {
 	if len(s) == 0 {
 		return true
