@@ -1,6 +1,6 @@
 package backtracking
 
-func partition2(s string) (ans [][]string) {
+func partition2_2(s string) (ans [][]string) {
 	path := []string{}
 	var dfs func(int, int)
 
