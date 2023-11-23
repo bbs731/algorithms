@@ -3,7 +3,7 @@ package backtracking
 // 这种写法要比第一种写法难
 // 第一遍就写错了， 再练
 // 从 answer 的视角 (选哪个数）
-func subsets(nums []int) [][]int {
+func subsets2(nums []int) [][]int {
 
 	var ans [][]int
 	var path []int
