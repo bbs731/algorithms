@@ -12,6 +12,7 @@ func combine(n int, k int) (ans [][]int) {
 			return
 		}
 
+		// 组合的问题，现对于子集的问题， 是可以优化加剪枝的条件优化
 		// 剪枝
 		if i < d {
 			return
