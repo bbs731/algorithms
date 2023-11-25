@@ -1,5 +1,9 @@
 package dp
 
+/*
+	这个例子， 让我们完成了， 从递归 到 递推的转变！
+	从此进入 DP的解题范式
+ */
 
 // f[i+2] = max（f[i+1], f[i] + nums[i])
 // 我们可以把空间优化成 O（1）， 具体就需要 f0, 和 f1 两个变量
@@ -16,7 +20,7 @@ func rob(nums []int) int {
 }
 
 // dfs(i) = max(dfs(i-1) , dfs(i-2) + nums[i])
-// 一比一， 把 递归改成 数组 递推。
+// 一比一， 把 递归改成 数组 递推。 递归的边界条件，就是地推的初始化值
 // f[i] = max(f[i-1], f[i-2] + nums[i])
 // f[i+2] = max（f[i+1], f[i] + nums[i])
 func rob2(nums []int) int {
