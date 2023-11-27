@@ -16,6 +16,62 @@ https://codeforces.com/problemset/problem/1689/C
 更多 DP 题目+题解：
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md
 
+21:
+https://www.bilibili.com/video/BV1ho4y1W7QK/?spm_id_from=333.788&vd_source=84c3c489cf545fafdbeb3b3a6cd6a112
+
+本期介绍了【买卖股票系列问题】与【状态机 DP】，包括【至多/恰好/至少】的讲解。
+122. 买卖股票的最佳时机 II https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/solution/shi-pin-jiao-ni-yi-bu-bu-si-kao-dong-tai-o3y4/
+309. 最佳买卖股票时机含冷冻期 https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/shi-pin-jiao-ni-yi-bu-bu-si-kao-dong-tai-0k0l/
+188. 买卖股票的最佳时机 IV https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/solution/shi-pin-jiao-ni-yi-bu-bu-si-kao-dong-tai-kksg/
+
+课后作业：
+121. 买卖股票的最佳时机 https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/
+123. 买卖股票的最佳时机 III https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/
+714. 买卖股票的最佳时机含手续费 https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/
+1911. 最大子序列交替和 https://leetcode.cn/problems/maximum-alternating-subsequence-sum/
+
+
+
+20:
+本期介绍了【最长递增子序列】O(n^2) 和 O(nlogn) 的两种写法，以及 O(1) 额外空间的写法。
+
+涉及到的力扣题目+代码：
+300. 最长递增子序列 https://leetcode.cn/problems/longest-increasing-subsequence/solution/jiao-ni-yi-bu-bu-si-kao-dpfu-o1-kong-jia-4zma/
+
+课后作业：
+673. 最长递增子序列的个数 https://leetcode.cn/problems/number-of-longest-increasing-subsequence/
+1964. 找出到每个位置为止最长的有效障碍赛跑路线 https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/
+1671. 得到山形数组的最少删除次数 https://leetcode.cn/problems/minimum-number-of-removals-to-make-mountain-array/
+354. 俄罗斯套娃信封问题 https://leetcode.cn/problems/russian-doll-envelopes/
+1626. 无矛盾的最佳球队 https://leetcode.cn/problems/best-team-with-no-conflicts/
+
+
+19:
+很多资料在讲解最长公共子序列（LCS）时，没有解释在 s[i]=t[j] 时，为什么不需要从状态 (i-1,j) 和 (i,j-1) 转移到状态 (i,j)。实际上这并不是显然的，这节课会给出严格证明。此外，LCS 也可以像背包那样，把空间优化成一个数组。
+
+涉及到的力扣题目+代码：
+1143. 最长公共子序列 https://leetcode.cn/problems/longest-common-subsequence/solutions/2133188/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-lbz5/
+72. 编辑距离 https://leetcode.cn/problems/edit-distance/solutions/2133222/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-uo5q/
+
+课后作业：
+583. 两个字符串的删除操作 https://leetcode.cn/problems/delete-operation-for-two-strings/
+712. 两个字符串的最小ASCII删除和 https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/
+1458. 两个子序列的最大点积 https://leetcode.cn/problems/max-dot-product-of-two-subsequences/
+97. 交错字符串 https://leetcode.cn/problems/interleaving-string/
+
+
+
+18:
+本期介绍了【0-1 背包】和【完全背包】，包括【空间优化】以及【至多/恰好/至少】等常见变形题目的讲解。
+
+494. 目标和 https://leetcode.cn/problems/target-sum/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-s1cx/
+322. 零钱兑换 https://leetcode.cn/problems/coin-change/solution/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-21m5/
+
+课后作业：
+2915. 和为目标值的最长子序列的长度 https://leetcode.cn/problems/length-of-the-longest-subsequence-that-sums-to-target/
+416. 分割等和子集 https://leetcode.cn/problems/partition-equal-subset-sum/
+279. 完全平方数 https://leetcode.cn/problems/perfect-squares/
+518. 零钱兑换 II https://leetcode.cn/problems/coin-change-ii/
 
 17:
 
