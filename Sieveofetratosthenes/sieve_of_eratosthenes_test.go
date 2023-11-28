@@ -1,4 +1,4 @@
-package sieveofetratosthenes
+package Sieveofetratosthenes
 
 import (
 	"fmt"

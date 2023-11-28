@@ -1,4 +1,4 @@
-package sieveofetratosthenes
+package Sieveofetratosthenes
 
 /*
 非常清楚的讲解，和数学证明
