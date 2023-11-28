@@ -1,4 +1,4 @@
-package SieveOfEtratosthenes
+package sieveOfEtratosthenes
 
 import (
 	"fmt"
