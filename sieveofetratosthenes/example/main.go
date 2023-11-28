@@ -1,8 +1,8 @@
 package main
 
 import (
+	"Sieveofetratosthenes"
 	"fmt"
-	"sieveofetratosthenes"
 	"time"
 )
 
