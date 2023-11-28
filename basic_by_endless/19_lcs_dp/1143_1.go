@@ -4,7 +4,8 @@ package dp
  	f[i+1][j+1] =   1. f[i][j] + 1
 					2. f[i][j+1] , f[i+1][j]
 
-如果降维到 1维的数组的话，f[i][j] 和 f[i+1][j] 这两个值，在1维数组里，表示的是同一个数字，没办法区分， 所以需要额外的一个变量来保存。
+如果降维到 1维的数组的话，f[i][j] 和 f[i+1][j] 这两个值，在1维数组里，表示的是同一个数字，没办法区分， 所以需要额外的一个变量来保存,
+我们于是令  prev = f[i][j]
 
 难！
  */
@@ -17,12 +18,11 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 	for i := 0; i < n; i++ {
 		prev := f[0] // = 0  // 这里多用一个 prev 变量来保存  f[i][j] 的值, 降维之后就是 f[j] 的值。
 		for j := 0; j < m; j++ {
-			tmp := f[j+1] //这是下个循环的 f[j] 因此需要保存，并且最后需要赋值给 prev 变量，以便下个循环的时候使用。
+			tmp := f[j+1] //我们保存 f[i+1][j+1] 的值，循环结束之后赋值给 prev 变量，于是对于下个循环来说 prev 就是 f[i][j]。
 			if text1[i] == text2[j] {
-				//f[j+1] = f[j] + 1
-				f[j+1] = prev + 1
+				f[j+1] = prev + 1 // 翻译的这句话: f[i+1][j+1] = f[i][j] + 1  用 prev 代替 f[i][j]
 			} else {
-				f[j+1] = max(f[j+1], f[j])
+				f[j+1] = max(f[j+1], f[j]) // 翻译的这行代码: f[i+1][j+1] = max(f[i][j+1], f[i+1][j])
 			}
 			prev = tmp
 		}
