@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/bbs731/Algorithms/sieveOfEtratosthenes"
+	"github.com/bbs731/algorithms/sieveOfEtratosthenes"
 	"time"
 )
 
