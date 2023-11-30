@@ -15,11 +15,11 @@ func isInterleave(s1 string, s2 string, s3 string) bool{
 
 	f := make([]bool, m+1)
 	for j:=0; j<=m; j++ {
-		f[j] = s2[:j] == s3[:j]
+		f[j] = s2[:j] == s3[:j]  //翻译的 dfs 中， if i < 0  return s2[:j+1] == s3[j+1]  这句话
 	}
 
 	for i:=0; i<n; i++ {
-		f[0] = s1[:i+1] == s3[:i+1]
+		f[0] = s1[:i+1] == s3[:i+1]  //翻译的是 dfs 中  if j <0  return s1[:i+1] == s3[i+1] 的这句话
 		for j:=0; j<m; j++ {
 			var a , b bool
 			if  s1[i] == s3[i+j+1] {
@@ -50,7 +50,7 @@ func isInterleave_dp(s1 string, s2 string, s3 string) bool{
 	for i:=0; i<=n; i++ {
 		f[i]= make([]bool, m+1)
 		f[i][0] = s1[:i] == s3[:i]
-		for j:=0; j<=m; j++{
+		for j:=1; j<=m; j++{
 			f[0][j]	= s2[:j] == s3[:j]
 		}
 	}
