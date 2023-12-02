@@ -1,3 +1,23 @@
+27:
+
+Python/Java/C++/Go/JS/Rust 代码：
+239. 滑动窗口最大值 https://leetcode.cn/problems/sliding-window-maximum/solution/shi-pin-yi-ge-shi-pin-miao-dong-dan-diao-ezj6/
+
+课后作业：
+1438. 绝对差不超过限制的最长连续子数组 https://leetcode.cn/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/
+2398. 预算内的最多机器人数目 https://leetcode.cn/problems/maximum-number-of-robots-within-budget/
+862. 和至少为 K 的最短子数组 https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/
+1499. 满足不等式的最大值 https://leetcode.cn/problems/max-value-of-equation/
+2944. 购买水果需要的最少金币数 https://leetcode.cn/problems/minimum-number-of-coins-for-fruits/
+
+课后作业题解：
+2398. 预算内的最多机器人数目 https://leetcode.cn/problems/maximum-number-of-robots-within-budget/solution/by-endlesscheng-7ukp/
+862. 和至少为 K 的最短子数组 https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/solution/liang-zhang-tu-miao-dong-dan-diao-dui-li-9fvh/
+1499. 满足不等式的最大值 https://leetcode.cn/problems/max-value-of-equation/solution/on-dan-diao-dui-lie-fu-ti-dan-pythonjava-hhrr/
+2944. 购买水果需要的最少金币数 https://leetcode.cn/problems/minimum-number-of-coins-for-fruits/solution/dpcong-on2-dao-onpythonjavacgo-by-endles-nux5/
+
+
+
 24:
 337. 打家劫舍 III https://leetcode.cn/problems/house-robber-iii/solution/shi-pin-ru-he-si-kao-shu-xing-dppythonja-a7t1/
 
