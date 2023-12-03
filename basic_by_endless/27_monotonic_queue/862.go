@@ -1,7 +1,10 @@
 package mono_queue
 
 /*
-灵神的， 用前缀和， 然后把前缀和，用 单调队列来优化。 解法看起来更加的清晰。 
+灵神的， 用前缀和， 然后把前缀和，用 单调队列来优化。 解法看起来更加的清晰。
+代码在这里：
+https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/solutions/1925036/liang-zhang-tu-miao-dong-dan-diao-dui-li-9fvh/
+
  */
 func shortestSubarray(nums []int, k int) int {
 	q := []int{}  //keep the positive nums's index
