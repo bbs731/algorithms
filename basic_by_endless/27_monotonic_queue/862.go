@@ -6,8 +6,37 @@ package mono_queue
 https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/solutions/1925036/liang-zhang-tu-miao-dong-dan-diao-dui-li-9fvh/
 
  */
+/*
+灵神的答案， 但是边界条件，是如何考虑的呢？  i = 0 的时候，以为着什么？
+ */
 func shortestSubarray(nums []int, k int) int {
-	q := []int{}  //keep the positive nums's index
+	n := len(nums)
+	ps := make([]int, n+1)
+	for i := 0; i < n; i++ {
+		ps[i+1] = ps[i] + nums[i]
+	}
+	q := []int{}
+	ans := n + 1
+
+	for i, x := range ps {
+		for len(q) > 0 && x-ps[q[0]] >= k {
+			ans = min(ans, i-1-q[0]+1)
+			q = q[1:] //pop left
+		}
+
+		for len(q) > 0 && x <= ps[q[len(q)-1]] {
+			q = q[:len(q)-1]
+		}
+		q = append(q, i)
+	}
+	if ans > n {
+		return -1
+	}
+	return ans
+}
+
+func shortestSubarray_chunlei(nums []int, k int) int {
+	q := []int{} //keep the positive nums's index
 	sum := 0
 	inf := int(1e9)
 	ans := inf
@@ -18,8 +47,8 @@ func shortestSubarray(nums []int, k int) int {
 		sum += x
 
 		//出队
-		for len(q) >0 && nums[q[len(q)-1]] < 0 {  // remove 没有用的 neg num element, 把它的值加在前面的那个数上。
-		// 我们让 q 里面只保留正数。
+		for len(q) > 0 && nums[q[len(q)-1]] < 0 { // remove 没有用的 neg num element, 把它的值加在前面的那个数上。
+			// 我们让 q 里面只保留正数。
 			neg := nums[q[len(q)-1]]
 			q = q[:len(q)-1] // remove last element
 
@@ -34,9 +63,9 @@ func shortestSubarray(nums []int, k int) int {
 			sum = 0
 		}
 
-		for sum >=k {
+		for sum >= k {
 			//找到解了。
-			ans = min(ans, q[len(q)-1] - q[0] + 1)
+			ans = min(ans, q[len(q)-1]-q[0]+1)
 
 			// 但是我们可能有更优的解， 所以可以移动队列左端。
 			// pop left
@@ -65,7 +94,7 @@ func shortestSubarray_wrong(nums []int, k int) int {
 		// 入队
 		sum += x
 		if sum <= 0 {
-			left = i+1
+			left = i + 1
 			sum = 0
 			continue
 		}
@@ -75,16 +104,16 @@ func shortestSubarray_wrong(nums []int, k int) int {
 		//}
 
 		//出队
-		for sum >=k && left<n {
+		for sum >= k && left < n {
 			ans = min(ans, i-left+1)
-			tmp :=0
+			tmp := 0
 			// 从 i 倒着数直到遇到 <0 的数， 或者 sum >=k时， 停止
 			for j := i; j > left; j-- {
 				if nums[j] < 0 {
 					break
 				}
 				tmp += nums[j]
-				if tmp >=k {
+				if tmp >= k {
 					ans = min(ans, i-j+1)
 					break
 				}
@@ -93,7 +122,7 @@ func shortestSubarray_wrong(nums []int, k int) int {
 
 			sum -= nums[left]
 			left++
-			for left <= i && nums[left] <=0 {
+			for left <= i && nums[left] <= 0 {
 				sum -= nums[left]
 				left++
 			}
