@@ -7,29 +7,19 @@ import "sort"
 不会
  */
 func lengthOfLIS(nums []int) int {
-	//n := len(nums)
-	//
-	//if n <= 1{
-	//	return n
-	//}
-	//
-	//q := []int{0}
-	////q := make([]int, n+1)
-	//
-	//for i:=1; i<n; i++ {
-	//	if nums[i] > nums[q[len(q)-1]] {
-	//		q = append(q, i)
-	//		continue
-	//	}
-	//
-	//
-	//	//
-	//	//for len(q)>0 && nums[q[len(q)-1]] >= x {
-	//	//	q = q[:len(q)-1] // pop last element
-	//	//}
-	//	//q = append(q, i)
-	//}
-	//return len(q)
+	n := len(nums)
+	q := []int{0}
+	ans := 1
+	for i:=1; i<n; i++ {
+		if nums[i] > nums[q[len(q)-1]] {
+			q = append(q, i)
+			ans = max(ans, len(q))
+			continue
+		}
+		pos := sort.Search( len(q), func(k int) bool { return nums[q[k]] >= nums[i]} )
+		q[pos]= i
+	}
+	return ans
 }
 
 /*
