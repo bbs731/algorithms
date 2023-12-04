@@ -1,4 +1,4 @@
-package dp
+package mono_queue
 
 /*
  题解
@@ -7,6 +7,18 @@ https://leetcode.cn/problems/minimum-number-of-coins-for-fruits/solutions/254204
 
 /*
 用单调队列，来优化时间复杂度， 从 O(n^2) 到 O（n)
+
+
+这道题可以说明应用单调队列的场景：
+在 dp 的状况转移方程中， 涉及到，需要求职之前的一段连续状态的最小（大）值。 此题为 f[i] = price[i-1] + min(f[j]) j from i+1 to 2i+1
+min(f[j]) j from i+1 to 2*i+1
+
+条件1： 连续的一段区间
+条件2： 是一个 RMQ 的问题 （求区间的最小或者最大值）
+
+还有其它的条件吗？ （相邻状态的段的左右区间满足非降的关系 出自 https://oi-wiki.org/dp/opt/monotonous-queue-stack/ 这句话怎么理解?)
+是需要满足，队列的单调性吗？ （单调队列能降低时间复杂段，就是因为，可以从队列里，去掉无用的信息）
+
  */
 func minimumCoins(prices []int) int {
 	n := len(prices)
