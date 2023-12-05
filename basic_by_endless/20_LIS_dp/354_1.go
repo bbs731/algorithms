@@ -5,6 +5,15 @@ import (
 	"sort"
 )
 
+
+/*
+https://leetcode.cn/problems/russian-doll-envelopes/solutions/633231/e-luo-si-tao-wa-xin-feng-wen-ti-by-leetc-wj68/
+
+官方的题解说的很清楚！ 关键解释了， 为什么给 envolop 排序的时候，第二个维度要是降序的， 这个太赞了！
+然后就姜维到了，一维的 LIS 问题用  n *logn 复杂度解决。
+
+
+ */
 type Envolop struct {
 	cards [][]int
 }
@@ -18,7 +27,7 @@ func (e *Envolop) Less(i, j int) bool {
 		return true
 	}
 	if e.cards[i][0] == e.cards[j][0] {
-		return e.cards[i][1] < e.cards[j][0]
+		return e.cards[i][1] > e.cards[j][1]  // 这里为什么要倒着排列呢？
 	}
 	return false
 }
@@ -34,42 +43,14 @@ func maxEnvelopes(envelopes [][]int) int {
 	sort.Sort(e)
 	envelopes = e.cards
 	fmt.Println(envelopes)
-	g := [][]int{}
+	g := []int{}
 
-	for i, envelop := range envelopes {
-		//pos := sort.Search(len(g), func(k int) bool { return g[k][0] >= envelopes[i][0] })
-		//if pos == len(g) {
-		fmt.Printf("processing: %v", envelop)
-		if len(g) == 0 {
-			e := make([]int, 2)
-			copy(e, envelopes[i])
-			g = append(g, e)
+	for _, envelop := range envelopes {
+		pos := sort.SearchInts(g, envelop[1] )
+		if pos == len(g){
+			g = append(g, envelop[1])
 		} else {
-			// 跟新，insert 或者抛弃不用
-
-			// insertion
-			if envelop[0] > g[len(g)-1][0] && envelop[1] > g[len(g)-1][1] {
-				e := make([]int, 2)
-				copy(e, envelop)
-				g = append(g, e)
-				fmt.Printf("insertion : %v\n", e)
-				continue
-			}
-
-			//  抛弃不用
-			if envelop[0] == g[len(g)-1][0] && envelop[1] >= g[len(g)-1][1] {
-				fmt.Printf("discard: %v\n", envelop)
-				continue
-			}
-
-			// 这一步是错误的， replace 很危险。		[[3 4] [12 2] [12 15] [30 50]]
-			// now the case envelop[1] < g[len(g)-1][1], we need to replace
-			if envelop[1] < g[len(g)-1][1] && (len(g)-2 < 0 || g[len(g)-2][1] < envelop[1]) {
-				// replace
-				fmt.Printf("replace: %v with %v\n", g[len(g)-1], envelop)
-				g[len(g)-1][0] = envelop[0]
-				g[len(g)-1][1] = envelop[1]
-			}
+			g[pos] = envelop[1]
 		}
 	}
 	fmt.Println(g)
@@ -93,7 +74,6 @@ func maxEnvelopes_dp(envelopes [][]int) int {
 		for j := 0; j < i; j++ {
 			if envelopes[i][0] > envelopes[j][0] && envelopes[i][1] > envelopes[j][1] {
 				local = max(local, f[j]+1)
-				break
 			}
 		}
 		f[i] = local
