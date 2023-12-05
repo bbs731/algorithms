@@ -1,5 +1,39 @@
 package dp
 
+/*
+这个代码，看起来更清爽吧， 冲 300 LIS 改过来， 增加 t 数组，用来统计数量。
+ */
+func findNumberOfLIS(nums []int) int {
+	n := len(nums)
+	f := make([]int, n)
+	t := make([]int, n)
+	ans := 1
+	total := 0
+
+	for i, x := range nums {
+		f[i] = 1
+		t[i] = 1
+		for j := 0; j < i; j++ {
+			if x > nums[j] {
+				if f[j]+1 > f[i] {
+					t[i] = t[j]
+				} else if f[j]+1 == f[i] {
+					t[i] += t[j]
+				}
+				f[i] = max(f[i], f[j]+1)
+			}
+		}
+		ans = max(ans, f[i])
+	}
+
+	for i := range nums {
+		if f[i] == ans {
+			total += t[i]
+		}
+	}
+	return total
+}
+
 // f[i] = max(f[j]) + 1
 //[1,2,4,3,5,4,7,2]
 // [1,2,3,1,2,3,1,2,3] 这个测试用例绝绝子。
