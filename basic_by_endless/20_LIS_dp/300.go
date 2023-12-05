@@ -41,6 +41,18 @@ func lengthOfLIS(nums []int) int {
 	return len(g)
 }
 
+func lengthOfLIS(nums []int) int {
+	l := 0
+	for _, x := range nums {
+		pos := sort.SearchInts(nums[:l], x)
+		nums[pos] = x
+		if pos == l {
+			l++
+		}
+	}
+	return l
+}
+
 /*
  dfs 翻译为 dp
  翻译成为 DP
