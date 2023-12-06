@@ -35,8 +35,9 @@ func lengthOfLIS(nums []int) int {
 		pos := sort.SearchInts(g, x)
 		if pos == len(g) {
 			g = append(g, x)
+		} else {
+			g[pos] = x
 		}
-		g[pos] = x
 	}
 	return len(g)
 }
