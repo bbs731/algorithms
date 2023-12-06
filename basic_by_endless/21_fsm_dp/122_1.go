@@ -35,7 +35,7 @@ func maxProfit(prices []int) int {
 初始化：	dfs(0, 0) = 0 ,  dfs(0, 1) = -inf
 
 翻译：
-		f[i+1][1] = max(f[i][1], f[i][0] - price[i])
+		f[i+1][1] = max(f[i][1], f[i][0] - prices[i])
 		f[i+1][0] = max(f[i][0], f[i][1] + prices[i])
 初始化： f[0][0] = 0 , f[0][1] = -inf
 
