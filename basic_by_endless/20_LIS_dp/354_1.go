@@ -5,7 +5,6 @@ import (
 	"sort"
 )
 
-
 /*
 https://leetcode.cn/problems/russian-doll-envelopes/solutions/633231/e-luo-si-tao-wa-xin-feng-wen-ti-by-leetc-wj68/
 
@@ -27,7 +26,7 @@ func (e *Envolop) Less(i, j int) bool {
 		return true
 	}
 	if e.cards[i][0] == e.cards[j][0] {
-		return e.cards[i][1] > e.cards[j][1]  // 这里为什么要倒着排列呢？
+		return e.cards[i][1] > e.cards[j][1] // 这里为什么要倒着排列呢？
 	}
 	return false
 }
@@ -37,17 +36,21 @@ func (e *Envolop) Swap(i, j int) {
 }
 
 func maxEnvelopes(envelopes [][]int) int {
-	e := &Envolop{
-		envelopes,
-	}
-	sort.Sort(e)
-	envelopes = e.cards
-	fmt.Println(envelopes)
+	sort.Slice(envelopes, func(i, j int) bool {
+		if envelopes[i][0] < envelopes[j][0] {
+			return true
+		}
+		if envelopes[i][0] == envelopes[j][0] {
+			return envelopes[i][1] > envelopes[j][1]
+		}
+		return false
+	})
+
 	g := []int{}
 
 	for _, envelop := range envelopes {
-		pos := sort.SearchInts(g, envelop[1] )
-		if pos == len(g){
+		pos := sort.SearchInts(g, envelop[1])
+		if pos == len(g) {
 			g = append(g, envelop[1])
 		} else {
 			g[pos] = envelop[1]
@@ -62,7 +65,6 @@ func maxEnvelopes_dp(envelopes [][]int) int {
 	n := len(envelopes)
 	f := make([]int, n)
 	ans := 0
-
 	e := &Envolop{
 		envelopes,
 	}
@@ -81,4 +83,3 @@ func maxEnvelopes_dp(envelopes [][]int) int {
 	}
 	return ans
 }
-

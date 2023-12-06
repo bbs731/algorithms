@@ -18,7 +18,7 @@ Python/Java/C++/Go/JS/Rust 代码：
 
 
 
-24:
+24: 树形DP
 337. 打家劫舍 III https://leetcode.cn/problems/house-robber-iii/solution/shi-pin-ru-he-si-kao-shu-xing-dppythonja-a7t1/
 
 课后作业：
@@ -35,6 +35,43 @@ https://codeforces.com/problemset/problem/1689/C
 
 更多 DP 题目+题解：
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/SOLUTIONS.md
+
+23: 树形DP
+本期介绍了【二叉树的直径】和【一般树的直径】。欢迎一键三连，也欢迎转发给你的朋友或刷题群~
+
+涉及到的力扣题目+代码：
+543. 二叉树的直径 https://leetcode.cn/problems/diameter-of-binary-tree/solution/shi-pin-che-di-zhang-wo-zhi-jing-dpcong-taqma/
+124. 二叉树中的最大路径和 https://leetcode.cn/problems/binary-tree-maximum-path-sum/solution/shi-pin-che-di-zhang-wo-zhi-jing-dpcong-n9s91/
+2246. 相邻字符不同的最长路径 https://leetcode.cn/problems/longest-path-with-different-adjacent-characters/solution/by-endlesscheng-92fw/
+
+课后作业：
+687. 最长同值路径 https://leetcode.cn/problems/longest-univalue-path/
+1617. 统计子树中城市之间最大距离 https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/
+2538. 最大价值和与最小价值和的差值 https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/
+
+课后作业题解：
+687. 最长同值路径 https://leetcode.cn/problems/longest-univalue-path/solution/shi-pin-che-di-zhang-wo-zhi-jing-dpcong-524j4/
+1617. 统计子树中城市之间最大距离 https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/solution/tu-jie-on3-mei-ju-zhi-jing-duan-dian-che-am2n/
+2538. 最大价值和与最小价值和的差值 https://leetcode.cn/problems/difference-between-maximum-and-minimum-price-sum/solution/by-endlesscheng-5l70/
+
+
+22:
+
+Python/Java/C++/Go/JS/Rust 代码：
+516. 最长回文子序列 https://leetcode.cn/problems/longest-palindromic-subsequence/solution/shi-pin-jiao-ni-yi-bu-bu-si-kao-dong-tai-kgkg/
+1039. 多边形三角剖分的最低得分 https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/solution/shi-pin-jiao-ni-yi-bu-bu-si-kao-dong-tai-aty6/
+
+课后作业：
+375. 猜数字大小 II https://leetcode.cn/problems/guess-number-higher-or-lower-ii/
+132. 分割回文串 II https://leetcode.cn/problems/palindrome-partitioning-ii/
+1312. 让字符串成为回文串的最少插入次数 https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/
+1771. 由子序列构造的最长回文串的长度 https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/
+1547. 切棍子的最小成本 https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/
+1000. 合并石头的最低成本 https://leetcode.cn/problems/minimum-cost-to-merge-stones/
+
+所有题目+题解汇总：
+https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
+
 
 21:
 https://www.bilibili.com/video/BV1ho4y1W7QK/?spm_id_from=333.788&vd_source=84c3c489cf545fafdbeb3b3a6cd6a112
