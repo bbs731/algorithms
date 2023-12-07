@@ -7,6 +7,10 @@ import (
 
 func Test516(t *testing.T) {
 
-	fmt.Println(longestPalindromeSubseq("aabaaba"))
-	fmt.Println(longestPalindromeSubseq_dfs("aabaaba"))
+	//fmt.Println(longestPalindromeSubseq("aabaaba"))
+	//fmt.Println(longestPalindromeSubseq_dfs("aabaaba"))
+}
+
+func Test1039(t *testing.T) {
+	fmt.Println(minScoreTriangulation([]int{2, 1, 4, 4}))
 }
