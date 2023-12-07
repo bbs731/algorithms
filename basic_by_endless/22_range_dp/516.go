@@ -6,8 +6,10 @@ import "fmt"
  range dp
  dfs(i, j) = max{ dfs(i+1, j-1) if s[i] == s[j],  dfs(i+1, j) , dfs(i, j-1))
 边界条件： dfs(i+1, i) = 0 , dfs(i, i) = 1
- 	f[i][j+1] = max( f[i+1][j]+2 , f[i+1][j+1], f[i][j])
+ 	f[i][j+1] = max( f[i+1][j]+2 , f[i+1][j+1], f[i][j])    // 因为 f[i] 需要依赖 f[i+1] 所以， i 需要倒序排列。
 初始化条件  f[i][i] = 1
+
+另外这一道题，比较特殊的是, i 和 j 的维度是不一样的一个是 n 维度， 一个是 n+1 维度。
  */
 func longestPalindromeSubseq(s string) int {
 	n := len(s)
