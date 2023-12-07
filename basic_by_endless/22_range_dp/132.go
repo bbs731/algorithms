@@ -1,6 +1,11 @@
 package dp
 
 /*
+ToDo:
+	把 dfs(i) 改成 递推！
+*/
+
+/*
 dfs(i, j) =  min ( dfs(i, k) + dfs(k+1, j) )  + 1  for  i <=k <j
 边界条件：
  dfs(i, j) = 0  if i >=j
