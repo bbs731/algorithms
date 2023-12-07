@@ -71,7 +71,7 @@ func minScoreTriangulation_chunlei(values []int) int {
 dfs(i, j) = min (dfs(i, k) + dfs(k, j) + v[i][j][k])  for  i <k <j
 
  */
-func minScoreTriangulation(values []int) int {
+func minScoreTriangulation_dfs(values []int) int {
 	inf := int(1e10)
 	n := len(values)
 	var dfs func(int, int) int
