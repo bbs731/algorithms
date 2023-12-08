@@ -89,7 +89,7 @@ dfs(i, j) =  min ( dfs(i, k) + dfs(k+1, j) )  + 1  for  i <=k <j
 这个计算 dfs(i, j)  [i, j] 这个范围内的最小割的时间复杂度是 O（n^3) 的。
 
 */
-func minCut(s string) int {
+func minCut_dfs(s string) int {
 	n := len(s)
 
 	// O(n^2) 的时间复杂度，来预处理 palidrome matrix 是对的。
