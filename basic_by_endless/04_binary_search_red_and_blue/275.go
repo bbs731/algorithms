@@ -44,3 +44,33 @@ func hIndex2(citations []int) int {
 	}
 	return r - 1
 }
+
+func hIndex3(citations []int)int {
+	n :=len(citations)
+	l, r := 0, n+1 // (l, r) 开区间
+
+	for l+1 < r {
+		mid := l + (r-l)/2
+		if citations[n-mid] >= mid {
+			l = mid
+		} else {
+			r = mid
+		}
+	}
+	return l// r -1
+}
+
+func hIndex4(citations []int)int {
+	n :=len(citations)
+	l, r := 0, n // (l, r]  左开右闭区间。  这个第一次见是不是?
+
+	for l < r {
+		mid := (r+l +1)/2
+		if citations[n-mid] >= mid {
+			l = mid
+		}else {
+			r = mid -1
+		}
+	}
+	return r
+}
