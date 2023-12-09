@@ -1,0 +1,44 @@
+Trie  前缀树， 也称作字典树
+
+
+
+type Trie struct {
+	children map[byte]*Trie
+	word     bool
+}
+
+func (this *Trie) Insert(word string) {
+	cur := this
+	for i := 0; i < len(word); i++ {
+		s := word[i]
+		if _, ok := cur.children[s]; !ok {
+			cur.children[s] = &Trie{
+				make(map[byte]*Trie),
+				false,
+			}
+
+		}
+		cur = cur.children[s]
+	}
+	cur.word = true
+}
+
+func (this *Trie) Search(word string) bool {
+	cur := this
+	for i := 0; i < len(word); i++ {
+		s := word[i]
+		if _, ok := cur.children[s]; !ok {
+			return false
+		}
+		cur = cur.children[s]
+	}
+	// since we are search the whole word.
+	return cur.word
+}
+
+
+数据结构， 和 insert and search 方法！
+
+
+
+https://leetcode-cn.com/leetbook/read/trie/x0floe/

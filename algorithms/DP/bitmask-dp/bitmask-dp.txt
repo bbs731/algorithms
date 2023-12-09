@@ -1,0 +1,6 @@
+ bitmask - DP  状态压缩
+
+ bitmask DP 比朴素的搜索要快的多， 因为DP 可以处理重复任务（具有天然剪枝的功能）， 具体可以参见 ： bitmask DP 在 TSP 问题上的分析
+ 因此，使用 bitmask DP 比单纯使用 DFS+ 剪枝，从技巧上说，要简单不少。 虽然 bitmask-DP 是 2^n  或者  n* 2^n 的时间复杂度
+
+ https://leetcode-cn.com/leetbook/read/dynamic-programming-2-plus/52yba3/

@@ -1,0 +1,46 @@
+Toplogical Sort:  一个 DAG（有向无环图） 中，我们将图中的顶点以线性方式进行排序
+
+
+toplogical sort 可以用来判断一个图是否是， DAG （有向无环图）
+
+https://oi-wiki.org/graph/topo/
+
+实现：
+(用 dfs 来实现）
+
+// C++ Version
+vector<int> G[MAXN];  // vector 实现的邻接表
+int c[MAXN];          // 标志数组
+vector<int> topo;     // 拓扑排序后的节点
+
+bool dfs(int u) {
+  c[u] = -1;
+  for (int v : G[u]) {
+    if (c[v] < 0)
+      return false;
+    else if (!c[v])
+      if (!dfs(v)) return false;
+  }
+  c[u] = 1;
+  topo.push_back(u);
+  return true;
+}
+
+bool toposort() {
+  topo.clear();
+  memset(c, 0, sizeof(c));
+  for (int u = 0; u < n; u++)
+    if (!c[u])
+      if (!dfs(u)) return false;
+  reverse(topo.begin(), topo.end());
+  return true;
+}
+
+
+时间复杂度： O（ V+E)
+
+
+判断  c[v] < 0 实际上就是在看，这是不是一条返祖的边， 有返祖边，就有环路。 https://oi-wiki.org/graph/scc/
+
+题目例子：
+207, 210

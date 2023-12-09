@@ -1,0 +1,73 @@
+ digit dp 中设计的前导0的理解：
+
+ 可以用个例子解释， n = 543,  可以认为千位为0即0543，  然后再枚举最高位就是第3位，百位的时候， 枚举的是 0， 1， 2， 3，4，5 当百位选定0时，枚举十位是，就传递了前导0 true, 因为 f0 = true && 百位 == 0
+
+
+
+
+
+
+
+hdu 2089 不要62
+题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
+
+定义dp 的关系式子：
+
+dp[i][0] = 10 * dp[i-1][0] - dp[i-1][0] - dp[i-1][1] = 10 * dp[i-1][0]  - dp[i-1][0] - dp[i-2][0]
+                                                     =10*dp[i-1][0] (第ith 位， 取 0 ~9） - dp[i-1][0] （4xxxx, ith 位取 4） - dp[i-2][0] ( 62xxxx, i, i-1 分别取 6,2)
+dp[i][1] = dp[i-1][0]
+dp[i][2] = 10 * dp[i-1][2] + dp[i-2][0] + dp[i-1][0]  // 因为 dp[i-1][1] = dp[i-2][0]
+         = 10 *dp[i-1][2] ( i-1 位贡献的非法值）  +  dp[i-2][0] (62xxxxx) + dp[i-1][0] (4xxxxxx)
+
+所以 dp[i][x] 的含义是， 满足 i 满位的情况下， 我们举例 i = 2, 一共 0 ~ 99 个数
+dp[i][0] 代表，0 ~ 99 中，满足题目要求的数的个数 = 80
+dp[i][1] 代表， 0~99 中，以 ith 位，为 4，但是 其它 i-1 位都满足题意 的个数 且定义 dp[i][1] = dp[i-1][0], 此例子中可以理解为 40, 41, 42, 43, 45, 46, 47, 48, 49 这9个数(注意不包括 44)
+dp[i][2] 代表， 0 ~ 99 中，不满足题目要求（非法值）的数的个数 = 20
+
+
+ #include <cstdio>  //code by Alphnia
+ #include <cstring>
+ #include <iostream>
+ using namespace std;
+ int x, y, dp[15][3], p[50];
+ inline int pre() {
+   memset(dp, 0, sizeof(dp));
+   dp[0][0] = 1;
+   for (int i = 1; i <= 10; i++) {
+     dp[i][0] = dp[i - 1][0] * 9 - dp[i - 1][1];
+     dp[i][1] = dp[i - 1][0];
+     dp[i][2] = dp[i - 1][2] * 10 + dp[i - 1][1] + dp[i - 1][0];
+   }
+ }
+ inline int cal(int x) {
+   int cnt = 0, ans = 0, tmp = x;
+   while (x) {
+     p[++cnt] = x % 10;
+     x /= 10;
+   }
+   bool flag = 0;
+   p[cnt + 1] = 0;
+   for (int i = cnt; i; i--) {  // 从高到低枚举数位
+     ans += p[i] * dp[i - 1][2];   // 这里考虑的是 i-1 位，非法值的贡献
+     // 下面要考虑的是 ith 位，对于非法值的贡献
+     if (flag)
+       ans += p[i] * dp[i - 1][0];
+     else {
+       if (p[i] > 4) ans += dp[i - 1][0]; // p[i] > 4 所以， ith 位可以取到 4 了。
+       if (p[i] > 6) ans += dp[i - 1][1];  // p[i] > 6 所以， ith 可以取到 6, ith-1 可以取到 2
+       if (p[i] > 2 && p[i + 1] == 6) ans += dp[i][1];  // dp[i][1] = dp[i-1][0], ith 位置可以取到 2
+       if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = 1;
+     }
+   }
+   return tmp - ans;
+ }
+ int main() {
+   pre();
+   while (~scanf("%d%d", &x, &y)) {
+     if (!x && !y) break;
+     x = min(x, y), y = max(x, y);
+     printf("%d\n", cal(y + 1) - cal(x));
+   }
+   return 0;
+ }
+
