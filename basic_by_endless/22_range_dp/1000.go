@@ -1,6 +1,10 @@
 package dp
 
 /*
+https://leetcode.cn/problems/minimum-cost-to-merge-stones/solutions/2207235/tu-jie-qu-jian-dpzhuang-tai-she-ji-yu-yo-ppv0/
+灵神的题解，太赞了！
+ */
+/*
 dfs(i, j) = min{ dfs(i, m) + dfs(m+1, j) }  + sum[i..j]   for m = i+ (k-1)x  if (j-i) % (k-1) == 0
 dfsi, j) = min { dfs(i,m) + dfs(m+1, j)}   for m = i+ (k-1)x  if (j-1) % (k-1) != 0
 因此可以去掉一个维度。
