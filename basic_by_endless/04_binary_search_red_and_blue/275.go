@@ -28,3 +28,19 @@ func hIndex(citations []int) int {
 	// 根据循环不变量，right 现在是最大的回答为「是」的数
 	return r
 }
+
+func hIndex2(citations []int) int {
+	n := len(citations)
+	l, r := 1, n+1 // [l, r)  写一个，左闭右开的区间
+
+	for l < r {
+
+		mid := l + (r-l)/2
+		if citations[n-mid] >= mid {
+			l = mid + 1
+		} else {
+			r = mid
+		}
+	}
+	return r - 1
+}

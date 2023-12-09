@@ -50,6 +50,24 @@ func lower_bound3(nums []int, target int) int {
 	return l + 1
 }
 
+func lower_bound4(nums []int, target int) int {
+	n := len(nums)
+	l, r := 0, n-1 // [l, r]  闭区间
+	/* 循环不变量是： l-1 指向的是红色
+	 				r+1 指向的是蓝色
+	*/
+
+	for l <= r {
+		mid := l + (r-l)/2
+		if nums[mid] < target {
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+	return l
+}
+
 func searchRange(nums []int, target int) []int {
 	start := lower_bound(nums, target)
 	if start == len(nums) || nums[start] != target {
