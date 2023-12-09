@@ -285,3 +285,18 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 
 所有题目+题解汇总：
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
+
+
+4:
+34. 在排序数组中查找元素的第一个和最后一个位置 https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/solution/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-t9l9/
+
+课后作业：
+35. 搜索插入位置 https://leetcode.cn/problems/search-insert-position/
+704. 二分查找 https://leetcode.cn/problems/binary-search/
+275. H 指数 II https://leetcode.cn/problems/h-index-ii/
+
+课后作业题解：
+35. 搜索插入位置 https://leetcode.cn/problems/search-insert-position/solution/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-nq23/
+704. 二分查找 https://leetcode.cn/problems/binary-search/solution/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-eplk/
+275. H 指数 II https://leetcode.cn/problems/h-index-ii/solution/tu-jie-yi-tu-zhang-wo-er-fen-da-an-si-ch-d15k/
+
