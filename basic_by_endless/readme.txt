@@ -17,6 +17,26 @@ Python/Java/C++/Go/JS/Rust 代码：
 2944. 购买水果需要的最少金币数 https://leetcode.cn/problems/minimum-number-of-coins-for-fruits/solution/dpcong-on2-dao-onpythonjavacgo-by-endles-nux5/
 
 
+26: 单调栈
+739. 每日温度 https://leetcode.cn/problems/daily-temperatures/solution/shi-pin-jiang-qing-chu-wei-shi-yao-yao-y-k0ks/
+42. 接雨水 https://leetcode.cn/problems/trapping-rain-water/solution/zuo-liao-nbian-huan-bu-hui-yi-ge-shi-pin-ukwm/
+
+课后作业：
+1475. 商品折扣后的最终价格 https://leetcode.cn/problems/final-prices-with-a-special-discount-in-a-shop/
+901. 股票价格跨度 https://leetcode.cn/problems/online-stock-span/
+1019. 链表中的下一个更大节点 https://leetcode.cn/problems/next-greater-node-in-linked-list/
+84. 柱状图中最大的矩形 https://leetcode.cn/problems/largest-rectangle-in-histogram/
+
+25: 树形 DP
+
+968. 监控二叉树 https://leetcode.cn/problems/binary-tree-cameras/solution/shi-pin-ru-he-si-kao-shu-xing-dpgai-chen-uqsf/
+
+课后作业：
+保安站岗 https://www.luogu.com.cn/problem/P2458
+保安站岗 Python 代码 https://www.luogu.com.cn/paste/y9iiynzw
+保安站岗 Go 代码 https://www.luogu.com.cn/paste/ei5ihtp6
+LCP34. 二叉树染色（选做） https://leetcode.cn/problems/er-cha-shu-ran-se-UGC/
+LCP64. 二叉树灯饰（选做） https://leetcode.cn/problems/U7WvvU/
 
 24: 树形DP
 337. 打家劫舍 III https://leetcode.cn/problems/house-robber-iii/solution/shi-pin-ru-he-si-kao-shu-xing-dppythonja-a7t1/
@@ -286,8 +306,26 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 所有题目+题解汇总：
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 
+5: binary_search
 
-4:
+涉及到的力扣题目 + 代码：
+162. 寻找峰值 https://leetcode.cn/problems/find-peak-element/solutions/1987497/by-endlesscheng-9ass/
+153. 寻找旋转排序数组中的最小值 https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/solutions/1987499/by-endlesscheng-owgd/
+33. 搜索旋转排序数组 https://leetcode.cn/problems/search-in-rotated-sorted-array/solutions/1987503/by-endlesscheng-auuh/
+
+课后作业：
+154. 寻找旋转排序数组中的最小值 II https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/
+
+课后作业题解：
+154. 寻找旋转排序数组中的最小值 II https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/solution/zhi-yao-ni-hui-153-jiu-neng-kan-dong-pyt-qqc6/
+
+所有题目+题解汇总：
+https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
+
+更多二分题目（二分题单）：
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/sort.go
+
+4: binary_search
 34. 在排序数组中查找元素的第一个和最后一个位置 https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/solution/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-t9l9/
 
 课后作业：
@@ -301,6 +339,28 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 275. H 指数 II https://leetcode.cn/problems/h-index-ii/solution/tu-jie-yi-tu-zhang-wo-er-fen-da-an-si-ch-d15k/
 
 
+3: two-pointer
+
+209. 长度最小的子数组 https://leetcode.cn/problems/minimum-size-subarray-sum/solution/biao-ti-xia-biao-zong-suan-cuo-qing-kan-k81nh/
+713. 乘积小于 K 的子数组 https://leetcode.cn/problems/subarray-product-less-than-k/solution/xia-biao-zong-suan-cuo-qing-kan-zhe-by-e-jebq/
+3. 无重复字符的最长子串 https://leetcode.cn/problems/longest-substring-without-repeating-characters/solution/xia-biao-zong-suan-cuo-qing-kan-zhe-by-e-iaks/
+
+课后作业：
+1004. 最大连续 1 的个数 III https://leetcode.cn/problems/max-consecutive-ones-iii/
+1234. 替换子串得到平衡字符串 https://leetcode.cn/problems/replace-the-substring-for-balanced-string/
+1658. 将 x 减到 0 的最小操作数 https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/
+
+课后作业答案：
+1004. 最大连续 1 的个数 III https://leetcode.cn/problems/max-consecutive-ones-iii/solution/hua-dong-chuang-kou-yi-ge-shi-pin-jiang-yowmi/
+1234. 替换子串得到平衡字符串 https://leetcode.cn/problems/replace-the-substring-for-balanced-string/solution/tong-xiang-shuang-zhi-zhen-hua-dong-chua-z7tu/
+1658. 将 x 减到 0 的最小操作数 https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/solution/ni-xiang-si-wei-pythonjavacgo-by-endless-b4jt/
+
+
+
+2: two-pointer sliding window
+
+11. 盛最多水的容器 https://leetcode.cn/problems/container-with-most-water/solution/by-endlesscheng-f0xz/
+42. 接雨水 https://leetcode.cn/problems/trapping-rain-water/solution/zuo-liao-nbian-huan-bu-hui-yi-ge-shi-pin-ukwm/
 
 1: sliding window
 
