@@ -300,3 +300,21 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 704. 二分查找 https://leetcode.cn/problems/binary-search/solution/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-eplk/
 275. H 指数 II https://leetcode.cn/problems/h-index-ii/solution/tu-jie-yi-tu-zhang-wo-er-fen-da-an-si-ch-d15k/
 
+
+
+1: sliding window
+
+167. 两数之和 II - 输入有序数组 https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/solution/san-shu-zhi-he-bu-hui-xie-xiang-xiang-sh-6wbq/
+15. 三数之和 https://leetcode.cn/problems/3sum/solution/shuang-zhi-zhen-xiang-bu-ming-bai-yi-ge-pno55/
+
+课后作业：
+16. 最接近的三数之和 https://leetcode.cn/problems/3sum-closest/
+18. 四数之和 https://leetcode.cn/problems/4sum/
+2824. 统计和小于目标的下标对数目 https://leetcode.cn/problems/count-pairs-whose-sum-is-less-than-target/
+611. 有效三角形的个数 https://leetcode.cn/problems/valid-triangle-number/
+
+课后作业题解：
+16. 最接近的三数之和 https://leetcode.cn/problems/3sum-closest/solution/ji-zhi-you-hua-ji-yu-san-shu-zhi-he-de-z-qgqi/
+18. 四数之和 https://leetcode.cn/problems/4sum/solution/ji-zhi-you-hua-ji-yu-san-shu-zhi-he-de-z-1f0b/
+2824. 统计和小于目标的下标对数目 https://leetcode.cn/problems/count-pairs-whose-sum-is-less-than-target/solution/onlogn-pai-xu-shuang-zhi-zhen-by-endless-qk40/
+611. 有效三角形的个数 https://leetcode.cn/problems/valid-triangle-number/solution/zhuan-huan-cheng-abcyong-xiang-xiang-shu-1ex3/

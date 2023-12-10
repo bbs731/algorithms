@@ -1,6 +1,9 @@
 package backtracking
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func solveNQueens(n int) [][]string {
 	ans := [][]string{}
@@ -37,5 +40,6 @@ func solveNQueens(n int) [][]string {
 	}
 	dfs(0)
 
+	fmt.Println(len(ans))
 	return ans
 }
