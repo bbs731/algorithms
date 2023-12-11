@@ -43,7 +43,81 @@ package binary_search
 //
 //
 
-func findMin(nums []int) int {
+/*
+	我们定义， 蓝色为， 最小值，和最小值的右边的元素。
+	红色是最小值的左边元素。
 
+	根据定义，我们知道， n-1 这个位置一定是蓝色的. (为什么？）  n-1 这个位置，要么是最小值的位置，要么是最小值右边的元素。
+ */
+func findMin_closed(nums []int) int {
+	n := len(nums)
+	left, right := 0, n-2 // [left, right]
+
+	for left <= right {
+		mid := (left + right) / 2
+		if nums[mid] > nums[n-1] {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+	return nums[left] // l =r+1
 }
 
+/*
+	用开区间写一下
+
+	最后的结果 l+1 = r 返回 right.  (为什么？ 循环不变量是什么？ >=right 的都是蓝色, <=left 的都是红色）
+ */
+func findMin_open(nums []int) int {
+	n := len(nums)
+	left, right := -1, n-1 // (left, right)
+
+	for left+1 < right {
+		mid := (left + right) / 2
+		if nums[mid] > nums[n-1] {
+			left = mid
+		} else {
+			right = mid
+		}
+	}
+	return nums[right] // l+1 =r
+}
+
+/*
+	用半闭半开区间写一下
+	这tmd 是在炫技吗？
+ */
+func findMin_close_open(nums []int) int {
+	n := len(nums)
+	left, right := 0, n-1 // [left, right)
+
+	for left < right {
+		mid := (left + right) / 2
+		if nums[mid] > nums[n-1] {
+			left = mid + 1
+		} else {
+			right = mid
+		}
+	}
+	return nums[right] // l =r
+}
+
+/*
+最后来个酷的， （，] 区间
+循环不变量是啥？  >right  或者说  >= right+1 的都是蓝色
+ */
+func findMin(nums []int) int {
+	n := len(nums)
+	left, right := -1, n-2 // (left, right]
+
+	for left < right {
+		mid := (left + right + 1) / 2
+		if nums[mid] > nums[n-1] {
+			left = mid
+		} else {
+			right = mid - 1
+		}
+	}
+	return nums[right+1] // l =r
+}
