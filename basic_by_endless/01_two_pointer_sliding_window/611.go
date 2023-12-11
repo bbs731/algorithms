@@ -33,7 +33,10 @@ package sliding_window
  */
 
 /*
-时间复杂度是 O（n^2)
+你写的，时间复杂度是多少啊？ O（n^2) 还是 O（n^3) 啊？
+
+重新写 灵神的答案吧：
+https://leetcode.cn/problems/valid-triangle-number/solutions/2432875/zhuan-huan-cheng-abcyong-xiang-xiang-shu-1ex3/
  */
 func triangleNumber(nums []int) int {
 	sort.Ints(nums)
