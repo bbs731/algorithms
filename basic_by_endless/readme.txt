@@ -196,8 +196,7 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 
 
-
-14:
+14: backtracking
 
 涉及到的力扣题目 + 代码：
 17. 电话号码的字母组合 https://leetcode.cn/problems/letter-combinations-of-a-phone-number/solutions/2059416/hui-su-bu-hui-xie-tao-lu-zai-ci-pythonja-3orv/
@@ -218,9 +217,7 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 Backtracking - Wikipedia https://en.wikipedia.org/wiki/Backtracking
 
 
-
-
-13:
+13: binary_tree_bfs
 
 Python/Java/C++/Go 代码：
 102. 二叉树的层序遍历 https://leetcode.cn/problems/binary-tree-level-order-traversal/solution/bfs-wei-shi-yao-yao-yong-dui-lie-yi-ge-s-xlpz/
@@ -254,7 +251,7 @@ Python/Java/C++/Go 代码：
 所有题目+题解汇总：
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 
-11:
+11: binary_tree_pre_in_post_order
 
 讲了前序遍历、中序遍历和后序遍历三种方法。
 Python/Java/C++/Go/JS 代码：
@@ -271,7 +268,7 @@ Python/Java/C++/Go/JS 代码：
 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
 
 
-10:
+10: binary_tree_dfs
 
 涉及到的力扣题目 + 代码：
 100. 相同的树 https://leetcode.cn/problems/same-tree/solutions/2015056/ru-he-ling-huo-yun-yong-di-gui-lai-kan-s-empk/

@@ -30,15 +30,49 @@ package binary_search
 这是好题， 太锻炼思维了。
 
 
+红蓝染色的意义是什么？
+找到目标元素，目标元素的右边都是蓝色, 目标元素的左边都是红色。 目标元素，是红是蓝？
 
-红蓝染色，太难考虑了。不过学会了红蓝染色法，这个将是一劳永逸的方法。 如果按照红蓝染色的方法分析，那么，如何定义蓝色红色？ 蓝色是指，大于等于 target 的区间是蓝色吗？
+
+红蓝染色，太难考虑了。不过学会了红蓝染色法，这个将是一劳永逸的方法。 如果按照红蓝染色的方法分析，那么，如何定义蓝色红色？ 蓝色是指，大于等于 target 的区间是蓝色吗？不对。
+是 target 元素和 target 右边的元素被染成蓝色。 （右边的元素，可以小于 target)
+
 https://leetcode.cn/problems/search-in-rotated-sorted-array/solutions/1987503/by-endlesscheng-auuh/
 
 用灵神的做法，再做一遍， 再看一遍视频。 二分，永远的痛！
 
-
  */
+
 func search(nums []int, target int) int {
+	n := len(nums)
+	left, right := 0, n-2 // [left, right]
+
+	var isBlue func(int) bool
+	isBlue = func(mid int) bool {
+		if nums[mid] > nums[n-1] {
+			return target > nums[n-1] && nums[mid] >= target
+		}
+		// nums[mid] < nums[n-1]
+		return target <= nums[mid] || target > nums[n-1]
+	}
+
+	for left <= right {
+		mid := (left + right) / 2
+
+		if isBlue(mid) {
+			right = mid - 1
+		} else {
+			left = left + 1
+		}
+	}
+
+	if nums[left] == target {
+		return left
+	}
+	return -1
+}
+
+func search_chunlei(nums []int, target int) int {
 	n := len(nums)
 	left, right := 0, n-1 // [left, right]
 
