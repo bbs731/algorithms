@@ -55,7 +55,7 @@ func findMin_closed(nums []int) int {
 
 	for left <= right {
 		mid := (left + right) / 2
-		if nums[mid] > nums[n-1] {
+		if nums[mid] > nums[n-1] { // 看 154的题目， 这里不和 nums[n-1]比较， 和 nums[right+1] 的位置比较也是可以的。
 			left = mid + 1
 		} else {
 			right = mid - 1

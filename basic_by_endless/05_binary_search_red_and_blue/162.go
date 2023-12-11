@@ -40,7 +40,7 @@ package binary_search
 func findPeakElement(nums []int) int {
 	// 定义， 红色是山峰的左侧， 蓝色是山峰或者山峰的右侧
 	n := len(nums)
-	left, right := 0, n-2 // [left, right]  // 这里初始化成 n-2 因为 n-1 一定是蓝色的。
+	left, right := 0, n-2 // [left, right]  // 这里初始化成 n-2 因为 n-1 一定是蓝色的。 因为 n-1 要么是山峰，要么是山峰的右侧
 	// 这个初始化很有技巧， 它简化了，下面 nums[mid+1] 是否越界的判断。
 
 	for left <= right {

@@ -50,10 +50,10 @@ func search(nums []int, target int) int {
 	var isBlue func(int) bool
 	isBlue = func(mid int) bool {
 		if nums[mid] > nums[n-1] {
-			return target > nums[n-1] && nums[mid] >= target
+			return target > nums[n-1] && nums[mid] >= target    //这里太巧妙了，多看吧！
 		}
 		// nums[mid] < nums[n-1]
-		return target <= nums[mid] || target > nums[n-1]
+		return target <= nums[mid] || target > nums[n-1]        //这里太巧妙了
 	}
 
 	for left <= right {
