@@ -45,7 +45,7 @@ func secondGreaterElement(nums []int) []int {
 }
 
 
-// 你得到了什么教训啊？ 
+// 你得到了什么教训啊？
 func secondGreaterElement(nums []int) []int {
 	n := len(nums)
 	ans := make([]int, n)

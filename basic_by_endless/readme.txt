@@ -18,6 +18,7 @@ Python/Java/C++/Go/JS/Rust 代码：
 
 
 26: 单调栈
+739. 每日温度（单调栈模板题）
 739. 每日温度 https://leetcode.cn/problems/daily-temperatures/solution/shi-pin-jiang-qing-chu-wei-shi-yao-yao-y-k0ks/
 42. 接雨水 https://leetcode.cn/problems/trapping-rain-water/solution/zuo-liao-nbian-huan-bu-hui-yi-ge-shi-pin-ukwm/
 
@@ -27,8 +28,17 @@ Python/Java/C++/Go/JS/Rust 代码：
 1019. 链表中的下一个更大节点 https://leetcode.cn/problems/next-greater-node-in-linked-list/
 84. 柱状图中最大的矩形 https://leetcode.cn/problems/largest-rectangle-in-histogram/
 
-25: 树形 DP
+496. 下一个更大元素 I
+503. 下一个更大元素 II
+1019. 链表中的下一个更大节点 1571
+901. 股票价格跨度 1709
+1124. 表现良好的最长时间段 1908
+456. 132 模式 ~2000
+2866. 美丽塔 II 2072
+2454. 下一个更大元素 IV 2175
+2289. 使数组按非递减顺序排列 2482
 
+25: 树形 DP
 968. 监控二叉树 https://leetcode.cn/problems/binary-tree-cameras/solution/shi-pin-ru-he-si-kao-shu-xing-dpgai-chen-uqsf/
 
 课后作业：
