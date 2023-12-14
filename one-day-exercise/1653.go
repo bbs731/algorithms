@@ -46,7 +46,7 @@ func minimumDeletions(s string) int {
 真是好题啊，做几遍错几遍啊！ 这是标准的面试难度的真题。
  */
 // 这个答案是错的。
-func minimumDeletions(s string) int {
+func minimumDeletions_wrong(s string) int {
 	// 删除 a , 再 b 出现之后，出现的 a 的次数。
 	// 删除 b,  在最后一个 a 之前 所有 b 的出现次数。
 	ans := 0
