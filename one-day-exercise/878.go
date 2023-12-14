@@ -50,7 +50,7 @@ func gcd(a, b int) int {
 }
 
 // gcd loop 版本
-func gcd(a, b int) int {
+func gcd_loop(a, b int) int {
 	for a != 0 {
 		a, b = b%a, a
 	}
@@ -60,7 +60,7 @@ func gcd(a, b int) int {
 /*
 思路是对的， 但是二分查找处理细节是错误的。
  */
-func nthMagicalNumber(n int, a int, b int) int {
+func nthMagicalNumber_not_exact(n int, a int, b int) int {
 	if a > b {
 		a, b = b, a
 	}
