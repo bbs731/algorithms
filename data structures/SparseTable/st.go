@@ -24,7 +24,7 @@ func main() {
 
 	// ST 表的构建  f[i][j] = max(f[i][j-1], f[i+ 1 <<(j-1]][j-1])
 	for j := 1; j <= LogN; j++ {
-		for i := 1; i+1<<uint(j-1) <= N; i++ {
+		for i := 1; i+1<<uint(j-1) <= N; i++ { // 这里的条件是错误的， 应该是 i + 1 <<j <=N
 			dp[i][j] = max(dp[i][j-1], dp[i+1<<uint(j-1)][j-1])
 		}
 	}

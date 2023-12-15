@@ -1,4 +1,4 @@
-package ST_table
+package SparseTable
 
 import "math/bits"
 
