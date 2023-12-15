@@ -14,6 +14,9 @@ import "sort"
  /*
  my goodness, you are good!
  边界条件，太容易错了。
+
+ https://leetcode.cn/problems/closest-nodes-queries-in-a-binary-search-tree/solutions/1981349/zhong-xu-bian-li-er-fen-cha-zhao-by-endl-m8ez/
+ 灵神的答案，思路是一样的, 赞!
   */
 func closestNodes(root *TreeNode, queries []int) [][]int {
 	tree := make([]int, 0)
