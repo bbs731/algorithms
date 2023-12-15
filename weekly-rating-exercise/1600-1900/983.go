@@ -7,7 +7,7 @@ import (
 
 /*
 // dp[i] = min(dp[i+1] + cost[0], dp[i+7] + cost[1], dp[i+30] + cost[2])
-初始化条件是什么?
+初始化条件是什么? dp[] 初始值 为 0
 */
 func mincostTickets(days []int, costs []int) int {
 	n := len(days)
