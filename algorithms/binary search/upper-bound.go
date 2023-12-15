@@ -10,6 +10,45 @@ import (
 https://stackoverflow.com/questions/28389065/difference-between-basic-binary-search-for-upper-bound-and-lower-bound
  */
 
+func upper_bound(nums []int, target int) int {
+	n := len(nums)
+	l, r := 0, n-1 // [l, r]
+	// 还是要用红蓝染色，来考虑这个问题。
+	// r+1 指向的是蓝色
+	// l-1 指向的是红色
+	for l <= r {
+		mid := (r-l)>>1 + l
+		if nums[mid] <= target {
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+	return l // l = r+1
+}
+
+func upper_bound2(nums []int, target int) int {
+	return lower_bound(nums, target+1)
+}
+
+func lower_bound(nums []int, target int) int {
+	n := len(nums)
+	l, r := 0, n-1 // [l, r]  闭区间
+	/* 循环不变量是： l-1 指向的是红色   <=l-1 都是红色
+	 				r+1 指向的是蓝色   >= r+1 都是蓝色
+	*/
+
+	for l <= r {
+		mid := l + (r-l)/2
+		if nums[mid] < target {
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+	return l // l = r+1
+}
+
 func main() {
 
 	num := 5
