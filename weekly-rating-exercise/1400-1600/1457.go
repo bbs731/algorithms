@@ -11,7 +11,7 @@ package _400_1600
 
  /*
  好题啊。 不需要 path, 只需要 mapCnt 记录 1~9 出现的次数
- 
+
   */
 
  func isPalindrome(mapCnt map[int]int)bool{
