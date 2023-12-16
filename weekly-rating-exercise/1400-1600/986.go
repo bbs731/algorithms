@@ -2,15 +2,16 @@ package _400_1600
 
 // 好题， 就是太简单。 锻炼变成，和边界条件的锻炼。 1542分
 func intersect(a, b, c, d int) ([]int, bool) {
-	if b < c || d < a {  // 小技巧！
+	if b < c || d < a {
 		return nil, false
 	}
-	if a < c {
-		return []int{c, min(b, d)}, true
-	} else if a > c {
-		return []int{a, min(b, d)}, true
-	}
-	return []int{c, min(b, d)}, true
+	// 这里还能简化逻辑.  return max(a,c), min(b,d)
+	//if a <= c {
+	//	return []int{c, min(b, d)}, true
+	//}
+	//return []int{a, min(b, d)}, true
+
+	return []int{max(a,c), min(b,d)}, true
 }
 
 func intervalIntersection(firstList [][]int, secondList [][]int) [][]int {
