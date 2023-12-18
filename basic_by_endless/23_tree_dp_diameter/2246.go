@@ -8,3 +8,33 @@ package _3_tree_dp_diameter
 请你找出路径上任意一对相邻节点都没有分配到相同字符的 最长路径 ，并返回该路径的长度。
 
  */
+/*
+https://leetcode.cn/problems/longest-path-with-different-adjacent-characters/solutions/1427611/by-endlesscheng-92fw/
+灵神给的答案， 算的是边的个数。
+*/
+
+func longestPath(parent []int, s string) int {
+	ans := 1
+	n := len(parent)
+	g := make([][]int, n)
+	for i := 1; i < n; i++ {
+		g[parent[i]] = append(g[parent[i]], i)
+	}
+	var dfs func(root int) int
+	dfs = func(root int) int {
+		var p int
+		//for i := 1; i < n; i++ {  //  优化一下这里. 通过 预处理 parent and children list
+		for _, i := range g[root] {
+			//if parent[i] == root {
+			cl := dfs(i) // get children path's length  这里算的是 Node 的个数
+			if s[i] != s[root] {
+				ans = max(ans, cl+p+1)
+				p = max(p, cl)
+			}
+			//}
+		}
+		return p + 1
+	}
+	dfs(0)
+	return ans
+}
