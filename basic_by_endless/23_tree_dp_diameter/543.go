@@ -43,3 +43,20 @@ func diameterOfBinaryTree(root *TreeNode) int {
 	dfs(root)
 	return ans
 }
+
+func diameterOfBinaryTree_node_length(root *TreeNode) int {
+	ans := -1
+	// dfs 返回是树的深度， 深度在这个版本里指的是Node的个数，不是边的个数。
+	var dfs func(*TreeNode) int
+	dfs = func(r *TreeNode) int {
+		if r == nil {
+			return 0
+		}
+		lh := dfs(r.Left)
+		rh := dfs(r.Right)
+		ans = max(ans, lh+rh+1)
+		return max(lh, rh) + 1
+	}
+	dfs(root)
+	return ans - 1
+}
