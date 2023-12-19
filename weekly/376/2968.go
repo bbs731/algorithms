@@ -67,6 +67,13 @@ func calCost_use_prefix(psums []int, nums []int, l, r int) int {
 	return cost
 }
 
+/*
+
+问题：
+	1. 为什么能想到用 sliding-window 滑动窗口来解决这道问题？
+	2. 满足什么样的条件？(单调性） 才能使用滑动窗口？
+ */
+
 func maxFrequencyScore(nums []int, k int64) int {
 	ans := 0
 	left, right := 0, 0 // 这里， right 应该初始化成 0， 不能是 1.  测试用例   [10]  k=0  应该返回 1
