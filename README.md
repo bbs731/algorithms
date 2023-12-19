@@ -9,3 +9,20 @@
 5. 前缀和差分
 6. 贪心
 7. 构造（ 这个才是真正有自由度，总结题目规律的地方，但是题目之间没有通用模板。 还没接触到，基础算法都熟练了之后，去锻炼）
+
+
+
+
+
+	数据规模	时间复杂度	                    算法举例
+1	10	    O(n!)	                        permutation 排列
+2	20~30	O(2^n)	                        dfs+剪枝， 状态压缩DP， 组合
+3	100	    O(n^3)	                        floyd, DP, 高斯消元
+4	1000	O(n^2)	                        朴素Dijkstra、朴素Prim, Bellman-Ford, DP, 二分
+5   10^4    O(n*sqrt(n))                    块状链表，分块， 莫队
+6	10^5	O(nlog n)	                    排序，堆，线段树、树状数组、set/map、heap、拓扑排序、dijkstra+heap、prim+heap、Kruskal、spfa、求凸包、求半平面交、二分、CDQ分治、整体二分、后缀数组、树链剖分、动态树
+7   10^6    O(n)以及常数小的O(nlogn)         单调队列，hash, 双指针扫描， BFS， 并查集， kmp, AC.  nlogn(sort, BIT, heap, dijkstra, spfa)
+8	10^7	O(n)	                        双指针扫描，滑动窗口, kmp, AC自动机, 线性晒素数
+9	10^9	O(sqrt(n))	                    判断素数、求平方根
+10	10^10	O(log n)	                    二分搜索, 快速幂，数位DP
+11	+∞	    O(1)	                        数学相关算法, 高精度加减， FFT/NTT
