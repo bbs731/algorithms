@@ -22,7 +22,7 @@
 10000 | O(n*sqrt(n)) | 块状链表，分块，莫队
 10^5 | O(nlog n) | 排序，堆，线段树、树状数组、set/map、heap、拓扑排序、dijkstra+heap、prim+heap、Kruskal、spfa、求凸包、求半平面交、二分、CDQ分治、整体二分、后缀数组、树链剖分、动态树
 10^6 | O(n)以及常数小的O(nlogn) | 单调队列，hash, 双指针扫描，BFS，并查集，kmp, AC. nlogn(sort, BIT, heap, dijkstra, spfa)
-10^7 | O(n) | 双指针扫描，滑动窗口, kmp, AC自动机, 线性晒素数
+10^7 | O(n) | 双指针扫描，滑动窗口, kmp, AC自动机, 线性筛素数
 10^9 | O(sqrt(n)) | 判断素数、求平方根
 10^10 | O(log n) | 二分搜索, 快速幂，数位DP
 +∞ | O(1) | 数学相关算法, 高精度加减，FFT/NTT
