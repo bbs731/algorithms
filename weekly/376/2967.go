@@ -1,6 +1,9 @@
 package _76
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 /*
 
@@ -68,17 +71,6 @@ func isPalindrome(n int) bool {
 	return true
 }
 
-func calSum(nums []int, k int) int64 {
-	ans := 0
-	for _, x := range nums {
-		if x >= k {
-			ans += x - k
-		} else {
-			ans += k - x
-		}
-	}
-	return int64(ans)
-}
 func minimumCost(nums []int) int64 {
 	ans := int64(1e16)
 	sort.Ints(nums)
@@ -100,4 +92,83 @@ func minimumCost(nums []int) int64 {
 		}
 	}
 	return min(calSum(nums, l), calSum(nums, r), ans)
+}
+
+/*
+灵神的答案：
+https://leetcode.cn/problems/minimum-cost-to-make-array-equalindromic/solutions/2569308/yu-chu-li-hui-wen-shu-zhong-wei-shu-tan-7j0zy/
+看灵神的思路， 中位数贪心， 证明很精彩。 思路清洗正规（不像自己是个草台班子的想法）
+ */
+
+func calSum(nums []int, k int) int64 {
+	ans := 0
+	for _, x := range nums {
+		if x >= k {
+			ans += x - k
+		} else {
+			ans += k - x
+		}
+	}
+	return int64(ans)
+}
+
+func minimumCost(nums []int) int64 {
+	sort.Ints(nums)
+	n := len(nums)
+	mid := nums[(n-1)/2]
+
+	pnums := genNumbers(9)
+	pnums = append(pnums, power(10, 9)+1)
+	i := sort.SearchInts(pnums, mid)
+	if pnums[i] <= nums[n/2] {
+		return calSum(nums, mid)
+	}
+	return min(calSum(nums, pnums[i-1]), calSum(nums, pnums[i]))
+}
+
+/* 来一个快速幂的实现 */
+func power(base, n int) int {
+	res := 1
+	for n > 0 {
+		if n&1 == 1 {
+			res = res * base
+		}
+		n = n >> 1
+		base = base * base
+	}
+	return res
+}
+
+func genNumbers(zeros int) []int {
+	ans := []int{}
+	base := 1
+	for base < power(10, (zeros+1)/2) {
+		for i := base; i < base*10; i++ {
+			// generate odd
+			//t := i
+			p := i
+			//t /= 10
+			for t := i; t > 0; t /= 10 {
+				p = p*10 + t%10
+				//t /= 10
+			}
+			ans = append(ans, p)
+		}
+
+		//generate even
+		if base < power(10, zeros/2) {
+			for i := base; i < base*10; i++ {
+				t := i
+				p := i
+				for t > 0 {
+					p = p*10 + t%10
+					t /= 10
+				}
+				ans = append(ans, p)
+			}
+		}
+		base = base * 10
+		fmt.Println(base)
+	}
+	return ans
 }
