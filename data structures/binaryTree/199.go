@@ -13,6 +13,8 @@ package binaryTree
  /*
  灵神更牛叉的解法： (dfs)
  https://leetcode.cn/problems/binary-tree-right-side-view/solutions/2015061/ru-he-ling-huo-yun-yong-di-gui-lai-kan-s-r1nc/?envType=study-plan-v2&envId=top-100-liked
+
+ 我自己的想法， bfs, 每一层，最后那个元素就是答案。
  */
 func rightSideView(root *TreeNode) (ans []int) {
 	aq := []*TreeNode{}
