@@ -24,5 +24,7 @@ SAM 的理解：
 2. SAM 本身也包含了后缀树 (parent link 形成的树就是 后缀树，但是是 reverse(s) 的后缀树）
 
 
-GSAM 广义后缀自动机： 用来处理多串的问题。
+GSAM 广义后缀自动机： (用来处理多串的问题)
+广义后缀自动机 (General Suffix Automaton) 则是将后缀自动机整合到字典树中来解决对于多个字符串的子串问题
+代码： https://oi-wiki.org/string/general-sam/
 
