@@ -9,10 +9,19 @@
 
 后缀数组可以在 O(n) 的时间内通过 SA-IS 或者 DC3算法构造, 得到 sa[] 和 rank[] 数组。  height[] 数组可以通过不等式 height[rank[i]] >= height[rank[i-1]]-1 在 O(n) 时间复杂度（最坏是 2n) 内得到。 有了 sa[], rank[], height[] 数组，就等价有了后缀树。作用是一样的，等价的， 能解决同样一类问题。
 
-后缀树的构造复杂，还没见过实现的代码，没必要学习。
+(后缀树的构造复杂，还没见过实现的代码，没必要学习。)
 
 
 后缀树 vs 后缀自动机 是什么关系？
+
+后缀树：
+1. 可以用 SAM 来创建 string s 的后缀树： 1. reverse s 得到 s' 2. 根据 s' buildSAM，然后 sam parent's link 形成的树就是 string s 的后缀树。 (https://oi-wiki.org/string/suffix-tree/)
+2. 也可以用 Ukkonen 算法在 O(n) 的复杂度创建 字符串 s 的后缀树。没有学习过， 代码可以在这里找到：
+https://oi-wiki.org/string/suffix-tree/
+
+SAM 的理解：
+1. SAM 可以理解为给定字符串的 所有子串 的压缩形式 (https://oi-wiki.org/string/sam/)
+2. SAM 本身也包含了后缀树 (parent link 形成的树就是 后缀树，但是是 reverse(s) 的后缀树）
 
 
 GSAM 广义后缀自动机： 用来处理多串的问题。
