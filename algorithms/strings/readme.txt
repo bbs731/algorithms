@@ -9,7 +9,8 @@
 
 后缀数组可以在 O(n) 的时间内通过 SA-IS 或者 DC3算法构造, 得到 sa[] 和 rank[] 数组。  height[] 数组可以通过不等式 height[rank[i]] >= height[rank[i-1]]-1 在 O(n) 时间复杂度（最坏是 2n) 内得到。 有了 sa[], rank[], height[] 数组，就等价有了后缀树。作用是一样的，等价的， 能解决同样一类问题。
 
-(后缀树的构造复杂，还没见过实现的代码，没必要学习。)
+(后缀树的构造复杂，还没见过实现的代码，没必要学习。
+https://cp-algorithms.com/string/suffix-tree-ukkonen.html)
 
 
 后缀树 vs 后缀自动机 是什么关系？
