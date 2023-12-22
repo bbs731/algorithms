@@ -47,6 +47,12 @@ import "sort"
 // 1 <= nums.length <= 105
 // 0 <= nums[i] < nums.length
 
+/*
+和灵神的想法是一样的！ 正在靠近神
+https://leetcode.cn/problems/happy-students/solutions/2446022/pai-xu-pythonjavacgojs-by-endlesscheng-ptzl/
+
+ */
+
 func countWays(nums []int) int {
 	sort.Ints(nums)
 	n := len(nums)
