@@ -97,7 +97,7 @@ func maximumSum(nums []int) int64 {
 		//}
 
 		// 不选 i
-		res = max(res, dfs(start, i+1))
+		//res = max(res, dfs(start, i+1))  // 其实是不需要 不选的选项的。
 
 		cache[start][i] = res
 		return res
@@ -105,7 +105,7 @@ func maximumSum(nums []int) int64 {
 
 	for i := 1; i <= n; i++ {
 		path = append(path, i)
-		ans = max(ans, dfs(i, 2))
+		ans = max(ans, dfs(i, 2)) // 那就直接变成一个 循环就可以了， 不需要 dfs + cache  了。
 		path = path[:len(path)-1]
 	}
 	return int64(ans)
