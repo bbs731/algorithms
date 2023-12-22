@@ -22,7 +22,8 @@ f[n][1]				n-C,    n-1-C
 const mod = 1_000_000_007
 func numberOfWays(s string, t string, k int64) int {
 	n := len(s)
-	pos := kmp(s+s, t, n)
+	pos := kmp(s+s, t, n) // 这里， pass s+s 的话，需要 pass n。 或者像下面那样也可以 pass s+s -1, 就不需要 pass n 了。
+	//pos := kmp((s + s)[:2*n-1], t, n)
 	c := len(pos)
 	fmt.Println(c)
 
@@ -87,7 +88,7 @@ func calcMathes(pattern string) []int {
 	matches := make([]int, n)
 
 	c := 0
-	for i := 1; i < n; i++ {
+	for i := 1; i < n; i++ { // 这里的 index 从 1 开始 , 这就是有坑的地方
 		for c > 0 && pattern[c] != pattern[i] {
 			c = matches[c-1]
 		}
@@ -105,7 +106,7 @@ func kmp(s, t string, original int) []int { // 这个 s 是原来的 s + s , 这
 	pos := make([]int, 0)
 
 	c := 0
-	for i := 0; i < n; i++ {
+	for i := 0; i < n; i++ { // 这里要从 0 开始， 不像 pattern 的处理需要从 1 开始
 		for c > 0 && t[c] != s[i] {
 			c = match[c-1]
 		}
@@ -118,6 +119,8 @@ func kmp(s, t string, original int) []int { // 这个 s 是原来的 s + s , 这
 				//cnt++
 				pos = append(pos, i-len(t)+1)
 			}
+
+			//pos = append(pos, i-len(t)+1)
 			c = match[c-1]
 		}
 	}
