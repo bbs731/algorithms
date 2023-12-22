@@ -38,7 +38,7 @@ import "fmt"
 
 提示：
 
-1 <= n == nums.length <= 104
+1 <= n == nums.length <= 104  哎， 这里是 10^4  吃了无数次亏了！
 1 <= nums[i] <= 109
 
 */
@@ -49,6 +49,9 @@ import "fmt"
 
 你真是太有任性了， 努力拼搏之后，在failed test case 的提示之下终于可以了。
 backtracking + cache 无敌。
+
+看灵神的答案， 非常简单：
+https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/solutions/2446037/an-zhao-corei-fen-zu-pythonjavacgo-by-en-i6nu/
 */
 
 func maximumSum(nums []int) int64 {
