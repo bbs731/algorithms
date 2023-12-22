@@ -1,6 +1,6 @@
 package 快速幂
 
-// a^b
+// a^b  = power(a, b)
 func binpow(a, b int) int {
 	if b == 0 {
 		return 1
