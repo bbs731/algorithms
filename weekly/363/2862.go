@@ -1,5 +1,7 @@
 package weekly
 
+import "fmt"
+
 /*
 给你一个下标从 1 开始、由 n 个整数组成的数组。
 
@@ -39,20 +41,77 @@ package weekly
 1 <= n == nums.length <= 104
 1 <= nums[i] <= 109
 
- */
+*/
 
 /*
 既然是子集问题，就去套用子集问题的模板啊！
 去温习一下， backtracking 子集问题。 再回来做一下！
- */
-func maximumSum(nums []int) int64 {
 
+你真是太有任性了， 努力拼搏之后，在failed test case 的提示之下终于可以了。
+backtracking + cache 无敌。
+*/
+
+func maximumSum(nums []int) int64 {
+	ans := nums[0]
+	n := len(nums)
+
+	cache := make([][]int, n)
+	for i:=0; i<n; i++ {
+		cache[i]= make([]int, 101)
+		for j:=0; j<=100; j++ {
+			cache[i][j] = -1
+		}
+	}
+
+
+	path := []int{}
+	var dfs func(int, int)int
+	dfs = func(start, i int) int {
+		if start * i * i >n {
+			// 统计结果。
+			// len(path） = 1 的结果是合法的！
+			//if len(path)==1 && candidates[path[0]]== 0 {
+			//	return
+			//}
+			sum := 0
+			for j :=0; j<len(path); j++ {
+				sum += nums[path[j]-1]
+			}
+			//ans = max(ans, sum)
+			return sum
+		}
+
+		if cache[start][i] != -1 {
+			return cache[start][i]
+		}
+
+		res := 0
+		// 选 i
+		//if start * i *i  <= n {
+		path = append(path, start*i*i)
+		res = max(res, dfs(start, i+1))
+		path = path[:len(path)-1]
+		//}
+
+		// 不选 i
+		res = max(res, dfs(start, i+1))
+
+		cache[start][i] = res
+		return res
+	}
+
+	for i := 1; i <= n; i++ {
+		path = append(path, i)
+		ans = max(ans, dfs(i, 2))
+		path = path[:len(path)-1]
+	}
+	return int64(ans)
 }
 
 /*
 
 这个想法是不对的。
- */
+*/
 
 func maximumSum(nums []int) int64 {
 	ans := 0
