@@ -40,3 +40,37 @@ package weekly
 1 <= nums[i] <= 109
 
  */
+
+/*
+既然是子集问题，就去套用子集问题的模板啊！
+去温习一下， backtracking 子集问题。 再回来做一下！
+ */
+func maximumSum(nums []int) int64 {
+
+}
+
+/*
+
+这个想法是不对的。
+ */
+
+func maximumSum(nums []int) int64 {
+	ans := 0
+	n := len(nums)
+	for i := 6; i <= 10 && i*i < n; i++ {
+		ans = max(ans, nums[i*i])
+	}
+
+	for i := 1; i <= 5 && i < n; i++ {
+		ans += nums[i]
+	}
+
+	for i := 4; i <= 10 && i < n; i++ {
+		for j := 2; j < i; j++ {
+			if (i*i)%j == 0 && i*i/j < n {
+				ans = max(ans, nums[i]+nums[i*i/j])
+			}
+		}
+	}
+	return int64(ans)
+}
