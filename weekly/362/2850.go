@@ -1,0 +1,154 @@
+package weekly
+
+//You are given a 0-indexed 2D integer matrix grid of size 3 * 3, representing t
+//he number of stones in each cell. The grid contains exactly 9 stones, and there
+//can be multiple stones in a single cell.
+//
+// In one move, you can move a single stone from its current cell to any other c
+//ell if the two cells share a side.
+//
+// Return the minimum number of moves required to place one stone in each cell.
+//
+//
+//
+// Example 1:
+//
+//
+//Input: grid = [[1,1,0],[1,1,1],[1,2,1]]
+//Output: 3
+//Explanation: One possible sequence of moves to place one stone in each cell is
+//:
+//1- Move one stone from cell (2,1) to cell (2,2).
+//2- Move one stone from cell (2,2) to cell (1,2).
+//3- Move one stone from cell (1,2) to cell (0,2).
+//In total, it takes 3 moves to place one stone in each cell of the grid.
+//It can be shown that 3 is the minimum number of moves required to place one st
+//one in each cell.
+//
+//
+// Example 2:
+//
+//
+//Input: grid = [[1,3,0],[1,0,0],[1,0,3]]
+//Output: 4
+//Explanation: One possible sequence of moves to place one stone in each cell is
+//:
+//1- Move one stone from cell (0,1) to cell (0,2).
+//2- Move one stone from cell (0,1) to cell (1,1).
+//3- Move one stone from cell (2,2) to cell (1,2).
+//4- Move one stone from cell (2,2) to cell (2,1).
+//In total, it takes 4 moves to place one stone in each cell of the grid.
+//It can be shown that 4 is the minimum number of moves required to place one st
+//one in each cell.
+//
+//
+//
+// Constraints:
+//
+//
+// grid.length == grid[i].length == 3
+// 0 <= grid[i][j] <= 9
+// Sum of grid is equal to 9.
+
+/*
+
+https://leetcode.cn/problems/minimum-moves-to-spread-stones-over-grid/solutions/2435313/tong-yong-zuo-fa-zui-xiao-fei-yong-zui-d-iuw8/
+最小费最大流的解法
+你啥时候开始学 graph theory?
+
+ */
+
+func minimumMoves(grid [][]int) int {
+	m, n := len(grid), len(grid[0])
+	src := m * n   // 超级源点
+	dst := src + 1 // 超级汇点
+	type edge struct{ to, rid, cap, cost int }
+	g := make([][]edge, m*n+2)
+	addEdge := func(from, to, cap, cost int) {
+		g[from] = append(g[from], edge{to, len(g[to]), cap, cost})
+		g[to] = append(g[to], edge{from, len(g[from]) - 1, 0, -cost})
+	}
+	for x, row := range grid {
+		for y, v := range row {
+			if v > 1 {
+				addEdge(src, x*n+y, v-1, 0)
+				for i, r := range grid {
+					for j, w := range r {
+						if w == 0 {
+							addEdge(x*n+y, i*n+j, 1, abs(x-i)+abs(y-j))
+						}
+					}
+				}
+			} else if v == 0 {
+				addEdge(x*n+y, dst, 1, 0)
+			}
+		}
+	}
+
+	// 下面是最小费用最大流模板
+	const inf int = 1e9
+	dist := make([]int, len(g))
+	type vi struct{ v, i int }
+	fa := make([]vi, len(g))
+	spfa := func() bool {
+		for i := range dist {
+			dist[i] = 1e9
+		}
+		dist[src] = 0
+		inQ := make([]bool, len(g))
+		inQ[src] = true
+		q := []int{src}
+		for len(q) > 0 {
+			v := q[0]
+			q = q[1:]
+			inQ[v] = false
+			for i, e := range g[v] {
+				if e.cap == 0 {
+					continue
+				}
+				w := e.to
+				if newD := dist[v] + e.cost; newD < dist[w] {
+					dist[w] = newD
+					fa[w] = vi{v, i}
+					if !inQ[w] {
+						q = append(q, w)
+						inQ[w] = true
+					}
+				}
+			}
+		}
+		return dist[dst] < inf
+	}
+	ek := func() (maxFlow, minCost int) {
+		for spfa() {
+			// 沿 st-end 的最短路尽量增广
+			minF := inf
+			for v := dst; v != src; {
+				p := fa[v]
+				if c := g[p.v][p.i].cap; c < minF {
+					minF = c
+				}
+				v = p.v
+			}
+			for v := dst; v != src; {
+				p := fa[v]
+				e := &g[p.v][p.i]
+				e.cap -= minF
+				g[v][e.rid].cap += minF
+				v = p.v
+			}
+			maxFlow += minF
+			minCost += dist[dst] * minF
+		}
+		return
+	}
+	_, cost := ek()
+	return cost
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
