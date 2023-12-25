@@ -3,10 +3,10 @@
 https://www.bilibili.com/video/BV1Es4y1N7v1/?spm_id_from=333.999.0.0&vd_source=84c3c489cf545fafdbeb3b3a6cd6a112
 
 
-Dijkastra and Floyd
+Dijkstra and Floyd
 
 
-Dijkastra 是贪心的算法， 它利用了边权非负的性质。
+Dijkstra 是贪心的算法， 它利用了边权非负的性质。
 
 
 
