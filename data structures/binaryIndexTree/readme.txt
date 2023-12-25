@@ -17,3 +17,8 @@ add 的复杂度： O（lgn)
 
 
 2 Dimentions BIT : see Letcode 308
+
+
+
+
+找一个 BIT 解决逆序对的模板题目做一下。
