@@ -1,7 +1,11 @@
 package weekly
 
 /*
-	感觉 array 的版本， 比 node pointer 的版本更加的好写。 两种都适用一下， 包括后期需要添加删除操作， 看看那种实现更舒服一些
+感觉 array 的版本， 比 node pointer 的版本更加的好写。 两种都适用一下， 包括后期需要添加删除操作， 看看那种实现更舒服一些
+
+1. 下面这个版本不支持删除操作.
+2. 异或和也有 array 版本的实现  // https://oi-wiki.org/string/trie/  支持插入和删除。
+
  */
 const MAXN = 3200000
 const trieBitLen = 31 //30 for 1e9, 63 for int64, or bits.Len(MAX_VAL)
