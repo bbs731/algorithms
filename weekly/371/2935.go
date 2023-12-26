@@ -51,22 +51,16 @@ func (t *trie) maxXor(val int) int {
 func maximumStrongPairXor(nums []int) int {
 	sort.Ints(nums)
 	ans := 0
-	q := []int{} // 这里直接用一个 left 指针就可以。
+	//q := []int{} // 这里直接用一个 left 指针就可以。
+	left := 0
 	root := &trie{&trieNode{}}
 	for _, y := range nums {
 		root.insert(y)
-		q = append(q, y)
-		i := 0
-		for i < len(q) {
-			if 2*q[i] < y {
-				root.remove(q[i])
-			} else {
-				break
-			}
-			i++
+		for nums[left]*2 < y {
+			root.remove(nums[left])
+			left++
 		}
-		q = q[i:]
-
+		//q = q[i:]
 		ans = max(ans, root.maxXor(y))
 	}
 	return ans
