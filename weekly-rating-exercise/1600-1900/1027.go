@@ -46,51 +46,58 @@ import (
 1. 朴素的版本。
 
 2. 可以用个 hash table 优化。
+
+3. 能想到是 DP ，但是不知道如何定义状态
+https://leetcode.cn/problems/longest-arithmetic-subsequence/solutions/2239191/ji-yi-hua-sou-suo-di-tui-chang-shu-you-h-czvx/
+
+参考一下灵神的答案， 然后用 DP 在做一遍
+
+[24,13,1,100,0,94,3,0,3]
  */
 
+
+func solve(nums []int ) int {
+	 ans := 0
+	 n := len(nums)
+	 if n <=2 {
+	 	return n
+	 }
+
+	 dict := make(map[int][]int, n)
+	 for i, num := range nums {
+		 dict[num] = append(dict[num], i)
+	 }
+
+	 for k := range dict {
+		 sort.Ints(dict[k])
+	 }
+
+	 for i := 0; i < n; i++ {
+		 for diff := 0; diff < 500; diff++ {
+			 next := nums[i] + diff
+			 cnt := 1
+			 j := i + 1
+			 for ; j < n && next <= 500; {
+			 	l := dict[next]
+			 	if len(l) == 0 {
+			 		break
+			 	}
+			 	p := sort.SearchInts(l, j)
+			 	if p == len(l) {
+			 		break
+			 	}
+			 	cnt++
+			 	j = l[p] + 1
+			 	next += diff
+			 	ans = max(ans, cnt)
+			 }
+		 }
+	 }
+	return ans
+ }
 func longestArithSeqLength(nums []int) int {
-	ans := 0
 	n := len(nums)
-
-	dict := make(map[int][]int, n)
-	for i, num := range nums {
-		dict[num] = append(dict[num], i)
-	}
-
-	newd := make(map[int][]int, len(dict))
-	for k, v := range dict {
-		sort.Ints(v)
-		newd[k] = v
-	}
-
-	for i := 0; i < n; i++ {
-		for diff := 0; diff < 500; diff++ {
-			next := nums[i] + diff
-			cnt := 1
-			//j := i + 1
-			//for ; j < n && next <= 500; {
-			//	l := newd[next]
-			//	if len(l) == 0 {
-			//		break
-			//	}
-			//	p := sort.SearchInts(l, j)
-			//	if p == len(l) {
-			//		break
-			//	}
-			//	cnt++
-			//	j = p + 1
-			//	next += diff
-			//	ans = max(ans, cnt)
-			//}
-			for j := i + 1; j < n && next <= 500; j++ {
-				if nums[j] == next {
-					cnt++
-					next += diff
-					ans = max(ans, cnt)
-				}
-			}
-		}
-	}
+	ans := solve(nums)
 
 	i, j := 0, n-1
 	for i < j {
@@ -98,46 +105,6 @@ func longestArithSeqLength(nums []int) int {
 		i++
 		j--
 	}
-
-	dict = make(map[int][]int, n)
-	for i, num := range nums {
-		dict[num] = append(dict[num], i)
-	}
-
-	newd = make(map[int][]int, len(dict))
-	for k, v := range dict {
-		sort.Ints(v)
-		newd[k] = v
-	}
-
-	for i := 0; i < n; i++ {
-		for diff := 0; diff < 500; diff++ {
-			next := nums[i] + diff
-			cnt := 1
-			//j := i + 1
-			//for ; j < n && next <= 500; {
-			//	l := newd[next]
-			//	if len(l) == 0 {
-			//		break
-			//	}
-			//	p := sort.SearchInts(l, j)
-			//	if p == len(l) {
-			//		break
-			//	}
-			//	cnt++
-			//	j = p + 1
-			//	next += diff
-			//	ans = max(ans, cnt)
-			//}
-			for j := i + 1; j < n && next <= 500; j++ {
-				if nums[j] == next {
-					cnt++
-					next += diff
-					ans = max(ans, cnt)
-				}
-			}
-		}
-	}
-
+	ans = max(ans, solve(nums))
 	return ans
 }
