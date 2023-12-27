@@ -61,12 +61,7 @@ func (h *hp) Pop() interface{} {
 	return v
 }
 
-
-
-
-
-
-// 这个想法为什么是错的？
+// 这个想法为什么是错的？ 好吧， 你的 chair 的数字从来没减少过， 怎么可能是对的呢？
 func smallestChair(times [][]int, targetFriend int) int {
 	tables := make(map[int]int)
 	index := make(map[int]int) // start time to index mapping
@@ -86,18 +81,23 @@ func smallestChair(times [][]int, targetFriend int) int {
 		if friend == targetFriend {
 			return chair
 		}
-		for true {
-			// fill up all time intervals that use this chair
-			pos := sort.SearchInts(l, times[friend][1]+1) - 1 // for index which  >= friend.endtime
-			if l[pos] >= times[friend][1] {
-				tables[pos] = chair // pos friend take this chair as well
+		//for true {
+		// fill up all time intervals that use this chair
+		pos := sort.SearchInts(l, times[friend][1]+1) - 1 // for index which  >= friend.endtime
+		if l[pos] >= times[friend][1] {
+			tables[pos] = chair // pos friend take this chair as well
+			friend = pos
+		} else {
+			pos = pos + 1
+			if pos < n {
+				tables[pos] = chair
 				friend = pos
-				if friend == targetFriend {
-					return chair
-				}
-			} else {
-				break
 			}
+			//break
+		}
+		//}
+		if friend == targetFriend {
+			return chair
 		}
 
 		l = make([]int, 0)
