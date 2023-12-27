@@ -60,7 +60,7 @@ int lca(int x, int y) {
   // 如果这个时候 y = x，那么 x，y 就都是它们自己的祖先。
   if (y == x) return ans;
   // 不然的话，找到第一个不是它们祖先的两个点。
-  for (int j = 30; j >= 0 && y != x; --j) {
+  for (int j = 30; j >= 0 && y != x; --j) {  // 这里还需要比较  y !=x 吗？ 我咋觉得没有必要呢。
     if (fa[x][j] != fa[y][j]) {
       ans += cost[x][j] + cost[y][j];
       x = fa[x][j];
