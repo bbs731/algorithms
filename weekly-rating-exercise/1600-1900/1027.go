@@ -50,6 +50,9 @@ import (
 3. 能想到是 DP ，但是不知道如何定义状态
 https://leetcode.cn/problems/longest-arithmetic-subsequence/solutions/2239191/ji-yi-hua-sou-suo-di-tui-chang-shu-you-h-czvx/
 
+maxLen[d]=max(maxLen[d],dfs(j)[d]+1)
+是不是太不好想了， 让 dfs 返回一个 hashmap
+
 参考一下灵神的答案， 然后用 DP 在做一遍
 
 [24,13,1,100,0,94,3,0,3]
