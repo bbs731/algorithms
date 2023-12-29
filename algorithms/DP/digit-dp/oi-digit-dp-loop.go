@@ -50,8 +50,41 @@ func countDigitOne(n int) (ans int) {
 		// 这里考虑的是最高位的那个 digit 5 就一个值 a[3]=5
 		tmp -= mi[i-1] * a[i]   // 这里考虑的是，贴着上界的情况，就是 a[3] = 5 的情况， 对于 5 的数字贡献就是  43 +1 因为  tmp=543  tmp - a[3]* 100 = 43
 		result[a[i]] += tmp + 1 // tmp + 1 的意思，按照例子就是  0 到 43 一共 44次。
-		result[0] -= mi[i-1]    //这里，如果考虑 第i位的时候， 不考虑 0， 这里其实可以不处理这个前导 0
+		result[0] -= mi[i-1]    //这里，如果考虑 第i位的时候， 不考虑 0， 这里其实可以不处理这个前导 0 (看下面的版本）
 	}
 
+	return result[1]
+}
+
+func countDigitOne(n int) (ans int) {
+	mi := make([]int, N)
+	dp := make([]int, N)
+	a := make([]int, N)
+	result := make([]int, 10)
+	mi[0] = 1
+
+	for i := 1; i < N; i++ {
+		dp[i] = 10*dp[i-1] + mi[i-1]
+		mi[i] = 10 * mi[i-1]
+	}
+	tmp := n
+	l := 0
+	for n > 0 {
+		l++
+		a[l] = n % 10
+		n = n / 10
+	}
+
+	for i := l; i >= 1; i-- {
+		for j := 0; j < 10; j++ {
+			result[j] += a[i] * dp[i-1]
+		}
+
+		for j := 1; j < a[i]; j++ { // 这里 j 从 1 开始，不统计0， 下面不用处理前导0 是和上面版本的区别。  
+			result[j] += mi[i-1]
+		}
+		tmp -= mi[i-1] * a[i]
+		result[a[i]] += tmp + 1
+	}
 	return result[1]
 }
