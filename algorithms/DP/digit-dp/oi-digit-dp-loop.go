@@ -80,7 +80,7 @@ func countDigitOne(n int) (ans int) {
 			result[j] += a[i] * dp[i-1]
 		}
 
-		for j := 1; j < a[i]; j++ { // 这里 j 从 1 开始，不统计0， 下面不用处理前导0 是和上面版本的区别。  
+		for j := 1; j < a[i]; j++ { // 这里 j 从 1 开始，不统计0， 下面不用处理前导0 是和上面版本的区别。
 			result[j] += mi[i-1]
 		}
 		tmp -= mi[i-1] * a[i]
