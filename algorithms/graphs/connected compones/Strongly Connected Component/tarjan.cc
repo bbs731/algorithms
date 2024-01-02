@@ -1,4 +1,7 @@
 // C++ Version
+// https://oi-wiki.org/graph/scc/
+// wonderful video explaination:  https://www.youtube.com/watch?v=wUgWX0nc4NY&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=23
+
 int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
 int scc[N], sc;  // 结点 i 所在 SCC 的编号
 int sz[N];       // 强连通 i 的大小
