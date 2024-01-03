@@ -16,7 +16,7 @@ vector<int> topo;     // 拓扑排序后的节点
 bool dfs(int u) {
   c[u] = -1;
   for (int v : G[u]) {
-    if (c[v] < 0)
+    if (c[v] < 0)   // 这里检查的是否有返祖边， 有的话代表有环，没有拓扑排序
       return false;
     else if (!c[v])
       if (!dfs(v)) return false;
