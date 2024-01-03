@@ -4,38 +4,51 @@ import "slices"
 
 // code from  endlesswang  codeforces-go
 // video explaination:  https://www.youtube.com/watch?v=wUgWX0nc4NY&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=23
+// low[N]
+// 定义： low-link value of a node is the smallest(lowest) node id reachable from that node when doing a DFS (including itself). 用它来存储不经过其父亲能到达的最小的时间戳
 
 func sccTarjan(g [][]int) ([][]int, []int) {
 	scc := [][]int{}
 	dfn := make([]int, len(g))
+	low := make([]int, len(g))
 	dfsClock := 0
 	st := []int{}
 	inSt := make([]bool, len(g))
-
 	var tarjan func(int)
-	tarjan = func(v int) {
+	tarjan = func(u int) {
 		dfsClock++
-		dfn[v] = dfsClock
-		lowW := dfsClock // low-link
-		st = append(st, v)
-		inSt[v] = true
-		for _, w := range g[v] {
-			if dfn[w] == 0 { //unvisited
-				tarjan(w)
+		dfn[u] = dfsClock
+		low[u] = dfsClock // low-link
+
+		st = append(st, u)
+		inSt[u] = true
+		for _, v := range g[u] {
+			//if dfn[v] == 0 { //unvisited
+			//	tarjan(v)
+			//	low[u] = min(low[u], low[v])
+			//} else if inSt[v] {
+			//	low[u] = min(low[u], dfn[v])
+			//}
+
+			//https://www.youtube.com/watch?v=hKhLj7bfDKk&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=24
+			//https://github.com/williamfiset/Algorithms/blob/master/src/main/java/com/williamfiset/algorithms/graphtheory/TarjanSccSolverAdjacencyList.java
+			// 这样写，也是对的吧！
+			if dfn[v] == 0 {
+				tarjan(v)
 			}
-			if inSt[w] {
-				lowW = min(lowW, dfn[w])
+			if inSt[v] {
+				low[u] = min(low[u], low[v])
 			}
 		}
 
-		if dfn[v] == lowW {
+		if dfn[u] == low[u] {
 			comp := []int{}
 			for {
-				w := st[len(st)-1]
+				v := st[len(st)-1]
 				st = st[:len(st)-1]
-				inSt[w] = false
-				comp = append(comp, w)
-				if w == v { // v is one of the SCC root. See the video explaination
+				inSt[v] = false
+				comp = append(comp, v)
+				if v == u { // v is one of the SCC root. See the video explaination
 					break
 				}
 			}
