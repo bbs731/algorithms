@@ -25,7 +25,7 @@ func (*graph) findCutVertices(n int, g [][]int) (isCut []bool) {
 				tarjan(v, u)
 				low[u] = min(low[u], low[v])
 
-				if low[v] >= dfn[v] { // 以 v 为根的子树中没有反向边能连回 u 的祖先（或者连到u上， 也算割顶）
+				if low[v] >= dfn[u] { // 以 v 为根的子树中没有反向边能连回 u 的祖先（或者连到u上， 也算割顶）
 					isCut[u] = true
 				}
 			} else if v != father {
