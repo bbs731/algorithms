@@ -3,7 +3,7 @@ package Strongly_Connected_Component
 import "slices"
 
 // code from  endlesswang  codeforces-go
-// video explaination:  https://www.youtube.com/watch?v=wUgWX0nc4NY&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=23
+// video explanation:  https://www.youtube.com/watch?v=wUgWX0nc4NY&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=23
 // low[N]
 // 定义： low-link value of a node is the smallest(lowest) node id reachable from that node when doing a DFS (including itself). 用它来存储不经过其父亲能到达的最小的时间戳
 
