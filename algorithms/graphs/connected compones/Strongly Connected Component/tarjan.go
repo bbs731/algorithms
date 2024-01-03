@@ -3,6 +3,7 @@ package Strongly_Connected_Component
 import "slices"
 
 // code from  endlesswang  codeforces-go
+// https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/graph.go#L3301
 // video explanation:  https://www.youtube.com/watch?v=wUgWX0nc4NY&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=23
 // low[N]
 // 定义： low-link value of a node is the smallest(lowest) node id reachable from that node when doing a DFS (including itself). 用它来存储不经过其父亲能到达的最小的时间戳
@@ -25,9 +26,9 @@ func sccTarjan(g [][]int) ([][]int, []int) {
 		for _, v := range g[u] {
 			if dfn[v] == 0 { //unvisited
 				tarjan(v)
-				low[u] = min(low[u], low[v])
+				low[u] = min(low[u], low[v])  // u->v 这条边，是搜索树里的边。
 			} else if inSt[v] {
-				low[u] = min(low[u], dfn[v])
+				low[u] = min(low[u], dfn[v])  // u->v 这条边，不是搜索树里的边的情况。
 			}
 
 			//https://www.youtube.com/watch?v=hKhLj7bfDKk&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=24

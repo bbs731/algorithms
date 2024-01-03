@@ -26,7 +26,7 @@ func (*graph) findBridges(n int, edges [][]int) (isBridge []bool) {
 		low[u] = dfsClock
 
 		for _, e := range g[u] {
-			if v := e[1]; dfn[v] == 0 {
+			if v := e.to; dfn[v] == 0 {
 				tarjan(v, e.eid)
 				low[u] = min(low[u], low[v])
 				if low[v] > dfn[u] { //以 v 为根的子树中没有反向边能连回 u 或 u 的祖先，所以 u-v 必定是桥
