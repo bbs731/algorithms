@@ -23,22 +23,22 @@ func sccTarjan(g [][]int) ([][]int, []int) {
 		st = append(st, u)
 		inSt[u] = true
 		for _, v := range g[u] {
-			//if dfn[v] == 0 { //unvisited
-			//	tarjan(v)
-			//	low[u] = min(low[u], low[v])
-			//} else if inSt[v] {
-			//	low[u] = min(low[u], dfn[v])
-			//}
+			if dfn[v] == 0 { //unvisited
+				tarjan(v)
+				low[u] = min(low[u], low[v])
+			} else if inSt[v] {
+				low[u] = min(low[u], dfn[v])
+			}
 
 			//https://www.youtube.com/watch?v=hKhLj7bfDKk&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=24
 			//https://github.com/williamfiset/Algorithms/blob/master/src/main/java/com/williamfiset/algorithms/graphtheory/TarjanSccSolverAdjacencyList.java
 			// 这样写，也是对的吧！
-			if dfn[v] == 0 {
-				tarjan(v)
-			}
-			if inSt[v] {
-				low[u] = min(low[u], low[v])
-			}
+			//if dfn[v] == 0 {
+			//	tarjan(v)
+			//}
+			//if inSt[v] {
+			//	low[u] = min(low[u], low[v])
+			//}
 		}
 
 		if dfn[u] == low[u] {
