@@ -29,7 +29,7 @@ func (*graph) findBridges(n int, edges [][]int) (isBridge []bool) {
 			if v := e[1]; dfn[v] == 0 {
 				tarjan(v, e.eid)
 				low[u] = min(low[u], low[v])
-				if low[v] > dfn[v] { //以 v 为根的子树中没有反向边能连回 u 或 u 的祖先，所以 u-v 必定是桥
+				if low[v] > dfn[u] { //以 v 为根的子树中没有反向边能连回 u 或 u 的祖先，所以 u-v 必定是桥
 					isBridge[e.eid] = true
 				}
 			} else if e.eid != fid {
