@@ -5,6 +5,7 @@ package vertex_cut
 
 type graph struct{}
 
+// low(v): 在不经过 v 父亲的前提下能到达的最小的时间戳
 func (*graph) findCutVertices(n int, g [][]int) (isCut []bool) {
 	isCut = make([]bool, n)
 	dfn := make([]int, n) // DFS 到终点的时间（从 1开始）
