@@ -6,6 +6,8 @@ package _600_1900
 //https://leetcode.cn/problems/letter-tile-possibilities/solutions/2275356/on2-ji-shu-dppythonjavacgo-by-endlessche-hmez/
 //状态转移方程，很难定义啊！
 
+// 这是好题，将来重新做！
+
 
 
 
