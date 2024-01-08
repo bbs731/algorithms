@@ -2,6 +2,14 @@ package max_flow
 
 type graph struct{}
 
+// dinic maxflow algorithm
+// 来自灵神的代码：
+//https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/graph.go#L3938
+// 和 williams 的代码逻辑是一致的：
+// https://github.com/williamfiset/Algorithms/blob/master/src/main/java/com/williamfiset/algorithms/graphtheory/networkflow/Dinics.java
+
+// 但是用 dinic 来求最小费用的时候， 灵神和 williams 的这段代码是有问题的， 会陷入无线的循环。
+
 func (*graph) maxFlowDinic(n, st, end int, edges [][]int) int {
 	const inf int = 1e18
 	st--
