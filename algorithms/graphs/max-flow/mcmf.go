@@ -154,38 +154,44 @@ func (*graph) mcmfDinic(n, st, end int, edges [][]int) (int, int) {
 		return dist[end] != inf
 	}
 
+	minCost := 0
 	iter := make([]int, len(g))
 	var dfs func(int, int) int
 	dfs = func(v int, minF int) int {
 		if v == end {
 			return minF
 		}
+		ans := 0
+		inQ[v] = true
 		for ; iter[v] < len(g[v]); iter[v]++ {
 			e := &g[v][iter[v]]
-			if w := e.to; e.cap > 0 && dist[w] == dist[v]+e.cost {
-				if f := dfs(w, min(minF, e.cap)); f > 0 {
+			if w := e.to; !inQ[w] && e.cap > 0 && dist[w] == dist[v]+e.cost {
+				if f := dfs(w, min(minF-ans, e.cap)); f > 0 {
 					e.cap -= f
 					g[w][e.rid].cap += f
-					return f
+					ans += f
+					minCost += f * e.cost
+					//return f
 				}
 			}
 		}
-		return 0
+		//return 0
+		inQ[v] = false
+		return ans
 	}
 
-	dinic := func() (maxFlow, minCost int) {
+	dinic := func() (maxFlow int) {
 		for spfa() {
 			clear(iter)
 			for {
 				if f := dfs(st, inf); f > 0 {
 					maxFlow += f
-					minCost += dist[end] * f
 				}
 			}
 
 		}
-
+		return
 	}
 
-	return dinic()
+	return dinic(), minCost
 }
