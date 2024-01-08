@@ -77,7 +77,7 @@ func minimumMoves(grid [][]int) int {
 			return minF
 		}
 		//ans := 0
-		inQ[v] = true
+		inQ[v] = true // inQ 可以保证 dfs 不会 产生 infinite loop
 		for ; iter[v] < len(g[v]); iter[v]++ {
 			e := &g[v][iter[v]]
 			if w := e.to; !inQ[w] && e.cap > 0 && dist[w] == dist[v]+e.cost {
