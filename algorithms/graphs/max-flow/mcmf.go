@@ -98,7 +98,12 @@ func (*graph) minCostFlowSPFA(n, st, end int, edges [][]int) (int, int) {
 }
 
 // https://oi-wiki.org/graph/flow/min-cost/
-// dinic 的算法，还是参考的灵神的代码
+// dinic 的算法，还是参考的灵神的代码. 灵神的dinic 代码，在计算 mcmf 的时候， dfs 会无限循环。
+// https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/graph.go#L3938
+// 灵神的这段，(找 maxflow 的模板题目，去验证灵神的这段 dinic 代码是否在 maxflow 问题上，可行）。 dinic 求 maxflow 的代码，没验证过，
+// 直接用在 mcmf 上有bug 不行。 下面的 mcmfDinic 参照了
+// https://oi-wiki.org/graph/flow/min-cost/ 这里 mcmf Dinic 的实现， 但是用的是灵神的 maxflow 的框架代码。
+
 func (*graph) mcmfDinic(n, st, end int, edges [][]int) (int, int) {
 	const inf int = 1e18
 	st--
@@ -117,6 +122,9 @@ func (*graph) mcmfDinic(n, st, end int, edges [][]int) (int, int) {
 		addEdge(v, w, edgeCap, edgeCost, i)
 	}
 
+	//上面是建图的代码
+
+	//下面是 Dinic mcmf 的 template 代码
 	dist := make([]int, len(g))
 	type vi struct{ v, i int }
 	fa := make([]vi, len(g))
@@ -186,6 +194,8 @@ func (*graph) mcmfDinic(n, st, end int, edges [][]int) (int, int) {
 			for {
 				if f := dfs(st, inf); f > 0 {
 					maxFlow += f
+				} else {
+					break
 				}
 			}
 

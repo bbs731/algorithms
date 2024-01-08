@@ -31,12 +31,14 @@ func minimumMoves(grid [][]int) int {
 		}
 	}
 
+	// tempalte code for mcmf
 	dist := make([]int, len(g))
 	type vi struct{ v, i int }
 	fa := make([]vi, len(g))
 	inQ := make([]bool, len(g))
 
 	spfa := func() bool {
+
 		for i := range dist {
 			dist[i] = inf
 		}
@@ -75,18 +77,20 @@ func minimumMoves(grid [][]int) int {
 			return minF
 		}
 		ans := 0
-		inQ[v] = true // 没有 inQ， 会造成无限循环
+		inQ[v] = true
 		for ; iter[v] < len(g[v]); iter[v]++ {
 			e := &g[v][iter[v]]
 			if w := e.to; !inQ[w] && e.cap > 0 && dist[w] == dist[v]+e.cost {
-				if f := dfs(w, min(e.cap, minF-ans)); f > 0 { // 这个 minF-ans 是啥意思？
+				if f := dfs(w, min(minF-ans, e.cap)); f > 0 {
 					e.cap -= f
 					g[w][e.rid].cap += f
-					minCost += f * e.cost
 					ans += f
+					minCost += f * e.cost
+					//return f
 				}
 			}
 		}
+		//return 0
 		inQ[v] = false
 		return ans
 	}
@@ -101,6 +105,7 @@ func minimumMoves(grid [][]int) int {
 					break
 				}
 			}
+
 		}
 		return
 	}
