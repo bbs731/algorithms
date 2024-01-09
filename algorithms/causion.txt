@@ -4,3 +4,26 @@
 
 leetcode 只是一个试验场， 对时间和test case的要求都太松弛，代码量都普遍为了迎合面试比较短， 和竞赛题目是比不了的。
 但是 leetcode 是一个完美的 playground 可以放松心情，体会algorithms 的乐趣, 这是竞赛题难以给到的。
+
+
+
+
+问题：
+
+1. 如何做专项的训练？
+a. 需要做模板题目.
+b. 给出高质量，和有指导性质的template 代码。
+c. 总结，写题解， 写心得。
+d. 高效的复习。
+
+
+
+
+2. 有价值的专项 (对于面试来说？）
+a. 分治，倍增，二分, 贪心， 单调栈，单调队列
+b. 字符串 (trie, ac, sam, manacher, kmp, rabinkarp)
+c. DP
+d. 贪心。
+e. sliding-window
+f. 图论, scc, mst, shortest-path, topo-sort, maxflow, mcmf, bipartie matching
+g. 数据结构 BIT, segTree, 0-1 trie, heap, union-find, sparse-table, queue, stack

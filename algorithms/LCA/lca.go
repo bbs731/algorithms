@@ -58,6 +58,7 @@ func lca(a, b int) int {
 }
 
 func main() {
+	var edges [][]int
 	var n int // 节点是从 0 到 n-1
 	for i := 2; i < n; i++ {
 		Log2[i] = Log2[i/2] + 1
