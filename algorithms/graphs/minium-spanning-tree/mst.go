@@ -1,5 +1,7 @@
 package minium_spanning_tree
 
+import "sort"
+
 //https://oi-wiki.org/graph/mst/
 
 // implementation of Prim MST 当输入是稠密图的时候。
@@ -9,7 +11,7 @@ type graph struct{}
 
 // 因为是朴素的找最小值，所以时间复杂度是  O(n^2 + m)
 func (*graph) mstPrim(dis [][]int, root int) (mstSum int, edges [][2]int) {
-	edges = make([][2]int, 0, len(dis)-1)
+	edges = make([][2]int, 0, len(dis)-1) // 因为是树，所以， num of edges = n-1
 	// 注意：dis 需要保证 dis[i][i] = inf，从而避免自环的影响
 
 	const inf int = 1e9
@@ -50,4 +52,39 @@ func (*graph) mstPrim(dis [][]int, root int) (mstSum int, edges [][2]int) {
 			}
 		}
 	}
+}
+
+func (*graph) Kruskal(n int, edges [][]int) int {
+	sort.Slice(edges, func(i, j int) bool { return edges[i][2] < edges[j][2] })
+
+	fa := make([]int, n) // 并查集
+	for i := range fa {
+		fa[i] = i
+	}
+
+	var find func(int) int
+	find = func(x int) int {
+		if fa[x] != x {
+			fa[x] = find(fa[x])
+		}
+		return fa[x]
+	}
+
+	sum := 0
+	cntE := 0
+	for _, e := range edges {
+		v, w, wt := e[0], e[1], e[2]
+		fv, fw := find(v), find(w)
+		if fv != fw {
+			fa[fv] = fw
+			sum += wt
+			cntE++
+		}
+	}
+
+	if cntE < n-1 {
+		return -1
+	}
+
+	return sum
 }
