@@ -14,6 +14,8 @@ import (
 // namespace
 type graph struct{}
 
+// 时间复杂度是 linear 的：  O（V+E) or O(n+m)
+// 最后 path 的 len(path) = m+1
 func (*graph) eulerianPathOnDirectedGraph(n, m int) []int {
 	type neighbour struct{ to, eid int } // vertex id number, and edge id number
 	g := make([][]neighbour, n)
@@ -54,6 +56,55 @@ func (*graph) eulerianPathOnDirectedGraph(n, m int) []int {
 			g[v] = g[v][1:]
 			dfs(e.to) //如果想要 edge id 的话，可以放入  e.eid
 		}
+		path = append(path, v)
+	}
+	dfs(st)
+	slices.Reverse(path)
+	// len(path) = m +1
+	return path
+}
+
+func (*graph) eulerianPathOnUndirectedGraph(n, m int) []int {
+	type neighbour struct{ to, eid int }
+	g := make([][]neighbour, n)
+	// read g...
+
+	//排序，保证字典序最小
+	for _, es := range g {
+		sort.Slice(es, func(i, j int) bool { return es[i].to < es[j].to })
+	}
+	var st int
+	oddDegCnt := 0
+
+	for i := len(g) - 1; i >= 0; i-- { //倒着遍历保证起点的字典序最小
+		if deg := len(g[i]); deg > 0 {
+			if deg&1 == 1 {
+				st = i
+				oddDegCnt++
+			} else if oddDegCnt == 0 {
+				st = i
+			}
+		}
+	}
+	if oddDegCnt > 2 {
+		return nil
+	}
+
+	path := make([]int, 0, m+1)
+	vis := make([]bool, m)
+	var dfs func(int)
+	dfs = func(v int) {
+		for len(g[v]) > 0 {
+			e := g[v][0]
+			g[v] = g[v][1:]
+			i := e.eid
+			if vis[i] {
+				continue
+			}
+			vis[i] = true
+			dfs(e.to)
+		}
+		// 输出点的写法， len(path) 最后 = m+1
 		path = append(path, v)
 	}
 	dfs(st)
