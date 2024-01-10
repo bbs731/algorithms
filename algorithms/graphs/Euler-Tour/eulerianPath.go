@@ -20,7 +20,7 @@ func (*graph) eulerianPathOnDirectedGraph(n, m int) []int {
 	inDeg := make([]int, n) // inDegree 入度
 	// read g ... and 统计入度
 
-	// 排序，保证字典序 (什么题目要求字典序？）
+	// 排序，保证字典序 (什么题目要求字典序？例子: LC332）
 	for _, es := range g {
 		sort.Slice(es, func(i, j int) bool { return es[i].to < es[j].to })
 	}
