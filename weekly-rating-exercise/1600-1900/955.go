@@ -51,6 +51,9 @@ strs[i] 由小写英文字母组成
 
 // 这道题好难啊，
 // 想到了一个好方法， 用 cmp 数组，来保持字典序。
+
+算是入道了，以后坚持住，就这么来。
+https://leetcode.cn/problems/delete-columns-to-make-sorted-ii/solutions/2598319/wei-hu-zi-dian-xu-go-by-zhang731-ux2j/
  */
 func minDeletionSize(strs []string) int {
 	n := len(strs[0])
