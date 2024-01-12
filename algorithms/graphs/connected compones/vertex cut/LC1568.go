@@ -1,34 +1,6 @@
-package one_day_exercise
+package vertex_cut
 
 import "fmt"
-
-/*
-
-给你一个大小为 m x n ，由若干 0 和 1 组成的二维网格 grid ，其中 1 表示陆地， 0 表示水。岛屿 由水平方向或竖直方向上相邻的 1 （陆地）连接形成。
-
-如果 恰好只有一座岛屿 ，则认为陆地是 连通的 ；否则，陆地就是 分离的 。
-
-一天内，可以将 任何单个 陆地单元（1）更改为水单元（0）。
-
-返回使陆地分离的最少天数。
-
-
-
-示例 1：
-
-
-输入：grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]]
-输出：2
-解释：至少需要 2 天才能得到分离的陆地。
-将陆地 grid[1][1] 和 grid[0][2] 更改为水，得到两个分离的岛屿。
-示例 2：
-
-
-输入：grid = [[1,1]]
-输出：2
-解释：如果网格中都是水，也认为是分离的 ([[1,1]] -> [[0,0]])，0 岛屿。
-
- */
 
 func minDays(grid [][]int) int {
 	m := len(grid)
@@ -45,7 +17,6 @@ func minDays(grid [][]int) int {
 			}
 		}
 	}
-	//edges := make([][]int, 0)
 	g := make([][]int, nodeCount)
 
 	dir := [][]int{[]int{0, -1}, []int{0, 1}, []int{-1, 0}, []int{1, 0}}
@@ -58,10 +29,12 @@ func minDays(grid [][]int) int {
 					if ni < 0 || ni >= m || nj < 0 || nj >= n {
 						continue
 					}
+					// 这里容易错
+					v := labels[i*n+j]
+					w := labels[ni*n+nj]
 					if grid[ni][nj] == 1 {
-						//edges = append(edges, []int{labels[i*n+j], labels[ni*n+nj]})
-						g[labels[i*n+j]] = append(g[labels[i*n+j]], labels[ni*n+nj])
-						g[labels[ni*n+nj]] = append(g[labels[ni*n+nj]], labels[i*n+j])
+						g[v] = append(g[v], w)
+						g[w] = append(g[w], v)
 					}
 				}
 			}
@@ -83,6 +56,11 @@ func minDays(grid [][]int) int {
 	return 2
 }
 
+// 下面这个 找割点的，写的无比的强大， 不但返回割点，还能返回 scc components, 本来 Tarjan 就能做这两件事。
+// 以前的举例，都是要么单独找 SCC 要们，单独计算 cut vertex or cut edges.  没有结合过。
+// 下面的写法，结和了 scc + cut vertex, 主要改的点是 else 判断  inSt 而不是  v != father
+
+// 本题，本来只需要简单返回 scc 的计数就可以， 炫技了！
 // low(v): 在不经过 v 父亲的前提下能到达的最小的时间戳
 func findCutVertices(n int, g [][]int) (cuts []int, scc [][]int) {
 	scc = [][]int{}
@@ -111,8 +89,8 @@ func findCutVertices(n int, g [][]int) (cuts []int, scc [][]int) {
 				if low[v] >= dfn[u] { // 以 v 为根的子树中没有反向边能连回 u 的祖先（或者连到u上， 也算割顶）
 					isCut[u] = true
 				}
-			} else if inSt[v] {
-				//} else if inSt[v] && v != father {
+			} else if inSt[v] { // 这里要十分的注意， 不能用  v!=father
+				//} else if v != father {
 				low[u] = min(low[u], dfn[v])
 			}
 		}
