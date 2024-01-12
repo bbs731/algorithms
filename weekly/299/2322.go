@@ -37,7 +37,7 @@ func minimumScore(nums []int, edges [][]int) int {
 	dfs(0, -1)
 
 	//这个，第一次学习到。
-	isAncestor := func(x, y int) bool { return in[x] < in[y] && in[y] <= out[x] }
+	isAncestor := func(x, y int) bool { return in[x] < in[y] && out[y] <= out[x] }
 
 	ans := math.MaxInt32
 	// 枚举点， 不是 edges, 这个也是没想到。
