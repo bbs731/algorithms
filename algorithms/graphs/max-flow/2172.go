@@ -22,7 +22,7 @@ func maximumANDSum(nums []int, numSlots int) int {
 	for i, num := range nums {
 		addEdge(st, i, 1, 0)
 		for j := 1; j <= m; j++ {
-			// 这里灵神说的，有点问题， cap 可以去 1
+			// 这里灵神说的，有点问题， cap 可以设置成 1
 			addEdge(i, n+j-1, 1, -(num & j)) // 这里的 cost 要取负，因为要求，最大费。
 		}
 	}
@@ -33,7 +33,7 @@ func maximumANDSum(nums []int, numSlots int) int {
 	//下面是 Dinic mcmf 的 template 代码
 	dist := make([]int, len(g))
 	type vi struct{ v, i int }
-	fa := make([]vi, len(g))
+	//fa := make([]vi, len(g))
 	inQ := make([]bool, len(g))
 
 	spfa := func() bool {
@@ -57,7 +57,7 @@ func maximumANDSum(nums []int, numSlots int) int {
 				w := e.to
 				if newD := dist[v] + e.cost; newD < dist[w] {
 					dist[w] = dist[v] + e.cost
-					fa[w] = vi{v, i}
+					//fa[w] = vi{v, i}
 					if !inQ[w] {
 						inQ[w] = true
 						q = append(q, w)
