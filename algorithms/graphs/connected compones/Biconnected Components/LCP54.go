@@ -12,6 +12,10 @@ import "sort"
 // 3. 如何知道一个 bcc 缩点之后是叶子节点， （题目作的时候不需要真的缩点） 当， bcc 中所有的 vertex 中，有且只有一个 cut vertex 那么，这个 bcc 就是缩点之后的一个叶子节点。
 // 4. bcc 的代码，来自 灵神的代码库 codeforeces-go/graph.go  还没读过。 抓紧。
 
+
+// scc 和 bcc(dcc) 的区别：
+// scc 说的是有向图。  bcc(dcc) 说的是无向图。 都是用的是 Tarjan, 但是在求 scc 和 dcc 是有细微区别。
+
 // 另外， 这真是一个好题。  图根据 bcc 缩点之后，变成一颗树. 考虑所有的树的叶子节点， 然后把 排名 n-1 之前的叶子节点的 cost 都加起来就是的答案。 多么好的题啊。
 
 func bccTarjan( g [][]int) (dcc [][]int, isCut []bool){
