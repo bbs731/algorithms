@@ -2,15 +2,6 @@ package Biconnected_Components
 
 import "sort"
 
-package one_day_exercise
-
-import (
-"fmt"
-"slices"
-"sort"
-)
-
-
 // 题解来自这里。
 // https://leetcode.cn/problems/s5kipK/solutions/1425679/by-tsreaper-z8by/
 
@@ -22,69 +13,66 @@ import (
 // 4. bcc 的代码，来自 灵神的代码库 codeforeces-go/graph.go  还没读过。 抓紧。
 
 // 另外， 这真是一个好题。  图根据 bcc 缩点之后，变成一颗树. 考虑所有的树的叶子节点， 然后把 排名 n-1 之前的叶子节点的 cost 都加起来就是的答案。 多么好的题啊。
-func findVertexBCC(g [][]int) (comps [][]int,  isCut[]bool) {
-	bccIDs := make([]int, len(g)) // ID 从 1 开始编号
-	idCnt := 0
+
+func bccTarjan( g [][]int) (dcc [][]int, isCut []bool){
+	var root int
+	dcc = [][]int{}
 	isCut = make([]bool, len(g))
 
 	dfn := make([]int, len(g))
+	low := make([]int, len(g))
 	dfsClock := 0
-	type edge struct{ v, w int } // eid
-	st := []edge{}               // 存边是为了解决一些特殊题目（基本写法存点就行）
-	var tarjan func(v, fa int) int
-	tarjan = func(v, fa int) int {
+	cnt := 0
+	st := []int{}
+
+
+	var tarjan func(int)
+	tarjan = func(u int) {
 		dfsClock++
-		dfn[v] = dfsClock
-		lowV := dfsClock
+		dfn[u]= dfsClock
+		low[u] = dfsClock
+		if u == root && len(g[u]) == 0 {
+			dcc = append(dcc, []int{u})
+			return
+		}
+		st = append(st, u)
 		childCnt := 0
-		for _, w := range g[v] {
-			e := edge{v, w} // ne.eid
-			if dfn[w] == 0 {
-				st = append(st, e)
-				childCnt++
-				lowW := tarjan(w, v)
-				if lowW >= dfn[v] {
-					isCut[v] = true
-					idCnt++
+
+		for _, v := range g[u]{
+			if dfn[v] == 0 {
+				tarjan(v)
+				low[u] = min(low[u], low[v])
+
+				if low[v] >= dfn[u]{
+					childCnt++
+					if u != root || childCnt> 1 { // 如果是 root childCnt >= 2 才是 cut
+						isCut[u]= true
+					}
+					cnt++
 					comp := []int{}
-					//eids := []int{}
 					for {
-						e, st = st[len(st)-1], st[:len(st)-1]
-						if bccIDs[e.v] != idCnt {
-							bccIDs[e.v] = idCnt
-							comp = append(comp, e.v)
-						}
-						if bccIDs[e.w] != idCnt {
-							bccIDs[e.w] = idCnt
-							comp = append(comp, e.w)
-						}
-						//eids = append(eids, e.eid)
-						if e.v == v && e.w == w {
+						z := st[len(st)-1]
+						st = st[:len(st)-1]
+						comp = append(comp, z)
+						if z == v {
 							break
 						}
 					}
-					comps = append(comps, comp)
+					comp = append(comp, u)
+					dcc = append(dcc, comp)
 				}
-				lowV = min(lowV, lowW)
-			} else if w != fa && dfn[w] < dfn[v] {
-				st = append(st, e) // 简单写法中，可以省略
-				lowV = min(lowV, dfn[w])
+			} else {
+				low[u]= min(low[u], dfn[v])
 			}
 		}
-		if fa == -1 && childCnt == 1 {
-			isCut[v] = false
-		}
-		return lowV
 	}
+
+	//tarjan(root)
+
 	for v, timestamp := range dfn {
 		if timestamp == 0 {
-			if len(g[v]) == 0 { // 零度，即孤立点（isolated vertex）
-				idCnt++
-				bccIDs[v] = idCnt
-				comps = append(comps, []int{v})
-				continue
-			}
-			tarjan(v, -1)
+			root = v
+			tarjan(v)
 		}
 	}
 	return
@@ -101,7 +89,7 @@ func minimumCost(cost []int, roads [][]int) int64 {
 		g[w] = append(g[w], v)
 	}
 
-	dcc, isCut := findVertexBCC(g)
+	dcc, isCut := bccTarjan(g)
 	ans := 0
 
 	if len(dcc) == 1 {
