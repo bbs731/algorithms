@@ -1,18 +1,15 @@
-package one_day_exercise
+package digit_dp
 
 import "strconv"
 
 /***
+https://leetcode.cn/problems/number-of-2s-in-range-lcci/solutions/1750395/by-endlesscheng-x4mf/
 
-用一个 digit dp 最通用的模版， 实验一下。
+灵神给的模版代码， 可理解， 可重用。 oi-wiki 上的换一道题，不知道怎么弄。
+*/
 
-需要注意的点：
-1. mask 和 cnt 不一定都用，根据需要。
-2. 注意 cache 到底是用 mask 还是 cnt 作维度
 
-***/
-
-func countDigitOne(n int) int {
+func numberOf2sInRange(n int) int {
 
 	// step 1
 	// convert to string 如果是 10进制的题目
@@ -62,7 +59,7 @@ func countDigitOne(n int) int {
 			//if mask>>d&1 == 0 { // d 不在 mask 中
 			c := cnt1
 
-			if d== 2 {
+			if d== 2 {  // count digit 2,  和 count digit 1 唯一的区别，就在这里。
 				c++
 			}
 			res += f(i+1, mask|1<<d, c, isLimit && d == up, true)
@@ -72,4 +69,5 @@ func countDigitOne(n int) int {
 	}
 	return f(0, 0,0, true, false)
 }
+
 
