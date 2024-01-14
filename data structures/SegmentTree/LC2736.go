@@ -9,6 +9,7 @@ import (
 
 // 开点线段树的代码来自：
 //https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/segment_tree.go#L455
+
 const stNodeDefaultVal = -1 // 如果求最大值并且有负数，改成 math.MinInt
 
 type stNode struct {
@@ -85,7 +86,7 @@ func maximumSumQueries(nums1, nums2 []int, queries [][]int) []int {
 
 	ans := make([]int, len(queries))
 	j := 0
-	root := newStRoot(1, 1e9)
+	root := newStRoot(0, 1e9)
 	for _, i := range qid {
 		x, y := queries[i][0], queries[i][1]
 
