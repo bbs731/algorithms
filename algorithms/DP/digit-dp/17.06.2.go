@@ -57,6 +57,7 @@ func numberOf2sInRange(n int) int {
 		}
 		for ; d <= up; d++ { // 枚举要填入的数字 d
 			// 解惑了， 下面这种方式写也是对的。
+			// 没错，较真把它弄懂了，不行就多试几次，花点时间弄懂。 不懂，记住也没用，将来还是会错，而且错的离谱！
 			if d == 2 {  // count digit 2,  和 count digit 1 唯一的区别，就在这里。
 				// ith 这位取 2 了  cnt1+1
 				res += f(i+1, mask| 1<<d, cnt1+1, isLimit && d == up, true)
