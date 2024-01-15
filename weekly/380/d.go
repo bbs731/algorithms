@@ -63,6 +63,7 @@ func beautifulIndices(s string, a string, b string, k int) []int {
 	}
 
 	for _, ap := range apos {
+		// 哈哈，真是来了一把牛刀！
 		cnt := root.query(max(0,ap-k), min(ap+k, len(b)-1))
 		if cnt >=1 {
 			ans = append(ans, ap)
