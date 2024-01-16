@@ -27,3 +27,12 @@ d. 贪心。
 e. sliding-window
 f. 图论, scc, mst, shortest-path, topo-sort, maxflow, mcmf, bipartie matching
 g. 数据结构 BIT, segTree, 0-1 trie, heap, union-find, sparse-table, queue, stack
+
+
+
+拉下的知识点：
+1. 分块
+2. Heap, minHeap, maxHeap 模板代码的实现, 和应用题目。
+3. 滚动哈希的实现。
+4. 字符串，后缀数组的应用。
+5. 马拉车算法和 回文树。
