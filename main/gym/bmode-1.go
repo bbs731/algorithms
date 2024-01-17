@@ -5,6 +5,7 @@ import (
 	. "fmt"
 	"io"
 	"os"
+	"runtime/debug"
 	"sort"
 	"strconv"
 )
@@ -20,7 +21,6 @@ func max(a, b int) int {
 func countSpecialNumbers(n int) (ans int) {
 	s := strconv.Itoa(n)
 	m := len(s)
-
 	if n < 0 {
 		return -1
 	}
@@ -29,7 +29,8 @@ func countSpecialNumbers(n int) (ans int) {
 		i int
 		v [10]int
 	}
-	memo := make(map[pair]int)
+
+	var memo = make(map[pair]int)
 
 	var f func(int, []int, bool, bool) int
 	f = func(i int, cnts []int, isLimit, isNum bool) (res int) {
@@ -47,10 +48,11 @@ func countSpecialNumbers(n int) (ans int) {
 
 		cachekey := [10]int{}
 		if !isLimit && isNum {
-			sort.Ints(cnts)
-
-			for k := 0; k < len(cnts); k++ {
-				cachekey[k] = cnts[k]
+			d := make([]int, 10)
+			copy(d, cnts)
+			sort.Ints(d)
+			for k := 0; k < len(d); k++ {
+				cachekey[k] = d[k]
 			}
 			p, ok := memo[pair{i, cachekey}]
 			if ok {
@@ -79,11 +81,12 @@ func countSpecialNumbers(n int) (ans int) {
 		}
 		return
 	}
+
 	return f(0, make([]int, 10), true, false)
 }
 
 func cfbmode(_r io.Reader, _w io.Writer) {
-
+	debug.SetGCPercent(-1)
 	in := bufio.NewReader(_r)
 	out := bufio.NewWriter(_w)
 	defer out.Flush()
