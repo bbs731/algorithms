@@ -31,6 +31,44 @@ package weekly
 
  */
 
-func longestNiceSubarray(nums []int) int {
+// 很好的题目，如果不提示 sliding window 的话，感觉是做不成来的。
 
+func longestNiceSubarray(nums []int) (ans int) {
+	left, or := 0, 0
+	for right, x := range nums {
+		for or&x > 0 { // 有交集
+			or ^= nums[left] // 从 or 中去掉集合 nums[left]
+			left += 1
+		}
+		or |= x // 把集合 x 并入 or 中
+		ans = max(ans, right-left+1)
+	}
+	return
+}
+
+// 下面的代码是时间复杂度实际上，最坏情况下是 O（n^2) 有 O(n) 的写法。
+// 如果 leetcode 想 OI 一样卡时间的话，可能就过不去了。
+func longestNiceSubarray(nums []int) int {
+	n := len(nums)
+	ans := 1
+	l := 0
+
+	for i := 1; i < n; i++ {
+		x := nums[i]
+		j := i - 1
+		for ; j >= l; j-- {
+			if nums[j]&x != 0 {
+				break
+			}
+		}
+		l = j + 1
+		// 两种情况下，都能归纳为 l = j+1
+		//if j == i-1 {
+		//	l = i
+		//} else {
+		//	l = j + 1
+		//}
+		ans = max(ans, i-l+1)
+	}
+	return ans
 }
