@@ -37,6 +37,9 @@ import (
 
  */
 
+// 如何考虑， 时间复杂度？ 我以为是阶乘的复杂度。 但是灵神说是 O(nD)  n = log(finish)  D = 10
+// 状态个数： n 个即 dp[n]。 每个状态需要 O(D) 时间来计算
+
 func numberOfPowerfulInt(start int64, finish int64, limit int, s string) int64 {
 	highS := strconv.Itoa(int(finish))
 	lowS := strconv.Itoa(int(start))
@@ -59,6 +62,7 @@ func numberOfPowerfulInt(start int64, finish int64, limit int, s string) int64 {
 			}
 		}
 		if i >= n-len(s) {
+			// 特判，这两种情况，不行， 提早返回。
 			if limitLow && lowS[i] > s[i+len(s)-n] {
 				return
 			}
@@ -87,4 +91,56 @@ func numberOfPowerfulInt(start int64, finish int64, limit int, s string) int64 {
 	}
 
 	return int64(dfs(0, true, true))
+}
+
+// 灵神的代码：
+func numberOfPowerfulInt(start, finish int64, limit int, s string) int64 {
+	low := strconv.FormatInt(start, 10)
+	high := strconv.FormatInt(finish, 10)
+	n := len(high)
+	low = strings.Repeat("0", n-len(low)) + low // 补前导零，和 high 对齐
+	diff := n - len(s)
+
+	memo := make([]int64, n)
+	for i := range memo {
+		memo[i] = -1
+	}
+	var dfs func(int, bool, bool) int64
+	dfs = func(i int, limitLow, limitHigh bool) (res int64) {
+		if i == n {
+			return 1
+		}
+
+		if !limitLow && !limitHigh {
+			p := &memo[i]
+			if *p >= 0 {
+				return *p
+			}
+			defer func() { *p = res }()
+		}
+
+		// 第 i 个数位可以从 lo 枚举到 hi
+		// 如果对数位还有其它约束，应当只在下面的 for 循环做限制，不应修改 lo 或 hi
+		lo := 0
+		if limitLow {
+			lo = int(low[i] - '0')
+		}
+		hi := 9
+		if limitHigh {
+			hi = int(high[i] - '0')
+		}
+
+		if i < diff { // 枚举这个数位填什么
+			for d := lo; d <= min(hi, limit); d++ {
+				res += dfs(i+1, limitLow && d == lo, limitHigh && d == hi)
+			}
+		} else { // 这个数位只能填 s[i-diff]
+			x := int(s[i-diff] - '0')
+			if lo <= x && x <= min(hi, limit) {
+				res += dfs(i+1, limitLow && x == lo, limitHigh && x == hi)
+			}
+		}
+		return
+	}
+	return dfs(0, true, true)
 }
