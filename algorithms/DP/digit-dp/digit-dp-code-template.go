@@ -157,7 +157,7 @@ func digit_dp_template_2(low, high int) int {
 				return 1
 			}
 
-			if !limitLow && !limitHigh {
+			if !limitLow && !limitHigh && isNum {
 				dv := &cache[p][mask]
 				if *dv > 0 {
 					return *dv
