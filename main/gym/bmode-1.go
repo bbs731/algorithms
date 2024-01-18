@@ -6,7 +6,6 @@ import (
 	"io"
 	"os"
 	"runtime/debug"
-	"sort"
 	"strconv"
 )
 
@@ -21,13 +20,17 @@ func max(a, b int) int {
 func countSpecialNumbers(n int) (ans int) {
 	s := strconv.Itoa(n)
 	m := len(s)
+
 	if n < 0 {
 		return -1
 	}
+	//if n == int(1e18) {
+	//	return 17
+	//}
 
 	type pair struct {
 		i int
-		v [10]int
+		v [19]int
 	}
 
 	var memo = make(map[pair]int)
@@ -46,13 +49,18 @@ func countSpecialNumbers(n int) (ans int) {
 			return
 		}
 
-		cachekey := [10]int{}
+		//cachekey := [10]int{}
+		cachekey := [19]int{} // cachekey[i] 代表出现 i 次 的 digit 的种类数。
 		if !isLimit && isNum {
-			d := make([]int, 10)
-			copy(d, cnts)
-			sort.Ints(d)
-			for k := 0; k < len(d); k++ {
-				cachekey[k] = d[k]
+			// sort cnts  作为 cachekey 的优化还是不够快。
+			//d := make([]int, 10)
+			//copy(d, cnts)
+			//sort.Ints(d)
+			//for k := 0; k < len(d); k++ {
+			//	cachekey[k] = d[k]
+			//}
+			for k := 0; k < len(cnts); k++ {
+				cachekey[cnts[k]]++
 			}
 			p, ok := memo[pair{i, cachekey}]
 			if ok {
