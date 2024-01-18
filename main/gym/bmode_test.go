@@ -17,5 +17,5 @@ func Test_bMode(t *testing.T) {
 `,
 		},
 	}
-	testutil.AssertEqualStringCase(t, testCases, 0, cfbmode)
+	testutil.AssertEqualStringCase(t, testCases, 0, cfbmode2)
 }
