@@ -1,0 +1,9 @@
+leetcode 题目： 复习列表
+238, 2906
+834
+LCR 170 https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/description/  逆序对！
+421, 2935
+1942
+1027
+955
+1004 2024
