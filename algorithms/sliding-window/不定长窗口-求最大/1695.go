@@ -23,6 +23,26 @@ package weekly
 
  */
 
+// 好题
 func maximumUniqueSubarray(nums []int) int {
+	l := 0
+	ans := 0
+	sum := 0
+	pos := make(map[int]int)
 
+	for i, x := range nums {
+		if p, ok := pos[x]; !ok {
+			pos[x] = i
+			sum += x
+			ans = max(ans, sum)
+		} else {
+			pos[x] = i
+			for ; l < p; l++ {
+				sum -= nums[l]
+				delete(pos, nums[l]) // 这里也很关键， 第一次的提交拉掉了！
+			}
+			l = p + 1
+		}
+	}
+	return ans
 }
