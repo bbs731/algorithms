@@ -107,7 +107,7 @@ func longestEqualSubarray(nums []int, k int) (ans int) {
 		}
 		left := 0
 		for right, p := range ps {
-			for p-ps[left]-right+left > k { // 要删除的数太多了
+			for p-ps[left]-right+left > k { // 要删除的数太多了  ps[right] - ps[left] +1 - (right - left +1)
 				left++
 			}
 			ans = max(ans, right-left+1)
