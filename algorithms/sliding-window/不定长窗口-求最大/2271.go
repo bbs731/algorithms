@@ -16,6 +16,7 @@ func maximumWhiteTiles(tiles [][]int, carpetLen int) int {
 	ans := 0
 	left := 0
 	cover := 0
+	// 因为，枚举右端点， 写 sliding windows 写程序最方便， 线段树的方法也证明了， align z在最左端点，铺地毯，也是正确的。
 	// 还是那个问题， 为什么是 tile 的右端点？ 为什么线段树的方法，左右端点都可以？
 	for _, t := range tiles {
 		tl, tr := t[0], t[1]
