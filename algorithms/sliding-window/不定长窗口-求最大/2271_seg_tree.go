@@ -44,7 +44,9 @@ func maximumWhiteTiles(tiles [][]int, carpetLen int) int {
 	}
 	ans := 0
 	for _, t := range tiles {
-		ans = max(ans, lazyRoot.query(t[0], t[0]+carpetLen-1))
+		// 用线段树, 枚举，瓷砖的左端点和右端点，都是对的， 为什么?
+		//ans = max(ans, lazyRoot.query(t[0], t[0]+carpetLen-1))
+		ans = max(ans, lazyRoot.query(t[1]-carpetLen+1, t[1]))
 	}
 	return ans
 }
