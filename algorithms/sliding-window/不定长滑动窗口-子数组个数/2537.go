@@ -11,8 +11,9 @@ func countGood(nums []int, k int) int64 {
 	pairs := 0
 
 	for i, v := range nums {
+		// 牛逼的是，方案数的增加，你也考虑对了是 pairs += counter[v]
+		pairs += counter[v]
 		counter[v]++
-		pairs += counter[v]-1
 
 		for pairs >=k {
 			ans += n-i  // 你他妈的这里算是学通了是吧！
