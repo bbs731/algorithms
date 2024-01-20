@@ -3,6 +3,9 @@ package sliding_window
 
 // 这要是作为面试题， 死 100次了。
 // 这个题，不可能 1300 多分。
+// https://leetcode.cn/problems/count-complete-subarrays-in-an-array/solutions/2364671/on-hua-dong-chuang-kou-by-endlesscheng-9ztb/
+// 灵神的这个解， 太牛了， 直接帮助解决了同样的， 1358， 2962 等问题。
+
 func countCompleteSubarrays(nums []int) int {
 	//n :=len(nums)
 	cnts := make(map[int]struct{})
