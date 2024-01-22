@@ -17,4 +17,5 @@ LCR 170 https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/description/
 2762
 2563 // 这题弄在了你的软肋上。
 1438
+1838
 
