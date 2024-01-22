@@ -24,33 +24,50 @@ f(i, 0) = nums[i]
 j 以正序遍历， i 因为没有降维， 所以，正序遍历还好理解。
 */
 
-type ST [][]int
+// 验证题目 LC1438
+//type ST [][]int
+type ST struct {
+	h [][]int // max
+	l [][]int // min
+}
 
-func NewST(nums []int) ST {
+func NewST(nums []int) *ST {
 	n := len(nums)
-	sz := bits.Len(n)
-	st := make(ST, n)
+	sz := bits.Len(uint(n))
+	st := &ST{}
+	st.h = make([][]int, n)
+	st.l = make([][]int, n)
+	//st := make(ST, n)
 	// 初始化
 	for i, v := range nums {
-		st[i] = make([]int, sz)
-		st[i][0] = v
+		st.h[i] = make([]int, sz)
+		st.h[i][0] = v
+
+		st.l[i] = make([]int, sz)
+		st.l[i][0] = v
 	}
+
 	// 建表，复杂度 O(n*logn)
 	for j := 1; 1<<j <= n; j++ { // j loop 的上界比较难想  0 + 1<<j <=n
 		for i := 0; i+1<<j <= n; i++ {
-			st[i][j] = st.Op(st[i][j-1], st[i+1<<(j-1)][j-1])
+			st.h[i][j] = max(st.h[i][j-1], st.h[i+1<<(j-1)][j-1])
+			st.l[i][j] = min(st.l[i][j-1], st.l[i+1<<(j-1)][j-1])
 		}
 	}
 	return st
 }
 
-// query  [l, r] 区间,  l, r 的下标从 0 开始
-func (st ST) Query(l, r int) int {
-	k := bits.Len(r-l+1) - 1
-	//return st.Op(st[l][k] + st[l+1<<k][k])  这个是不对的，查询的是 [l, l+ 1<<(k+1)],右界 l + 1 <<(k+1) 可能已经超过  r 了。
-	return st.Op(st[l][k] + st[k-1<<k][k])
+// 注意查询，是左闭右开的区间
+// query  [l, r) 区间,  l, r 的下标从 0 开始   0<=l < r <=n
+func (st *ST) QueryMax(l, r int) int {
+	k := bits.Len(uint(r-l)) - 1
+	//return st.Op(st[l][k],  st[l+1<<k][k])  这个是不对的，查询的是 [l, l+ 1<<(k+1)],右界 l + 1 <<(k+1) 可能已经超过  r 了。
+	return max(st.h[l][k], st.h[r-1<<k][k])
+}
+func (st *ST) QueryMin(l, r int) int {
+	k := bits.Len(uint(r-l)) - 1
+	return min(st.l[l][k], st.l[r-1<<k][k])
 }
 
-func (st ST) Op(a, b int) int {
-	//return max(a, b)
-}
+// min, max, gcd, ...
+func (*ST) Op(int, int) (_ int) { return }
