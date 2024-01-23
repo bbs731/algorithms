@@ -1,3 +1,12 @@
+Sliding Window:
+
+前提条件： 能使用 sliding window 或者说， 我们用 sliding window O(n) 的复杂度，处理了原来需要 O(n^2) 的区间问题的前提是，
+需要利用，这个区间数据上的 "二段性"。 如果区间不具备有二段性，我们是没有办法利用 sliding window 解题（优化）的。
+
+下面是宫水三叶对于 LC395是否能使用 sliding window 的 总结 （受益匪浅）:
+https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/solutions/624045/xiang-jie-mei-ju-shuang-zhi-zhen-jie-fa-50ri1/
+
+
 双指针：
 1. 同一方向的， 快慢指针
 2. 相对方向的， 对撞指针
