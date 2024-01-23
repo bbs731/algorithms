@@ -1,6 +1,9 @@
 package sliding_window
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 /***
 
@@ -33,42 +36,55 @@ left 中元素和小于等于 mid 中元素和，mid 中元素和小于等于 ri
 
  */
 
-// where sum[pos:right] <= v
-func search2(nums []int, left, right int, v int) int {
-	l := left - 1
-	r := right + 1
 
-	for l+1 < r {
-		mid := (l + r) / 2
-		res := nums[right+1] - nums[mid]
-
-		if res > v {
-			l = mid
-		} else {
-			r = mid
-		}
+ //https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/solutions/544682/golang-jian-ji-xie-fa-by-endlesscheng-xaad/
+// 看题解， 整理一下
+func waysToSplit(a []int) (ans int) {
+	n := len(a)
+	sum := make([]int, n+1)
+	for i, v := range a {
+		sum[i+1] = sum[i] + v
 	}
-	// l + 1 = r
-	return r
+	for r := 2; r < n && 3*sum[r] <= 2*sum[n]; r++ {
+		l1 := sort.SearchInts(sum[1:r], 2*sum[r]-sum[n]) + 1
+		ans += sort.SearchInts(sum[l1:r], sum[r]/2+1)
+	}
+	return ans % (1e9 + 7)
 }
 
-// where sum[l:right] >= v
-func search(nums []int, left, right int, v int) int {
-	l := left - 1
-	r := right + 1
 
+
+// where sum[l:pos] <= v
+func search(nums []int, l, r int, v int) int {
 	for l+1 < r {
 		mid := (l + r) / 2
-		res := nums[right+1] - nums[mid]
+		res := nums[mid]
 
-		if res < v {
-			r = mid
-		} else {
+		if res <= v {
 			l = mid
+		} else {
+			r = mid
 		}
 	}
 	// l + 1 = r
 	return l
+}
+
+
+
+// where sum[pos:right] >= v
+func search2(psum[]int, l, r int, v int) int {
+	for l+1 < r {
+		mid := (l + r) / 2
+		//res := psum[r] - psum[mid]
+		if psum[mid]>=v {
+			r = mid
+		} else {
+			l = mid
+		}
+	}
+	// l + 1 = r
+	return r
 }
 
 // 好题，我感觉我能做的出来。
@@ -88,25 +104,41 @@ func waysToSplit(nums []int) int {
 		if right <= 1 {
 			continue
 		}
-
 		sum := psum[right] - psum[0]
 		limit := total - sum
 		// no solution
 		if limit < (sum+1)/2 {
 			continue
 		}
+		if nums[0] > sum/2 {
+			continue
+		}
+
+		if nums[right-1] > limit {
+			continue
+		}
+
 
 		// now split the sum into two parts
 		// find the pos sum[pos:right] >= sum/2
-		left1 := search(psum, 0, right, sum/2)
+		left1 := search(psum[1:], -1, right, (sum)/2)
+		//left1 := sort.SearchInts(psum, (sum+1)/2+1) -1
 		// find the pos sum [pos: right] <=limit
-		left2 := search2(psum, 0, right, limit)
+		left2 := search2(psum[1:], -1, right, 2*psum[right]-total)
 
-		fmt.Println(left2, left1, limit, sum/2)
-		if left2 >= left1 {
-			ans += left2 - left1 + 1
-			ans %= mod
+		fmt.Println(left2, left1, right, limit, sum, sum/2 )
+		if left1 == left2 {
+			ans += 1
 		}
+		if left1 > left2 {
+			ans += left1 -left2
+		} else {
+			ans += left2 - left1
+		}
+		//if left1 > left2{
+		//	ans +=  left1- left2
+		//	ans %= mod
+		//}
 	}
-	return ans
+	return ans %mod
 }
