@@ -1,4 +1,4 @@
-package sliding_window
+package 定长滑动窗口
 
 func fixed_siding_window_template_code(k int, nums []int) int {
 

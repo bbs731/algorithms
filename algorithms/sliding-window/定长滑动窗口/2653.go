@@ -1,4 +1,4 @@
-package sliding_window
+package 定长滑动窗口
 
 /***
 给你一个长度为 n 的整数数组 nums ，请你求出每个长度为 k 的子数组的 美丽值 。

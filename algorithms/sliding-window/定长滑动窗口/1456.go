@@ -1,4 +1,4 @@
-package sliding_window
+package 定长滑动窗口
 
 /***
 给你字符串 s 和整数 k 。
