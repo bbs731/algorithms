@@ -18,17 +18,11 @@ package weekly
 输出：5
 解释：最长子串为 "ababb" ，其中 'a' 重复了 2 次， 'b' 重复了 3 次。
 
-bbaaacbd
-
-k=5
-aaaaaaaaabbbcccccddddd
-
-k = 10
-aaaaaaaaabbbcccccddddd
-zzzzzzzzzzaaaaaaaaabbbbbbbbhbhbhbhbhbhbhicbcbcibcbccccccccccbbbbbbbbaaaaaaaaafffaahhhhhiaahiiiiiiiiifeeeeeeeeee
  */
 
 // 好难的题， 没发现套路，还得挂！
+// 理论升华了：
+//https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/solutions/624045/xiang-jie-mei-ju-shuang-zhi-zhen-jie-fa-50ri1/
 
 func longestSubstring(s string, k int) int {
 	n := len(s)
@@ -36,46 +30,37 @@ func longestSubstring(s string, k int) int {
 	for _, c := range s {
 		cnts[c]++
 	}
-	left := 0
 	ans := 0
 
-	wc := make(map[int32]int, n)
-	tobf := make(map[int32]struct{}, n)
+	// 枚举的力量啊， 通过枚举字符集的大小， 让区间重新具有了二段性。 太美妙了！
+	for t := 1; t <= 26; t++ {
+		left := 0
+		wc := make(map[int32]int, n)
+		tobf := make(map[int32]struct{}, n)
 
-	// 枚举右端点
-	for right, c := range s {
-		if cnts[c] < k && len(wc) > 0 {
-			// 这里会漏掉可能的答案。
-			//for k, v := range wc {
-			//	cnts[k] -= v
-			//}
-			repeat := 1
-			for j := left; j <= right-1; j++ {
-				if j > left {
-					if s[j] == s[j-1] {
-						repeat++
-						if repeat >= k {
-							ans = max(ans, repeat)
-						}
-					} else {
-						repeat = 1
-					}
-				}
-				cnts[int32(s[j])]--
-			}
-
-			left = right + 1
-			wc = make(map[int32]int, n)
-			tobf = make(map[int32]struct{}, n)
-		} else {
+		// 枚举右端点
+		for right, c := range s {
 			wc[c]++
 			if wc[c] >= k {
 				delete(tobf, c)
-				if len(tobf) == 0 {
-					ans = max(ans, right-left+1)
-				}
 			} else {
 				tobf[c] = struct{}{}
+			}
+			for len(wc) > t {
+				lc := int32(s[left])
+				wc[lc]--
+				if wc[lc] < k {
+					tobf[lc] = struct{}{}
+				}
+				if wc[lc] == 0 {
+					delete(wc, lc)
+					delete(tobf, lc)
+				}
+				left++
+			}
+
+			if len(tobf) == 0 {
+				ans = max(ans, right-left+1)
 			}
 		}
 	}
