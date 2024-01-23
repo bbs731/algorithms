@@ -89,7 +89,7 @@ func waysToSplit(nums []int) int {
 			continue
 		}
 
-		sum := psum[right+1] - psum[0]
+		sum := psum[right] - psum[0]
 		limit := total - sum
 		// no solution
 		if limit < (sum+1)/2 {
