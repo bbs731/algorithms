@@ -22,6 +22,8 @@ while i < n:
 
 
 
+https://leetcode.cn/problems/longest-alternating-subarray/solutions/2615916/jiao-ni-yi-ci-xing-ba-dai-ma-xie-dui-on-r57bz/
+
 1446. 连续字符 1165
 1869. 哪种连续子字符串更长 1205
 1957. 删除字符使字符串变好 1358
