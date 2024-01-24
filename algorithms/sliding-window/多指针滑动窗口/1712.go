@@ -1,9 +1,5 @@
 package sliding_window
 
-import (
-	"fmt"
-)
-
 /***
 
 我们称一个分割整数数组的方案是 好的 ，当它满足：
@@ -45,6 +41,16 @@ S(l) >= 2S(r) - S(n)
 2S(l) <= S(r)
  */
 // 看题解， 整理一下
+/**
+终于把 二分查找玩明白了一点： 以后反复看这个例子吧！
+(l, r] 左开右闭的区间是用来直接求 <=x 的， 其它的区间方法做不到，以后就不要再犯这个错误了。
+
+lower_bound 是用来求  >=x 的最小位置的。 通过转换可以求得 <=x  具体就是  lower_bound(x+1)-1 的位置, 这道题目就是个好例子。
+
+更多二分的技巧和应用见：(例如当数组是 先true 后 false 的时候)
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/sort.go#L240
+
+ */
 func waysToSplit(a []int) (ans int) {
 	n := len(a)
 	sum := make([]int, n+1)
@@ -52,15 +58,16 @@ func waysToSplit(a []int) (ans int) {
 		sum[i+1] = sum[i] + v
 	}
 	for r := 2; r < n && 3*sum[r] <= 2*sum[n]; r++ {
-		//l1 := sort.SearchInts(sum[1:r], 2*sum[r]-sum[n])
-		l1 := search(sum, 0, r, 2*sum[r]-sum[n]) - 1
+		// 下面所求的 index 都是以 sum[] 的坐标为基准的，starting from index 0
+		//l1 := sort.SearchInts(sum[1:r], 2*sum[r]-sum[n]) + 1    // +1 的原因是因为，在 sum[left:right] 上面搜索，所以最后要加上 left, 此例子 left=1 (坐标系，以 sum starting index 0 为开始）
+		l1 := search(sum, 0, r, 2*sum[r]-sum[n])
 		// 下面的是在翻译   S(l) <= S(r)/2
 		// sort.SearchInts(sum[1:r], sum[r]/2 + 1) -1 + 1
-		//l2 := sort.SearchInts(sum[1:r], sum[r]/2+1)
+		//l2 := sort.SearchInts(sum[1:r], sum[r]/2+1) -1 + 1  // 因为搜索的是sum[1:r] 所以最后 + 1
 		//l2 := search(sum, 0, r, sum[r]/2+1) - 1   // 这个利用 lower_bound search 的代码就是对的。
 		l2 := search2(sum, 0, r-1, sum[r]/2) // 这个自己写的 <=x  (l, r] 左开右闭的实现，就是错的，为什么？ 太神奇了，为什么？ 现在对了！
 		//教训深刻啊！ 二分太难了！
-		ans += l2 - l1
+		ans += l2 - l1 + 1
 	}
 	return ans % (1e9 + 7)
 }
@@ -79,9 +86,9 @@ func search(nums []int, l, r int, v int) int {
 	return r
 }
 
-// 自己实现  <=v  是错的！ 为什么呢？
+// 自己实现  <=v // 现在是对的了！
 // where sum[pos] <= v
-// 找一找 search2 的问题， 这是一个大问题， 难道说，自己不能用原始的方法，实现 <= v ? 必须转换成  (>=(v+1))  - 1
+// 找一找 search2 的问题， 这是一个大问题， 难道说，自己不能用原始的方法，实现 <= v ? 必须转换成  (>=(v+1))  - 1 不需要相信科学，下面的做法是对的！
 // 先 true 后 false 的情况， 需要用左开右闭的区间去写。 （l, r]
 func search2(sum []int, l, r int, v int) int {
 	// (l, r]  左开右闭的区间
@@ -95,59 +102,4 @@ func search2(sum []int, l, r int, v int) int {
 	}
 	// l == r
 	return l
-}
-
-// 好题，我感觉我能做的出来。
-func waysToSplit(nums []int) int {
-	total := 0
-	n := len(nums)
-	psum := make([]int, n+1)
-	ans := 0
-	mod := int(1e9) + 7
-
-	for i, v := range nums {
-		total += v
-		psum[i+1] = psum[i] + v
-	}
-
-	for right := range nums {
-		if right <= 1 {
-			continue
-		}
-		sum := psum[right] - psum[0]
-		limit := total - sum
-		// no solution
-		if limit < (sum+1)/2 {
-			continue
-		}
-		if nums[0] > sum/2 {
-			continue
-		}
-
-		if nums[right-1] > limit {
-			continue
-		}
-
-		// now split the sum into two parts
-		// find the pos sum[pos:right] >= sum/2
-		left1 := search(psum[1:], -1, right, (sum)/2)
-		//left1 := sort.SearchInts(psum, (sum+1)/2+1) -1
-		// find the pos sum [pos: right] <=limit
-		left2 := search2(psum[1:], -1, right, 2*psum[right]-total)
-
-		fmt.Println(left2, left1, right, limit, sum, sum/2)
-		if left1 == left2 {
-			ans += 1
-		}
-		if left1 > left2 {
-			ans += left1 - left2
-		} else {
-			ans += left2 - left1
-		}
-		//if left1 > left2{
-		//	ans +=  left1- left2
-		//	ans %= mod
-		//}
-	}
-	return ans % mod
 }
