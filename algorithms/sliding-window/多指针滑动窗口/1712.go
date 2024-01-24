@@ -36,8 +36,15 @@ left 中元素和小于等于 mid 中元素和，mid 中元素和小于等于 ri
 
  */
 
+//-by-endlesscheng-xaad/
 
- //https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/solutions/544682/golang-jian-ji-xie-fa-by-endlesscheng-xaad/
+/***
+
+https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/solutions/544682/golang-jian-ji-xie-fa-by-endlesscheng-xaad/
+
+S(l) >= 2S(r) - S(n)
+2S(l) <= S(r)
+ */
 // 看题解， 整理一下
 func waysToSplit(a []int) (ans int) {
 	n := len(a)
@@ -47,12 +54,13 @@ func waysToSplit(a []int) (ans int) {
 	}
 	for r := 2; r < n && 3*sum[r] <= 2*sum[n]; r++ {
 		l1 := sort.SearchInts(sum[1:r], 2*sum[r]-sum[n]) + 1
-		ans += sort.SearchInts(sum[l1:r], sum[r]/2+1)
+		// 下面的是在翻译   S(l) <= S(r)/2
+		// sort.SearchInts(sum[1:r], sum[r]/2 + 1) -1 + 1
+		l2 := sort.SearchInts(sum[l1:r], sum[r]/2+1)
+		ans += l2 - l1
 	}
 	return ans % (1e9 + 7)
 }
-
-
 
 // where sum[l:pos] <= v
 func search(nums []int, l, r int, v int) int {
@@ -70,14 +78,12 @@ func search(nums []int, l, r int, v int) int {
 	return l
 }
 
-
-
 // where sum[pos:right] >= v
-func search2(psum[]int, l, r int, v int) int {
+func search2(psum []int, l, r int, v int) int {
 	for l+1 < r {
 		mid := (l + r) / 2
 		//res := psum[r] - psum[mid]
-		if psum[mid]>=v {
+		if psum[mid] >= v {
 			r = mid
 		} else {
 			l = mid
@@ -118,7 +124,6 @@ func waysToSplit(nums []int) int {
 			continue
 		}
 
-
 		// now split the sum into two parts
 		// find the pos sum[pos:right] >= sum/2
 		left1 := search(psum[1:], -1, right, (sum)/2)
@@ -126,12 +131,12 @@ func waysToSplit(nums []int) int {
 		// find the pos sum [pos: right] <=limit
 		left2 := search2(psum[1:], -1, right, 2*psum[right]-total)
 
-		fmt.Println(left2, left1, right, limit, sum, sum/2 )
+		fmt.Println(left2, left1, right, limit, sum, sum/2)
 		if left1 == left2 {
 			ans += 1
 		}
 		if left1 > left2 {
-			ans += left1 -left2
+			ans += left1 - left2
 		} else {
 			ans += left2 - left1
 		}
@@ -140,5 +145,5 @@ func waysToSplit(nums []int) int {
 		//	ans %= mod
 		//}
 	}
-	return ans %mod
+	return ans % mod
 }
