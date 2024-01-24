@@ -88,6 +88,7 @@ func upper_bound4(nums []int, target int, left, right int) int {
 
 // upper_bound 5, 6, 7 在指定， left 和 right 的搜索范围是受限的， 不如在调用之前，先对 nums 做裁剪
 func upper_bound5(nums []int, target int, l, r int) int {
+	//  搜索   >= target + 1  等价于   > target
 	return sort.SearchInts(nums, target+1)
 }
 

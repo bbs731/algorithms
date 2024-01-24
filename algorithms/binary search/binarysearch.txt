@@ -1,5 +1,8 @@
 //二分查找， 感觉，是你永远的痛啊！
 
+
+leetcode book 很垃圾啊，不要看这个了， 留作备份好了。
+
 https://leetcode-cn.com/leetbook/read/binary-search
 
 模板一：
