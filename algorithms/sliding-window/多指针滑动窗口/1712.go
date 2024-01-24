@@ -2,7 +2,6 @@ package sliding_window
 
 import (
 	"fmt"
-	"sort"
 )
 
 /***
@@ -53,44 +52,49 @@ func waysToSplit(a []int) (ans int) {
 		sum[i+1] = sum[i] + v
 	}
 	for r := 2; r < n && 3*sum[r] <= 2*sum[n]; r++ {
-		l1 := sort.SearchInts(sum[1:r], 2*sum[r]-sum[n]) + 1
+		//l1 := sort.SearchInts(sum[1:r], 2*sum[r]-sum[n])
+		l1 := search(sum, 0, r, 2*sum[r]-sum[n]) - 1
 		// 下面的是在翻译   S(l) <= S(r)/2
 		// sort.SearchInts(sum[1:r], sum[r]/2 + 1) -1 + 1
-		l2 := sort.SearchInts(sum[l1:r], sum[r]/2+1)
+		//l2 := sort.SearchInts(sum[1:r], sum[r]/2+1)
+		//l2 := search(sum, 0, r, sum[r]/2+1) - 1   // 这个利用 lower_bound search 的代码就是对的。
+		l2 := search2(sum, 0, r-1, sum[r]/2) // 这个自己写的 <=x  (l, r] 左开右闭的实现，就是错的，为什么？ 太神奇了，为什么？ 现在对了！
+		//教训深刻啊！ 二分太难了！
 		ans += l2 - l1
 	}
 	return ans % (1e9 + 7)
 }
 
-// where sum[l:pos] <= v
+// where sum[pos] >= v  (l, r)
 func search(nums []int, l, r int, v int) int {
 	for l+1 < r {
 		mid := (l + r) / 2
-		res := nums[mid]
-
-		if res <= v {
+		if nums[mid] < v {
 			l = mid
 		} else {
 			r = mid
 		}
 	}
-	// l + 1 = r
-	return l
+	// l+1 == r
+	return r
 }
 
-// where sum[pos:right] >= v
-func search2(psum []int, l, r int, v int) int {
-	for l+1 < r {
-		mid := (l + r) / 2
-		//res := psum[r] - psum[mid]
-		if psum[mid] >= v {
-			r = mid
+// 自己实现  <=v  是错的！ 为什么呢？
+// where sum[pos] <= v
+// 找一找 search2 的问题， 这是一个大问题， 难道说，自己不能用原始的方法，实现 <= v ? 必须转换成  (>=(v+1))  - 1
+// 先 true 后 false 的情况， 需要用左开右闭的区间去写。 （l, r]
+func search2(sum []int, l, r int, v int) int {
+	// (l, r]  左开右闭的区间
+	for l < r {
+		mid := (l + r + 1) / 2
+		if sum[mid] <= v {
+			l = mid //preserves f(l) == true
 		} else {
-			l = mid
+			r = mid - 1
 		}
 	}
-	// l + 1 = r
-	return r
+	// l == r
+	return l
 }
 
 // 好题，我感觉我能做的出来。
