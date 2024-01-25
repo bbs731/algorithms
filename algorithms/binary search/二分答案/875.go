@@ -65,6 +65,8 @@ func minEatingSpeed(piles []int, h int) int {
 	n := len(piles)
 	r := n*int(1e9) + 1
 
+	// sort.Search 的使用技巧·其二  指定上下界  [l, r)
+	// 这个问题是 先 false, 后 true 的序列， 所以，正常返回期望的结果就好，不需要考虑取反
 	return 1 + sort.Search(r-1, func(x int) bool {
 		x += 1
 		tot := 0

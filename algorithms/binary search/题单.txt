@@ -76,7 +76,7 @@ https://codeforces.com/problemset/problem/1550/E 2500
 
 
 
-https://leetcode.cn/problems/h-index-ii/solutions/2504326/tu-jie-yi-tu-zhang-wo-er-fen-da-an-si-ch-d15k/
+https://leetcode.cn/circle/discuss/SqopEo/
 二分答案 · 题单（右边数字为难度分）
 二分答案
 1283. 使结果不超过阈值的最小除数 1542
