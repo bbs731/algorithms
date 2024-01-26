@@ -1,5 +1,7 @@
 package binary_search
 
+import "sort"
+
 /****
 
 
@@ -29,6 +31,24 @@ n == position.length
 2 <= m <= position.length
  */
 
+// 这道题，做不出来， 结果，先去考虑了 2560 的题目， 感觉套路是一样的。
 func maxDistance(position []int, m int) int {
+	n := len(position)
+	sort.Ints(position)
 
+	// 这是一个 先 true 后 false 的序列
+	return sort.Search(int(1e9), func(x int) bool {
+		x++
+		start := 0
+		tot := 0
+		next := sort.SearchInts(position, position[start]+x)
+		for next < n {
+			tot++
+			start = next
+			next = sort.SearchInts(position, position[start]+x)
+		}
+
+		//取反 tot + 1 >= m
+		return tot+1 < m
+	})
 }
