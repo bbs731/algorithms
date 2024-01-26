@@ -1,4 +1,4 @@
-package 分组循环
+package loop
 
 func maxPower(s string) int {
 	i := 0

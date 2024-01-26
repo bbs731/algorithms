@@ -1,4 +1,4 @@
-package 分组循环
+package loop
 
 //You are given a 0-indexed integer array nums and an integer threshold.
 //
