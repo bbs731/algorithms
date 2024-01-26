@@ -43,7 +43,25 @@ m == quantities.length
 
  */
 
-
 func minimizedMaximum(n int, quantities []int) int {
 
+	// 还是简单的二分答案，就可以吧！
+	l, r := 0, int(1e5)+1 // l 的取值就不要取  -1 了， 会造成 mid 可能是 0, mid 还要做分母。
+
+	for l+1 < r {
+		mid := (l + r) >> 1 // use mid to partition the products
+
+		tot := 0
+		for _, v := range quantities {
+			tot += (v + mid - 1) / mid
+		}
+
+		if tot <= n {
+			r = mid
+		} else {
+			l = mid
+		}
+	}
+	// l + 1 == r
+	return r
 }
