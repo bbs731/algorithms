@@ -121,9 +121,11 @@ f[i] = f[i-2] + 1 // 选 i
 
 f[i] = max(f[i-1], f[i-2] + 1)
 这个太牛了， 这个 DP 的时间复杂度是 O(n)
-
-
 用两个变量，滚动计算！
+
+
+还有更牛的：
+灵神的题解中，证明了可以是用贪心的做法（能偷就偷）
 
  */
 
@@ -138,5 +140,25 @@ func minCapability(nums []int, k int) int {
 			}
 		}
 		return f1 >= k
+	})
+}
+
+/***
+贪心的做法， 灵神给了证明
+https://leetcode.cn/problems/house-robber-iv/solutions/2093952/er-fen-da-an-dp-by-endlesscheng-m558/
+
+真是好题， 拓展了思路。
+ */
+
+func minCapability(nums []int, k int) int {
+	return sort.Search(1e9, func(mx int) bool {
+		cnt, n := 0, len(nums)
+		for i := 0; i < n; i++ {
+			if nums[i] <= mx {
+				cnt++ // 偷 nums[i]
+				i++   // 跳过下一间房子
+			}
+		}
+		return cnt >= k
 	})
 }
