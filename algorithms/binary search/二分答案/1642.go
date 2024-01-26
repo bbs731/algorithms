@@ -82,7 +82,7 @@ func furthestBuilding(heights []int, bricks int, ladders int) int {
 	n := len(heights)
 
 	// 先 true 后 false 的情况。 是不是 左开右闭的区间，最好呢？ 应为是找，最右边的 true 的位置。
-	return sort.Search(n, func(x int) bool {
+	return -1 + sort.Search(n, func(x int) bool { // 这样写是不是清楚一些， Search 的值域是 [0, n]所求值域为 [-1,n-1]
 		x++ // 这里根据  // sort.Search 的使用技巧·其一
 		cost := make([]int, 0, n)
 		for i := 0; i < x; i++ {
@@ -102,7 +102,7 @@ func furthestBuilding(heights []int, bricks int, ladders int) int {
 		}
 		//sum <= bricks  这里取反
 		return sum > bricks
-	}) - 1 // 灵神来解释一下这里！
+	}) // - 1 // 灵神来解释一下这里！ (这道题，灵神没有给过答案）
 
 	// 最后返回的值域应该是 [-1, n-1]
 }
