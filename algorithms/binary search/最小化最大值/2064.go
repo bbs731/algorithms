@@ -1,5 +1,7 @@
 package binary_search
 
+import "sort"
+
 /*****
 
 给你一个整数 n ，表示有 n 间零售商店。总共有 m 种产品，每种产品的数目用一个下标从 0 开始的整数数组 quantities 表示，其中 quantities[i] 表示第 i 种商品的数目。
@@ -47,7 +49,6 @@ func minimizedMaximum(n int, quantities []int) int {
 
 	// 还是简单的二分答案，就可以吧！
 	l, r := 0, int(1e5)+1 // l 的取值就不要取  -1 了， 会造成 mid 可能是 0, mid 还要做分母。
-
 	for l+1 < r {
 		mid := (l + r) >> 1 // use mid to partition the products
 
@@ -64,4 +65,25 @@ func minimizedMaximum(n int, quantities []int) int {
 	}
 	// l + 1 == r
 	return r
+}
+
+func minimizedMaximum(n int, quantities []int) int {
+
+	// 还是简单的二分答案，就可以吧！
+	//l, r := 0, int(1e5)+1 // l 的取值就不要取  -1 了， 会造成 mid 可能是 0, mid 还要做分母。
+
+	// 取值范围 [1, 1e5]
+	// sort.Search 技巧二  [l, r) 区间的技巧。
+	return 1 + sort.Search(int(1e5), func(mid int) bool {
+		mid += 1 // mid += l
+		tot := 0
+		for _, v := range quantities {
+			tot += (v + mid - 1) / mid
+		}
+		if tot <= n {
+			return true
+		}
+		return false
+	})
+
 }
