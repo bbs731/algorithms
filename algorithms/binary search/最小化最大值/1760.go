@@ -1,5 +1,7 @@
 package binary_search
 
+import "sort"
+
 /****
 
 给你一个整数数组 nums ，其中 nums[i] 表示第 i 个袋子里球的数目。同时给你一个整数 maxOperations 。
@@ -37,8 +39,75 @@ package binary_search
 输入：nums = [7,17], maxOperations = 2
 输出：7
 
+提示：
+
+1 <= nums.length <= 10^5
+1 <= maxOperations, nums[i] <= 10^9
  */
 
 func minimumSize(nums []int, maxOperations int) int {
+	// 根据想要的结果 二分， 是一个 先 false 后 true 的序列。
+	n := len(nums)
+	// (l, r)
+	l, r := 0, int(1e9)+1
 
+	for l+1 < r {
+		mid := (l + r) >> 1
+		tot := 0
+		for _, v := range nums {
+			tot += (v + mid - 1) / mid
+		}
+
+		if tot <= n+maxOperations { // n + maxOperations 这里是容易出错的。
+			r = mid
+		} else {
+			l = mid
+		}
+	}
+	// l+ 1 == r
+	return r
+}
+
+func minimumSize(nums []int, maxOperations int) int {
+	// 根据想要的结果 二分， 是一个 先 false 后 true 的序列。
+	n := len(nums)
+
+	// [l , r)   值域的区间
+	// 值域是 [1, int(1e9)+1)
+	// sort.Search 的技巧二 ， shift l position
+	return 1 + sort.Search(int(1e9), func(x int) bool {
+		x += 1
+		tot := 0
+		for _, v := range nums {
+			tot += (v + x - 1) / x
+		}
+
+		if tot <= n+maxOperations {
+			return true
+		}
+		return false
+	})
+}
+
+func minimumSize(nums []int, maxOperations int) int {
+	// 根据想要的结果 二分， 是一个 先 false 后 true 的序列。
+	n := len(nums)
+	// (l, r]  // 左开右闭的区间
+	l, r := 0, int(1e9)
+
+	for l < r {
+		mid := (l + r + 1) >> 1
+		tot := 0
+		for _, v := range nums {
+			tot += (v + mid - 1) / mid
+		}
+
+		if tot <= n+maxOperations { // n + maxOperations 这里是容易出错的。
+			r = mid - 1
+		} else {
+			l = mid
+		}
+	}
+	// l == r
+	return r + 1
 }
