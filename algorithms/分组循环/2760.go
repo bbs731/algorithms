@@ -1,5 +1,7 @@
 package loop
 
+import "runtime"
+
 //You are given a 0-indexed integer array nums and an integer threshold.
 //
 // Find the length of the longest subarray of nums starting at index l and endin
@@ -45,6 +47,28 @@ func longestAlternatingSubarray(nums []int, threshold int) int {
 			i++
 		}
 		ans = max(ans, i-start)
+	}
+	return ans
+}
+
+
+func longestAlternatingSubarray(nums []int, threshold int) int {
+	n := len(nums)
+	ans := 0
+	for i:=0; i< n; {
+		//for ; i <n && (nums[i] > threshold || nums[i]&1 != 0); i++ {
+		//}
+		//if i >= n {  // 这里感觉好不优雅啊， 不如上面 if continue 的写法。
+		//	return ans
+		//}
+		if nums[i]> threshold || nums[i]&1 != 0 {
+			i++
+			continue
+		}
+		start := i
+		for i++; i<n && nums[i] <=threshold && nums[i]%2 != nums[i-1]%2; i++{
+		}
+		ans = max(ans, i-1 -start + 1)
 	}
 	return ans
 }
