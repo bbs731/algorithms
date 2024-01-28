@@ -1,5 +1,10 @@
 package weekly
 
+/****
+
+相邻合并 ------------(意味着）---------------> 连续子数组合并
+
+ */
 // 试填法
 func minOrAfterOperations(nums []int, k int) int {
 	ans := 0
