@@ -24,7 +24,7 @@ func removeKdigits(num string, k int) string {
 		st = st[1:]
 	}
 
-	if k >= len(st) {   // 这里是坑3：需要处理 k 还有剩余的情况。 
+	if k >= len(st) {   // 这里是坑3：需要处理 k 还有剩余的情况。
 		return "0"
 	} else {
 		st = st[:len(st)-k]
