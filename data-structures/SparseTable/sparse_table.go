@@ -10,6 +10,7 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/sparse_table
 1. ST 建表的时间复杂度 O（n*logn)  查询的时间复杂度 O(1)
 2. ST table 不支持修改 （需要修改看线段树 segment tree)
 3. ST table 只适合 Op 是重复贡献的操作， 即 x Op x = x， 可以简单理解为， Op 是 max, min, gcd
+4. 注意哈，下面的模板， ST index 从 0开始， query 的区间是 [l, r) 所以别忘了 query 的时候， 右端点 + 1
 
 
 分析： 以 Op 为 max 为例
