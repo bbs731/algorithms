@@ -39,6 +39,55 @@ mat[i][j] 仅包含 0 或 1
 
  */
 
-func numSubmat(mat [][]int) int {
+/***
+基于 84 的应用。 这个矩形的统计，做的非常的秒啊！
+ */
+ func s84 (heights []int) int {
+	n :=len(heights)
+	left := make([]int, n)
+	right := make([]int, n)
+	for i := range right {
+		right[i]= n
+	}
 
+	st := []int{-1}
+	for i, v := range heights {
+		for len(st)	 > 1 && v < heights[st[len(st)-1]] {
+			right[st[len(st)-1]] = i
+			// pop stack
+			st = st[:len(st)-1]
+		}
+		left[i] = st[len(st)-1]
+		st = append(st, i)
+	}
+
+	ans := 0
+	for i, v := range heights {
+		//ans = max(ans, (right[i] - left[i]-1)*v)
+		//计算结果时, 乘法原理 * 矩阵高度    // 这是为什么呢？
+		ans += (right[i]-i) *(i-left[i])*v
+	}
+	return ans
+}
+
+
+func numSubmat(mat [][]int) int {
+	m := len(mat)
+	n := len(mat[0])
+
+	heights := make([]int, n)
+	ans := 0
+
+	for i:=0; i<m; i++ { // 一行一行的来
+		for j:=0; j<n; j++ {
+			if mat[i][j] == 0 {
+				heights[j] = 0  // 这个不连续，直接清零
+			} else {
+				heights[j]++   // 这个累加
+			}
+		}
+		// now we have heights, 我们用 84题的解法
+		ans += s84(heights)
+	}
+	return ans
 }
