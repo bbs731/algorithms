@@ -61,6 +61,93 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/sparse_table
 ToDo:  找时间，再写 Sparse Table 的实现吧， 还是会错误，还是不熟练。 index 太难了！
  */
 
+/***
+
+来，尝试一下单调栈的写法：
+ */
+
+/****
+这个 left, right 的模板，感觉比 907 的清楚一些。
+
+好好， 理解 单调栈吧， 有点太难想了！
+
+https://leetcode.cn/problems/sum-of-subarray-ranges/solutions/1153054/cong-on2-dao-ondan-diao-zhan-ji-suan-mei-o1op/
+ */
+func solve(nums []int) (ans int64) {
+	n := len(nums)
+	left := make([]int, n)  // left[i] 为左侧严格大于 num[i] 的最近元素位置（不存在时为 -1）
+	right := make([]int, n) // right[i] 为右侧大于等于 num[i] 的最近元素位置（不存在时为 n）
+	for i := range right {
+		right[i] = n
+	}
+	st := []int{-1}
+	for i, v := range nums {
+		for len(st) > 1 && nums[st[len(st)-1]] <= v {
+			right[st[len(st)-1]] = i
+			st = st[:len(st)-1]
+		}
+		left[i] = st[len(st)-1]
+		st = append(st, i)
+	}
+	for i, v := range nums {
+		ans += (int64(i-left[i])*int64(right[i]-i) - 1) * int64(v)
+	}
+	return
+}
+
+func subArrayRanges(nums []int) int64 {
+	ans := solve(nums)
+	for i, v := range nums { // 小技巧：所有元素取反后算的就是最小值的贡献
+		nums[i] = -v
+	}
+	return ans + solve(nums)
+}
+
+//
+//func solve(nums []int) int64 {
+//	st := []int{-1}
+//	ans := 0
+//
+//	for r, x := range nums {
+//		for len(st) > 1 && nums[st[len(st)-1]] <= x {
+//			i := st[len(st)-1]
+//			st = st[:len(st)-1]
+//			ans -= nums[i] * ((i - st[len(st)-1]) * (r - i)) // nums[i] 作为 最小值的贡献
+//		}
+//		st = append(st, r)
+//	}
+//
+//	return int64(ans)
+//}
+//
+//func subArrayRanges(nums []int) int64 {
+//	nums = append(nums, int(1e10))
+//	ans := solve(nums)
+//	for i, v := range nums { // 小技巧：所有元素取反后算的就是最小值的贡献
+//		nums[i] = -v
+//	}
+//	nums[len(nums)-1] = int(1e10)
+//	return -(ans + solve(nums))
+//}
+
+func subArrayRanges(nums []int) (ans int64) {
+	for i, num := range nums {
+		min, max := num, num
+		for _, v := range nums[i+1:] {
+			if v < min {
+				min = v
+			} else if v > max {
+				max = v
+			}
+			ans += int64(max - min)
+		}
+	}
+	return
+}
+
+/******
+哎， 为啥要用 st table, 看看， 上面， 既然暴力的话， 区间中的最大，最小值， 可以在 loop 中得到， 不需要 ST query。
+ */
 func subArrayRanges(nums []int) int64 {
 	n := len(nums)
 	sz := bits.Len(uint(n))
