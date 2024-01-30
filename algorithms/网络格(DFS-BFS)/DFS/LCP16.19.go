@@ -33,7 +33,7 @@ func pondSizes(land [][]int) (ans []int) {
 	m, n := len(land), len(land[0])
 	var dfs func(int, int) int
 	dfs = func(x, y int) int {
-		// 非法的检查，写在 dfs 的第一行， 这个算是需要记住的技巧吗？
+		// 非法的检查，写在 dfs 的第一行， 这个算是需要记住的技巧吗？  通过一些题目，觉得，写在下面 call dfs 之前做检查比较好！（个人感觉）
 		if x < 0 || x >= m || y < 0 || y >= n || land[x][y] != 0 {
 			return 0
 		}
