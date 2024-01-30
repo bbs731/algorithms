@@ -56,6 +56,34 @@ https://leetcode.cn/problems/132-pattern/solutions/676970/xiang-xin-ke-xue-xi-li
 
 
  */
+
+/***
+来吧 宫三，简单的解法
+
+思路，如果是对的， 代码就会变简单啊。 利用了单调栈的性质， 但是这个性质好难想啊！
+https://leetcode.cn/problems/132-pattern/solutions/676970/xiang-xin-ke-xue-xi-lie-xiang-jie-wei-he-95gt/
+*/
+func find132pattern(nums []int) bool {
+	st := []int{}
+	n := len(nums)
+	k := -int(1e9)
+
+	// 需要从右向左遍历
+	for i := n - 1; i >= 0; i-- {
+		v := nums[i]
+		if k > v {
+			return true
+		}
+		for len(st) > 0 && v > st[len(st)-1] {
+			k = max(k, st[len(st)-1]) // k keep the max value popped from stack
+			// pop stack
+			st = st[:len(st)-1]
+		}
+		st = append(st, v)
+	}
+	return false
+}
+
 type pair struct {
 	left, right int
 }
@@ -86,33 +114,6 @@ func find132pattern(nums []int) bool {
 			// otherwise use v as l  the left side of new interval
 			l = v
 		}
-	}
-	return false
-}
-
-/***
-来吧 宫三，简单的解法
-
-思路，如果是对的， 代码就会变简单啊。 利用了单调栈的性质， 但是这个性质好难想啊！
-https://leetcode.cn/problems/132-pattern/solutions/676970/xiang-xin-ke-xue-xi-lie-xiang-jie-wei-he-95gt/
- */
-func find132pattern(nums []int) bool {
-	st := []int{}
-	n := len(nums)
-	k := -int(1e9)
-
-	// 需要从右向左遍历
-	for i := n - 1; i >= 0; i-- {
-		v := nums[i]
-		if k > v {
-			return true
-		}
-		for len(st) > 0 && v > st[len(st)-1] {
-			k = max(k, st[len(st)-1]) // k keep the max value popped from stack
-			// pop stack
-			st = st[:len(st)-1]
-		}
-		st = append(st, v)
 	}
 	return false
 }
