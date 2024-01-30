@@ -10,8 +10,8 @@ func numIslands(grid [][]byte) int {
 			return
 		}
 		grid[i][j] = '0' // mark 成 visited
-		dir := [][2]int{{1, 0}, {-1, 0}, {0, -1}, {0, 1}}
-		for _, d := range dir {
+		dirs := [][2]int{{1, 0}, {-1, 0}, {0, -1}, {0, 1}}
+		for _, d := range dirs {
 			dfs(i+d[0], j+d[1])
 		}
 		return
