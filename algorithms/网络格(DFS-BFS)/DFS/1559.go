@@ -23,6 +23,7 @@ func containsCycle(grid [][]byte) bool {
 	type pair struct {
 		x, y int
 	}
+	// 从 1254 得到的教训， 这里写成 "global" 的变量， 然后下面去 reset 更靠谱，比 dfs 返回值靠谱，那个容易出错，虽然我还没明白为啥会错。
 	l := 0
 	found := false
 	pm := make(map[pair]int)
