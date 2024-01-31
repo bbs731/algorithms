@@ -1,5 +1,11 @@
 https://leetcode.cn/circle/discuss/YiXPXW/
 
+
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/search.go#L1095C1-L1096C66
+网格/矩阵上的搜索
+NOTE: 对于 n*m 的网格图，BFS 最多只占用 O(min(n,m)) 的空间，而 DFS 最多会占用 O(nm) 的空间
+
+
 网格图 DFS
 部分题目的解法不唯一，也可以用 BFS 或者并查集等算法解决。
 
