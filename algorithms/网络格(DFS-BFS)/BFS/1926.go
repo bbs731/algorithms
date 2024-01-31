@@ -53,10 +53,6 @@ func nearestExit(maze [][]byte, entrance []int) int {
 					}
 					q = append(q, [2]int{r, c})
 					maze[r][c] = 0
-					//if p[0] != entrance[0] || p[1] != entrance[1] {
-					//	return step
-					//}
-					//continue
 				}
 			}
 		}

@@ -15,7 +15,8 @@ func bfs_grid_template(grid [][]int) {
 	// 初始化 Q
 	q := []pair{}
 
-	for len(q) > 0 {
+	// pair 中也可以不用带 dist, 用 step 求解也是一样的。 譬如题目 1210, 1926
+	for step := 1; len(q) > 0; step++ {
 		// 这里是技巧， BFS 一层一层遍历。
 		tmp := q
 		q = nil
@@ -28,8 +29,11 @@ func bfs_grid_template(grid [][]int) {
 					continue
 				}
 				grid[r][c] = 0 // mark as visited
+				visited[r][c] = true
 				q = append(q, pair{r, c, p.dist + 1})
 				//res[r][c] = p.dist + 1
+				// if found answer,
+				// return step  // bfs 的最短距离。
 			}
 		}
 	}
