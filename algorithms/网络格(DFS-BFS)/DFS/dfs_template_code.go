@@ -1,5 +1,13 @@
 package DFS
 
+/***
+
+下面是 dfs grid template code
+思考方式分为两种 ：
+1. 正向， 下面的代码就是示例。
+2. 反向， 如果正向考虑有难度，可以从反向的，边界出发解决问题。 譬如题目： 1034 和 417
+
+ */
 func grid_dfs_template(grid [][]int) int {
 	m := len(grid)
 	n := len(grid[0])
