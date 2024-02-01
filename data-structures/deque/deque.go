@@ -3,6 +3,10 @@ package deque
 /***
 golang 里没有 deque 的数据结构， 可以用 2 个 "头对头"的 slice 来模拟。
 主要理解一下， 头对头的含义是什么。
+
+下面的代码来自:
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/deque.go
+
  */
 
 // 在知道数据量的情况下，也可以直接创建个两倍数据量大小的 slice
