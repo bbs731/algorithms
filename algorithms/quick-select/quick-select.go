@@ -1,9 +1,48 @@
 package quick_select
 
+import "math/rand"
+
 /*
 leetcode quick-slect 的 template code
 https://leetcode.cn/problems/kth-largest-element-in-an-array/solutions/307351/shu-zu-zhong-de-di-kge-zui-da-yuan-su-by-leetcode-/
  */
+
+/***
+https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/weekly/262/b/b.go#L38
+灵神的版本， 感觉不错。
+
+灵神写的这个，最容易记住。
+1.
+ */
+func quickSelect(a []int) int {
+	k := len(a) / 2
+	rand.Shuffle(len(a), func(i, j int) { a[i], a[j] = a[j], a[i] })
+	// [l, r] 的闭区间
+	for l, r := 0, len(a)-1; l < r; {
+		v := a[l]
+		i, j := l, r+1
+		for {
+			for i++; i < r && a[i] < v; i++ {
+			}
+			for j--; j > l && a[j] > v; j-- {
+			}
+			if i >= j {
+				break
+			}
+			a[i], a[j] = a[j], a[i]
+		}
+		// j 和 l d的数交换一下
+		a[l], a[j] = a[j], v
+		if j == k {
+			break
+		} else if j < k {
+			l = j + 1
+		} else {
+			r = j - 1
+		}
+	}
+	return a[k]
+}
 
 // 利用双指针，避免最坏的 O(n^2) 的情况， 可以做到平均时间复杂度是 O(n)
 // 这段代码写的太华丽了！  这里的 kth index 从 0 开始算， 第 3th element 实际上是找排序之后，对应的下标 3 （实际上是第 4小的 element)
