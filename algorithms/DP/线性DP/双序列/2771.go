@@ -4,6 +4,9 @@ package dp
 /***
 从下班的路上就开始想， 想了一整路， 觉得好复杂。
 哎， 没想到, 写起来会这么简单。
+
+https://leetcode.cn/problems/longest-non-decreasing-subarray-from-two-arrays/solutions/2336749/dong-tai-gui-hua-cong-ji-yi-hua-sou-suo-hxalb/
+灵神有题解， 找时间好好总结学习。
  */
 func maxNonDecreasingLength(nums1 []int, nums2 []int) int {
 	n :=len(nums1)
