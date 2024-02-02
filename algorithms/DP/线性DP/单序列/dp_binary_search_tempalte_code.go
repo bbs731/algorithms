@@ -15,7 +15,7 @@ import "sort"
 
  */
 
-func dp_binary_search_template_code(offers [][]int) {
+func dp_binary_search_template_code(offers [][]int) int {
 	n := len(offers)
 	type record struct {
 		start, end, value int
