@@ -1,6 +1,9 @@
 package dp
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+)
 
 /***
 
@@ -91,6 +94,35 @@ func maxTwoEvents(events [][]int) int {
 			//for _, r := range records[prev] {
 			ans = max(ans, dp[prev]+r.value)
 		}
+	}
+	return ans
+}
+
+func maxTwoEvents(events [][]int) int {
+	n := len(events)
+	type record struct {
+		start, end, value int
+	}
+	//records := make(map[int][]pair, n)
+	records := make([]record, n+1)
+	for i := 0; i < n; i++ {
+		start, end, value := events[i][0], events[i][1], events[i][2]
+		records[i] = record{start, end, value}
+	}
+	records[n] = record{0, 0, 0}
+	sort.Slice(records, func(i, j int) bool {
+		return records[i].end < records[j].end
+	})
+
+	ans := 0
+	dp := make([]int, n+1)
+	for i := 1; i < len(records); i++ {
+		r := records[i]
+		dp[i] = max(dp[i-1], r.value) // 注意这里定义的 dp[i] 是到 i th record 为止， 只含有一个 interval 的能达到的最大值。
+		// 找到 第一个 end < start  // 二分查找的技巧 <  等价于  (>=x)-1
+		j := sort.Search(i, func(k int) bool { return records[k].end >= r.start }) - 1
+		//dp[i+1] = max(dp[i], dp[j]+r.value)
+		ans = max(ans, dp[j]+r.value)
 	}
 	return ans
 }

@@ -1,7 +1,6 @@
 package dp
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -19,14 +18,13 @@ func maximizeTheProfit(n int, offers [][]int) int {
 		groups[end] = append(groups[end], pair{start, gold})
 	}
 
-	f := make([]int, n+1)
+	f := make([]int, n+1) // 看不懂这个解， 为什么保证 ？ f 是连续的？
 	for end, g := range groups {
 		f[end+1] = f[end]
 		for _, p := range g {
 			f[end+1] = max(f[end+1], f[p.start]+p.gold)
 		}
 	}
-	fmt.Println(f)
 	return f[n]
 }
 
@@ -40,6 +38,7 @@ func maximizeTheProfit(n int, offers [][]int) (ans int) {
 	dp := make([]int, n+1)
 	type pair struct{ start, gold int }
 	// 难在了，如何处理 end 相同的重复元素
+	// 后面 DP + 二分的方法证明了，重复元素也不是问题，不需要特殊处理。
 	group := make([][]pair, n)
 	for _, offer := range offers {
 		start, end, gold := offer[0], offer[1], offer[2]
@@ -110,6 +109,41 @@ func maximizeTheProfit(n int, offers [][]int) (ans int) {
 	return dp[ends[len(ends)-1]]
 }
 
+func maximizeTheProfit(n int, offers [][]int) (ans int) {
+	_ = n // 这个 n  是没有用的。
+	m := len(offers)
+	type record struct {
+		start, end, value int
+	}
+	records := make([]record, m+1)
+	for i := 0; i < m; i++ {
+		// 把 区间的左右端点 start, end 都加1 方便后面处理。 然后再加入 dummy record 方面后面二分处理。
+		start, end, value := offers[i][0]+1, offers[i][1]+1, offers[i][2]
+		records[i] = record{start, end, value}
+	}
+	records[m] = record{0, 0, 0}
+
+	sort.Slice(records, func(i, j int) bool {
+		return records[i].end < records[j].end
+	})
+
+	dp := make([]int, m+1)
+	for i, r := range records {
+		if i == 0 {
+			continue
+		}
+		// 算的是 >= start，-1 后得到 < start
+		// 因为我们 insert 了 dummy node {0, 0, 0} 所以会保证 j 不会越界。
+		j := sort.Search(i, func(j int) bool { return records[j].end >= r.start }) - 1
+		dp[i] = max(dp[i-1], dp[j]+r.value)
+	}
+	return dp[m]
+}
+
+/****
+下面这个例子， 证明，不用特殊处理 index, 就特判index 也能做出来。
+复习的时候忽略就行。
+ */
 func maximizeTheProfit(n int, offers [][]int) (ans int) {
 	m := len(offers)
 	dp := make(map[int]int, n+1)
