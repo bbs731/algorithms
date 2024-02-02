@@ -42,6 +42,9 @@ func lengthOfLIS(nums []int) int {
 	return len(g)
 }
 
+/**
+再次优化空间： 原地修改
+ */
 func lengthOfLIS(nums []int) int {
 	l := 0
 	for _, x := range nums {
