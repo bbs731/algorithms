@@ -44,8 +44,108 @@ package dp
 0 <= k <= 109
 
 
+*/
+
+
+/***
+
+https://leetcode.cn/problems/minimum-increment-operations-to-make-array-beautiful/solutions/2503157/qiao-miao-she-ji-zhuang-tai-xuan-huo-bu-8547u/
+灵神题解
+
  */
+/***
+dp[i][1] 选 i 之后 的最优解
+ dp[i][0] 表示不选 i 的最优解。
+
+ dp[i][1] = min(dp[i][1], dp[i+3][1] +  k - nums[i])
+ dp[i][0] = min(dp[i+1][1] + k - nums[i-1], dp[i+2][1] + k - nums[i-2]）
+
+ 倒序枚举 i 就可以了吧。
+*/
+
 
 func minIncrementOperations(nums []int, k int) int64 {
+	n := len(nums)
 
+	//if n == 3 {
+	//	return getCost(max(nums[0], nums[1], nums[2]), k)
+	//}
+
+	inf := int(1e16)
+	dp := make([][2]int, n)
+	for i := range dp {
+		dp[i][0] = inf
+		dp[i][1] = inf
+	}
+	// 初始化 n-1, n-2, n-3
+	for i:=0; i<=2; i++ {
+		dp[n-1-i][1] = getCost(nums[n-1-i], k)
+	}
+	// 没人关心 dp[n-1][0]
+	for i := n - 1; i-3 >= 0; i-- {
+		dp[i-2][0] = min(dp[i-2][0], dp[i][1])
+		dp[i-1][0] = min(dp[i-1][0], dp[i][1])
+		dp[i-3][1] = min(dp[i-3][1], dp[i][1] + getCost(nums[i-3], k))
+		dp[i-3][1] = min(dp[i-3][1], dp[i-1][1] + getCost(nums[i-3], k))
+		dp[i-3][1] = min(dp[i-3][1], dp[i-2][1] + getCost(nums[i-3], k))
+	}
+
+	ans := inf
+	for i:=2; i>=0; i-- {
+		ans = min(ans, dp[i][1])
+	}
+	return int64(ans)
+}
+
+
+/***
+dp[i] 选 i 之后 的最优解
+dp[i][0] 表示不选 i 的最优解。
+
+dp[i] = min(dp[i], dp[i+3] +  k - nums[i], dp[i+2] + k-nums[i, dp[i+1] + k-nums[i])
+
+ 倒序枚举 i 就可以了吧。
+*/
+
+
+func getCost(a, k int) int {
+	if a >= k {
+		return 0
+	}
+	return k - a
+}
+
+func minIncrementOperations(nums []int, k int) int64 {
+	n := len(nums)
+	inf := int(1e16)
+	dp := make([]int, n)
+	for i := range dp {
+		dp[i] = inf
+	}
+	// 初始化 n-1, n-2, n-3
+	for i:=0; i<=2; i++ {
+		dp[n-1-i] = getCost(nums[n-1-i], k)
+	}
+	for i := n - 1; i-3 >= 0; i-- {
+		dp[i-3] = min(dp[i-3], min(dp[i],dp[i-1], dp[i-2]) + getCost(nums[i-3], k))
+	}
+
+	ans := inf
+	for i:=2; i>=0; i-- {
+		ans = min(ans, dp[i])
+	}
+	return int64(ans)
+}
+
+/***
+https://leetcode.cn/problems/minimum-increment-operations-to-make-array-beautiful/solutions/2503199/xiao-yang-xiao-en-dong-tai-gui-hua-zi-sh-hh9c/
+按照小样的题解，再简化。
+操， 线性DP
+ */
+func minIncrementOperations(nums []int, k int) int64 {
+	var dp1, dp2, dp3 int
+	for _, num := range nums{
+		dp1, dp2, dp3 = min(dp1, dp2, dp3) + max(0, k-num), dp1, dp2
+	}
+	return int64(min(dp1, dp2, dp3))
 }

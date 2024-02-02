@@ -1,4 +1,4 @@
-链接：https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/2396402/xian-xing-dpfu-xiang-si-ti-mu-pythonjava-wmh7/
+https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/2396402/xian-xing-dpfu-xiang-si-ti-mu-pythonjava-wmh7/
 
 
 太好了， 线性 DP ，就是你的软肋啊！
@@ -7,7 +7,6 @@
 1235. 规划兼职工作（数据范围更大的情况，我的题解）
 1751. 最多可以参加的会议数目 II（区间个数限制）
 2054. 两个最好的不重叠活动
-
 
 
 
