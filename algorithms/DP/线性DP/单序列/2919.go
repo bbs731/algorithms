@@ -52,6 +52,9 @@ package dp
 https://leetcode.cn/problems/minimum-increment-operations-to-make-array-beautiful/solutions/2503157/qiao-miao-she-ji-zhuang-tai-xuan-huo-bu-8547u/
 灵神题解
 
+https://www.bilibili.com/video/BV1tw411q7VZ/?vd_source=84c3c489cf545fafdbeb3b3a6cd6a112
+有详细的， dfs 的推导过程。
+
  */
 /***
 dp[i][1] 选 i 之后 的最优解
@@ -139,7 +142,7 @@ func minIncrementOperations(nums []int, k int) int64 {
 
 /***
 https://leetcode.cn/problems/minimum-increment-operations-to-make-array-beautiful/solutions/2503199/xiao-yang-xiao-en-dong-tai-gui-hua-zi-sh-hh9c/
-按照小样的题解，再简化。
+按照小羊的题解，再简化。
 操， 线性DP
  */
 func minIncrementOperations(nums []int, k int) int64 {
