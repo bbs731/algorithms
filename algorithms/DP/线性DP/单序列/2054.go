@@ -73,6 +73,7 @@ func maxTwoEvents(events [][]int) int {
 	// insert a dummy node
 	ends = append(ends, 0)
 	sort.Ints(ends)
+	// endsIndex 离散化了 ends 的值域， 起到了缩小值域的效果。 1e9 缩小到了实际出现的个数。
 	endsIndex := make(map[int]int, len(ends))
 	for i, end := range ends {
 		endsIndex[end] = i
