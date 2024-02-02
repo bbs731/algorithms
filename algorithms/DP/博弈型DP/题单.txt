@@ -8,3 +8,20 @@ https://zhuanlan.zhihu.com/p/126546914
 348
 794
 1275
+
+
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/dp.go#L1748C1-L1762C4
+博弈 DP
+另见 games.go
+转移：让「自己与对手的分差」最大
+图上博弈 https://codeforces.com/problemset/problem/917/B
+LC464 https://leetcode.cn/problems/can-i-win/
+LC486 https://leetcode.cn/problems/predict-the-winner/
+LC877 https://leetcode.cn/problems/stone-game/ https://nanti.jisuanke.com/t/48
+LC913 https://leetcode.cn/problems/cat-and-mouse/
+LC1025 https://leetcode.cn/problems/divisor-game/
+LC1140 https://leetcode.cn/problems/stone-game-ii/
+LC1406 https://leetcode.cn/problems/stone-game-iii/
+CF tag https://codeforces.com/problemset?order=BY_RATING_ASC&tags=dp%2Cgames
+【记忆化搜索模板】https://codeforces.com/problemset/problem/1738/C
+https://www.lanqiao.cn/problems/8051/learning/?contest_id=146

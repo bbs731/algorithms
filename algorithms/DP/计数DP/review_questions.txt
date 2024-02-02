@@ -1,0 +1,2 @@
+LC1079 https://leetcode.cn/problems/letter-tile-possibilities/
+LC1681 https://leetcode.cn/problems/minimum-incompatibility/discussion/comments/2051770

@@ -1,0 +1,23 @@
+树形 DP:
+
+思考方向：
+每个节点需要计算的信息，是否只取决于邻居？
+如果不能，如何把子树的信息归纳到邻居上？
+
+一般是从自底向上计算的，也就是根据子树返回值来计算父节点的值
+也有自顶向下的写法，见后面
+
+https://blog.csdn.net/weixin_43914593/article/details/107145592
+https://codeforces.com/blog/entry/20935
+https://codeforces.com/blog/entry/63257
+
+LC337 https://leetcode.cn/problems/house-robber-iii/
+LC2378 https://leetcode.cn/problems/choose-edges-to-maximize-score-in-a-tree/
+LC2920 https://leetcode.cn/problems/maximum-points-after-collecting-coins-from-all-nodes/
+LC2925 https://leetcode.cn/problems/maximum-score-after-applying-operations-on-a-tree/
+简单 DFS https://leetcode.cn/problems/find-number-of-coins-to-place-in-tree-nodes/
+https://atcoder.jp/contests/abc259/tasks/abc259_f
+https://atcoder.jp/contests/abc239/tasks/abc239_e
+
+自顶向下
+https://leetcode.cn/problems/U7WvvU/ 题解 https://leetcode.cn/problems/U7WvvU/solution/shu-xing-dp-by-endlesscheng-isuo/

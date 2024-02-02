@@ -2,3 +2,44 @@
 1312. 让字符串成为回文串的最少插入次数
 1547. 切棍子的最小成本
 1000. 合并石头的最低成本
+
+
+
+
+
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/dp.go#L1589
+
+区间 DP:
+一般来说转移是合并区间或者分解区间
+套路 https://www.luogu.com.cn/blog/BreakPlus/ou-jian-dp-zong-jie-ti-xie
+
+求解关于某个序列的最优性质，要求大区间的最优解可以依赖于小区间的最优解
+一般定义 dp[i][j] 表示 a[i:j] 的最优解
+
+此时可以枚举区间大小和区间左端点，从小区间转移到大区间
+LC375 https://leetcode.cn/problems/guess-number-higher-or-lower-ii/
+LC312 戳气球 https://leetcode.cn/problems/burst-balloons/
+LC664 打印机 https://leetcode.cn/problems/strange-printer/
+LC678 也有非 DP 做法 https://leetcode.cn/problems/valid-parenthesis-string/
+LC1312 插入形成回文 https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/ 1787
+- https://www.luogu.com.cn/problem/P1435
+LC1130 https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/ 1919
+LC1770 https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/ 2068
+LC1547 https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/ 2116
+LC1039 最优三角剖分 https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/ 2130
+- 方案数 不保证凸 https://codeforces.com/problemset/problem/437/E 2500
+LC546 移除盒子 状态定义 https://leetcode.cn/problems/remove-boxes/ 从 CF 难度来看，这题可以评 2900（力扣难度）
+
+
+最长回文子序列 (LPS)
+即 LCS(s, reverse(s))
+视频讲解 https://www.bilibili.com/video/BV1Gs4y1E7EU/
+回文子串见下面的 isPalindrome 或者 strings.go 的 manacher
+LC516  https://leetcode.cn/problems/longest-palindromic-subsequence/
+LC1682 https://leetcode.cn/problems/longest-palindromic-subsequence-ii/
+LC730 求个数 https://leetcode.cn/problems/count-different-palindromic-subsequences/
+LC1216 https://leetcode.cn/problems/valid-palindrome-iii/ 1754
+LC1312 https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/ 1787
+       - https://www.luogu.com.cn/problem/P1435
+LC1771 https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/ 2182
+LC1246 https://leetcode.cn/problems/palindrome-removal/ 2203

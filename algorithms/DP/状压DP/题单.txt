@@ -1,0 +1,23 @@
+状压 DP:
+常用于处理包含排列的问题等
+NOTE: 若问题无法划分成小问题，必须考虑各种可能的情况，则可能是 NP 完全问题
+
+状压 DP 本质上就是在集合与集合之间转移，所以一定要能熟练地把集合语言翻译成位运算
+请看：《从集合论到位运算，常见位运算技巧分类总结！》https://leetcode.cn/circle/discuss/CaOJ45/
+
+浅谈状压 DP https://www.luogu.com.cn/blog/yijan/zhuang-ya-dp
+https://blog.csdn.net/weixin_43914593/article/details/106432695 算法竞赛专题解析（15）：DP应用--状态压缩DP
+
+todo 题单 https://www.luogu.com.cn/training/215#problems
+	     题单 https://ac.nowcoder.com/acm/problem/collection/808
+	     题单 https://ac.nowcoder.com/acm/problem/collection/810
+迷你状压 https://codeforces.com/problemset/problem/991/D
+LC691 https://leetcode.cn/problems/stickers-to-spell-word/
+LC943 https://leetcode.cn/problems/find-the-shortest-superstring/
+LC1125 状压 0-1 背包 https://leetcode.cn/problems/smallest-sufficient-team/
+LC1411 https://leetcode.cn/problems/number-of-ways-to-paint-n-3-grid/
+LC1931 https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/
+LC2184 https://leetcode.cn/problems/number-of-ways-to-build-sturdy-brick-wall/
+LCP53 https://leetcode.cn/problems/EJvmW4/
+LCP69 https://leetcode.cn/problems/rMeRt2/
+LCP76 https://leetcode.cn/problems/1ybDKD/

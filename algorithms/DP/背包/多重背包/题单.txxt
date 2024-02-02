@@ -1,0 +1,8 @@
+
+多重背包 - 求方案数 - 同余前缀和优化
+讲解 https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/solution/duo-zhong-bei-bao-fang-an-shu-cong-po-su-f5ay/
+另见 math_comb.go 中的「多重集组合数」
+LC2902 https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/ 2759
+LC2585 https://leetcode.cn/problems/number-of-ways-to-earn-points/ 1910
+LC1155 https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/
+LCR185 https://leetcode.cn/problems/nge-tou-zi-de-dian-shu-lcof/
