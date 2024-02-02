@@ -1,4 +1,4 @@
-package digit_dp
+package 数位dp
 
 import (
 	"strconv"
