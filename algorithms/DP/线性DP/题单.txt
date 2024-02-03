@@ -9,7 +9,9 @@ https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/23964
 2054. 两个最好的不重叠活动
 
 
-
+2369. 检查数组是否存在有效划分
+1416. 恢复数组
+1043. 分隔数组以得到最大和
 
 
 
