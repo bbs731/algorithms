@@ -20,9 +20,9 @@ func numberOfArrays(s string, k int) int {
 		kl++
 	}
 
-	power10 := make([]int, kl+1)
+	power10 := make([]int, kl)
 	power10[0] = 1
-	for i:=1; i<=kl; i++ {
+	for i:=1; i<kl; i++ {
 		power10[i] = 10* power10[i-1]
 	}
 
