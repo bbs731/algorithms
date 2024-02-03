@@ -1,6 +1,13 @@
 package dp
 
 /***
+https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/solutions/2392051/ji-bai-100cong-di-gui-dao-di-tui-dao-you-dxz5/
+灵神的这题的题解写的太好：
+1. 如果设计状态
+2. 如何变成递推，如何初始化，如果考虑遍历的顺序。  f[c][i][j] = f[c-1][.][.] 的这个考虑简直是太绝了。
+3. 如果做空间的降维。
+4. 如果做时间的优化（ 这个太强了， 之前没有考虑过)
+
 
 
 你现在的阶段，是能想出来解题思路的， 但是，证明正确性的能力太差了， 遇到错误的时候，开始动摇然后走到岔路上去了， 这道题，出错的时候，竟然想到， 要再加 两个维度到 dfs(i, j, p, q, k)
@@ -52,7 +59,7 @@ func ways(pizza []string, k int) int {
 		}
 
 		//枚举 竖切,   c = [j+1, n-1]        [i, j] [m-1, c-1] 保证有一个苹果， 且 [i, c] [m-1][n-1] 有  >= k-1 个苹果。    dfs(i, c, k-1)
-		for c := j + 1; c < n; c++ {
+		for c := j + 1; c < n; c++ {   // 尤其是变量不再试i, j的时候， 就容易写成 j<n or j++ 这里太容易出错了。
 			if sum.query(i, j, m-1, c-1) > 0 {
 				ans += dfs(i, c, k-1)
 			}
