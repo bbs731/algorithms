@@ -11,7 +11,7 @@ d[i] = a[i] - a[i-1]  for i >=1
 性质1： 从左到右累加d中的元素，可以得到数组a
 性质2： 把区间造作，变成单点操作， 把 a[left] .....  a[right] 之间的数都加 x 等价于
 d[left] += x
-d[right+1] -= x    (if right+1 <n)
+d[right+1] -= x    (if right+1 <n) 这里特别 right+1=n 我们只需要 d[left] +=x。 因为最后恢复数组 a 和 d[n] 没有关系。n 数组 a 长度
 
  */
 
