@@ -34,3 +34,14 @@ func solve(n int, queries [][]int) []int {
 	}
 	return diff
 }
+
+
+/***
+二维差分数组
+
+https://blog.csdn.net/weixin_43914593/article/details/113782108
+https://leetcode.cn/problems/increment-submatrices-by-one/description/
+https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/common.go
+
+LC2536
+ */
