@@ -1,0 +1,4 @@
+https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/solutions/2630932/z-han-shu-kuo-zhan-kmp-by-endlesscheng-w44j/
+
+LC2223
+LC周赛383 D
