@@ -2,7 +2,6 @@ https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/23964
 
 
 太好了， 线性 DP ，就是你的软肋啊！
-
 2008. 出租车的最大盈利（和本题几乎一样）
 1235. 规划兼职工作（数据范围更大的情况，我的题解）
 1751. 最多可以参加的会议数目 II（区间个数限制）
@@ -17,16 +16,3 @@ https://leetcode.cn/problems/maximize-the-profit-as-the-salesman/solutions/23964
 
 
 
-双序列问题，一般定义 dp[i][j] 表示对子问题 (s1[:i],s2[:j]) 的求解结果
-最长公共子序列:
-模板题 LC1143 https://leetcode.cn/problems/longest-common-subsequence/
-LC72   https://leetcode.cn/problems/edit-distance/
-- 热身 LC161 https://leetcode.cn/problems/one-edit-distance/
-LC97   https://leetcode.cn/problems/interleaving-string/
-LC115  https://leetcode.cn/problems/distinct-subsequences/
-LC583  https://leetcode.cn/problems/delete-operation-for-two-strings/
-LC712  https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/
-LC1035 https://leetcode.cn/problems/uncrossed-lines/ 1806
-LC1458 https://leetcode.cn/problems/max-dot-product-of-two-subsequences/ 1824
-LC1092 最短公共超序列 (SCS) https://leetcode.cn/problems/shortest-common-supersequence/ 1977
-LC1639 https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/ 2082
