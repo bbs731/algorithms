@@ -1,29 +1,29 @@
 package Manacher
 
 /***
-来源：
-https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/strings.go#L445
+给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串。
+
+示例 1：
+
+输入：s = "aacecaaa"
+输出："aaacecaaa"
+示例 2：
+
+输入：s = "abcd"
+输出："dcbabcd"
+
+
+提示：
+
+0 <= s.length <= 5 * 10^4
+s 仅由小写英文字母组成
  */
 
 /***
-	改造 s 到 t 这样就不用区分 len(s) 的奇偶性了。
-例子：  		abc
-改造后:	    ^#a#b#c#$      (^ start,  and $ as end)
+这道题， 用 manacher 太爽了！
+ */
 
-相关的结论：  len(t) = 2*len(s) + 3
-坐标的关系：  s[i] 对应 t[(i+1)*2]
-坐标的关系：  t[i] 对应 s[i/2-1]
-例子：  在 s 中的区间 [l, r ]  对应 t 中的区间 [2*(l+1), 2*(r+1)]
-
-t[i] i为偶数的回文串，对应 s 中的奇回文串。
-t[i] i为奇数的回文串，对应 s 中的偶回文串。
-s 中的字符，只会出现在 t 中的偶数位置上。
-
-*/
-
-func _() {
-
-	var halfLen []int
+func shortestPalindrome(s string) string {
 
 	manacher := func(s string) []int {
 		//把 s 改造为字符串 t
@@ -78,10 +78,36 @@ func _() {
 
 	// [(i-hl)/2, (i+hl)/2-2]  // 对应的在 s 中的回文串。
 
-	// 判断 s[l..r] 是否为回文串  0<=l<=r<len(s)
-	// 根据下标转换关系得到其在 t 中对应的回文中心下标为 l+r+2
-	// 这是因为通过坐标转换， l -> 2*(l+1)  and  r -> 2*(r+1)    [2*l+2, 2*r+2] 的 mid = l+r+2
-	isP := func(l, r int) bool {
-		return halfLen[l+r+2]-1 >= r-l+1
+	n := len(s)
+	if n == 0 {
+		return ""
 	}
+	ans := n - 1
+	ansr := 0
+	halfLen := manacher(s)
+
+	for i := 2; i < len(halfLen); i++ {
+		if i-halfLen[i] <= 1 {
+			r := (i+halfLen[i])/2 - 2
+			if n-r-1 < ans {
+				// save answer only
+				ans = n - r - 1
+				ansr = r
+			}
+		}
+	}
+	// build the answer string
+	return reverse_string(s[ansr+1:]) + s
+}
+
+func reverse_string(s string) string {
+	n := len(s)
+	if n == 0 {
+		return ""
+	}
+	rs := make([]byte, n)
+	for i := range s {
+		rs[n-1-i] = s[i]
+	}
+	return string(rs)
 }
