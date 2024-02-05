@@ -3,6 +3,8 @@ package Manacher
 /*
 https://oi-wiki.org/string/manacher/
 
+作为这个算法来源的思维代码吧，做题的时候，借鉴灵神的 template code 代码吧。
+
 给定一个长度为 n 的字符串 s，请找到所有对 (i, j)  使得子串 s[i...j] 为一个回文串。
 根据回文的长度， 计算， d1 和 d2
  */
