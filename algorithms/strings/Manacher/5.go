@@ -1,30 +1,31 @@
 package Manacher
 
 /***
-来源：
-https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/strings.go#L445
+给你一个字符串 s，找到 s 中最长的回文子串。
+
+如果字符串的反序与原始字符串相同，则该字符串称为回文字符串。
+
+
+
+示例 1：
+
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+示例 2：
+
+输入：s = "cbbd"
+输出："bb"
+
+
+提示：
+
+1 <= s.length <= 1000
+s 仅由数字和英文字母组成
+
  */
 
-/***
-	改造 s 到 t 这样就不用区分 len(s) 的奇偶性了。
-例子：  		abc
-改造后:	    ^#a#b#c#$      (^ start,  and $ as end)
-
-相关的结论：  len(t) = 2*len(s) + 3
-坐标的关系：  s[i] 对应 t[(i+1)*2]
-坐标的关系：  t[i] 对应 s[i/2-1]
-例子：  在 s 中的区间 [l, r ]  对应 t 中的区间 [2*(l+1), 2*(r+1)]
-
-t[i] i为偶数的回文串，对应 s 中的奇回文串。
-t[i] i为奇数的回文串，对应 s 中的偶回文串。
-s 中的字符，只会出现在 t 中的偶数位置上。
-
-*/
-
-func _() {
-
-	var halfLen []int
-
+func longestPalindrome(s string) string {
 	manacher := func(s string) []int {
 		//把 s 改造为字符串 t
 		t := append(make([]byte, 0, len(s)*2+3), '^')
@@ -71,15 +72,15 @@ func _() {
 		return halfLen
 	}
 
-	// t 中回文子串的长度为 hl*2-1
-	// 由于其中 # 的数量总是比字符的数量多 1
-	// 因此其在 s 中对应的回文子串的长度为 hl-1
-	// 这一结论可用在下面的各个代码中
-
-	// 判断 s[l..r] 是否为回文串  0<=l<=r<len(s)
-	// 根据下标转换关系得到其在 t 中对应的回文中心下标为 l+r+2
-	// 这是因为通过坐标转换， l -> 2*(l+1)  and  r -> 2*(r+1)    [2*l+2, 2*r+2] 的 mid = l+r+2
-	isP := func(l, r int) bool {
-		return halfLen[l+r+2]-1 >= r-l+1
+	ans := string(s[0])
+	ansl := 1
+	halfLen := manacher(s)
+	for i := 2; i < len(halfLen); i++ {
+		if halfLen[i]-1 > ansl {
+			ansl = halfLen[i] - 1
+			// [(i-hl)/2, (i+hl)/2-2]  // 对应的在 s 中的回文串。
+			ans = s[(i-halfLen[i])/2 : (i+halfLen[i])/2-1]
+		}
 	}
+	return ans
 }
