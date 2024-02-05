@@ -3,6 +3,7 @@ montonic_stack 有性质：  O(n)的时间内， 找到左右点，的 左边和
 
 
 Pecco: 对于 单调队列的解释：
+“如果一个选手比你小还比你强，你就可以退役了。”——单调队列的原理
 https://zhuanlan.zhihu.com/p/346354943
 
 
