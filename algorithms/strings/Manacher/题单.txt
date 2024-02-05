@@ -3,3 +3,7 @@ LC1745 分割成三个非空回文子字符串 https://leetcode.cn/problems/pali
 LC2472 不重叠回文子字符串（长度至少为 k）的最大数目
 https://leetcode.cn/problems/maximum-number-of-non-overlapping-palindrome-substrings/
 
+LC1960 两个回文子字符串长度的最大乘积 https://leetcode-cn.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/
+LC214 https://leetcode-cn.com/problems/shortest-palindrome/
+
+LC647 https://leetcode-cn.com/problems/palindromic-substrings/
