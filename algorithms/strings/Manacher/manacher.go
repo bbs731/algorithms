@@ -1,6 +1,8 @@
 package Manacher
 
 /*
+
+education purpose only (教育演示性质的代码， 具体应用代码看 template_code.go)
 https://oi-wiki.org/string/manacher/
 
 作为这个算法来源的思维代码吧，做题的时候，借鉴灵神的 template code 代码吧。

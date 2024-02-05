@@ -20,3 +20,10 @@ func z_function(s string) []int {
 	}
 	return z
 }
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
