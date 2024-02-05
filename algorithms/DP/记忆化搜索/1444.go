@@ -15,7 +15,7 @@ https://leetcode.cn/problems/number-of-ways-of-cutting-a-pizza/solutions/2392051
 
 dfs(i, j, k)   定义， 左上角 [i,j]  到右下角 [m-1][n-1] 需要切 k 个 pizza 的方案数量。
 
-//枚举 横切，  r = [i+1, m-1]      [i, j] [r-1, n-1] 保证有一个苹果， 且 [r, j] [m-1][n-1] 有  >= k-1 个苹果。    dfs(r, j, k-1)
+枚举 横切,   r = [i+1, m-1]     	  [i, j] [r-1, n-1] 保证有一个苹果， 且 [r, j] [m-1][n-1] 有  >= k-1 个苹果。    dfs(r, j, k-1)
 枚举 竖切,   c = [j+1, n-1]        [i, j] [m-1, c-1] 保证有一个苹果， 且 [i, c] [m-1][n-1] 有  >= k-1 个苹果。    dfs(i, c, k-1)
 
 */
