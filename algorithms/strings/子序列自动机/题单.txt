@@ -2,12 +2,12 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/strings.go#L
 
 子序列自动机
 如果值域很大可以用哈希表/数组记录 pos 然后二分查找 https://www.luogu.com.cn/problem/P5826
-LC727 https://leetcode.cn/problems/minimum-window-subsequence/
+LC727 (会员题目） https://leetcode.cn/problems/minimum-window-subsequence/
 LC792 https://leetcode.cn/problems/number-of-matching-subsequences/
 LC2014 https://leetcode.cn/problems/longest-subsequence-repeated-k-times/
 LC466 https://leetcode.cn/problems/count-the-repetitions/
 http://codeforces.com/problemset/problem/91/A
 - https://www.luogu.com.cn/problem/P9572?contestId=124047
-- 【子串】 LC686 https://leetcode.cn/problems/repeated-string-match/
+- 【子串】 LC686 https://leetcode.cn/problems/repeated-string-match/ (这道题，不适合吧，不是子序列，是子串）
 https://codeforces.com/contest/1845/problem/C
 - 相关 LC2350 https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/
