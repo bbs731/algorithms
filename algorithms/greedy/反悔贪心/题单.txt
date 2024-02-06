@@ -1,0 +1,9 @@
+630. 课程表 III
+871. 最低加油次数 2074
+1388. 3n 块披萨 2410
+2813. 子序列最大优雅度 2582
+2599. 使前缀和数组非负（会员题）
+
+感谢灵神，传道受业解惑
+作者：灵茶山艾府
+链接：https://leetcode.cn/problems/p0NxJO/solutions/2633172/fan-hui-tan-xin-fu-ti-dan-pythonjavacgoj-hxup/

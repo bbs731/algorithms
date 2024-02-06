@@ -29,7 +29,7 @@ func (h *IntHeap) Pop() interface{} {
 func main() {
 	h := &IntHeap{}
 	heap.Init(h)
-	heap.Push(h, 3)
+	heap.Push(h, 3) // 这里要非常的注意了，不能调用 h.Push, 而是需要调用 heap.Push() 然后把 h 和 num 传参进去。
 	item := heap.Pop(h).(int)
 	_ := item
 }
