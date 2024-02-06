@@ -83,6 +83,7 @@ func lastSubstring(s string) string {
 这个是按照 oi-wiki 上的模板写的
 https://oi-wiki.org/string/minimal-string/
  */
+
 func lastSubstring(s string) string {
 	biggestRepresentation := func(s string) string {
 		n := len(s)
