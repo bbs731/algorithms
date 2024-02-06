@@ -31,6 +31,9 @@ func _() {
 		return s[i : i+n]
 	}
 
+	/***
+	灵神的板子， 但是 直接 改变  s[i+k] > s[j+k] 的时候， LC1163 这道题，过不去。
+	 */
 	smallestRepresentation := func(s string) string {
 		n := len(s)
 		s = s + s // double 的快乐
