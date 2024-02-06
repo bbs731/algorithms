@@ -1,0 +1,8 @@
+最小表示法 - 求串的循环同构串中字典序最小的串
+找到位置 i，从这个位置输出即得到字典序最小的串
+
+https://oi-wiki.org/string/minimal-string/
+其他方法 https://codeforces.com/blog/entry/90035
+模板题 https://www.luogu.com.cn/problem/P1368 http://poj.org/problem?id=1509 https://codeforces.com/gym/103585/problem/K
+https://codeforces.com/problemset/problem/496/B
+LC1163 非循环的情况 https://leetcode.cn/problems/last-substring-in-lexicographical-order/
