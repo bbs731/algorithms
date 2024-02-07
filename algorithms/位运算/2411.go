@@ -82,3 +82,30 @@ func smallestSubarrays(nums []int) []int {
 	}
 	return ans
 }
+
+/***
+https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or/solutions/1830911/by-endlesscheng-zai1/
+
+下面的这个模板代码， 实际上，自己推到的时候，想了1个多小时，过程是推演过的， 但是不知道用什么数据结构存储,
+对于，需要存储的规模没有概念。 估计过一段时间，也是看不懂的。
+
+
+该模板可以做到
+
+1. 求出所有子数组的按位或的结果，以及值等于该结果的子数组的个数。
+2. 求按位或结果等于任意给定数字的子数组的最短长度/最长长度。
+
+ */
+
+func smallestSubarrays(nums []int) []int {
+	n := len(nums)
+	ans := make([]int, n)
+
+	type pair struct {
+		or int // 按位于的值
+		i  int // 对应子数组的右端点的最小值。
+	}
+	ors := make([]pair, 0)
+	for i := n - 1
+
+}
