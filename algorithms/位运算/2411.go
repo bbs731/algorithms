@@ -106,6 +106,25 @@ func smallestSubarrays(nums []int) []int {
 		i  int // 对应子数组的右端点的最小值。
 	}
 	ors := make([]pair, 0)
-	for i := n - 1
-
+	for i := n - 1; i>=0; i-- {
+		num := nums[i]
+		ors = append(ors, pair{0, i})
+		k := 0
+		ors[0].or |= num
+		for j :=1; j<len(ors); j++ {
+			ors[j].or |= num
+			// 这里写成 if ors[j-1].or != ors[j].or 也是可以的, 但是因为我们需要修改 k 而不是 j-1 所以写 k 不容易犯错。
+			if ors[k].or != ors[j].or {
+				k++
+				ors[k].or= ors[j].or
+				ors[k].i = ors[j].i
+			} else {
+				// 合并
+				ors[k].i = ors[j].i  // 注意这里 in-place 修改 k 而不是 j-1
+			}
+		}
+		ors = ors[:k+1]
+		ans[i] = ors[0].i - i + 1
+	}
+	return ans
 }
