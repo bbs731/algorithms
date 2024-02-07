@@ -4,6 +4,11 @@ import "math/bits"
 
 func _() {
 
+	/*** 代码来自：
+	https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/search.go#L817
+	 */
+
+	// C(n, k) 高效的枚举
 	loopSubsetK := func(a []int, k int) {
 		n := len(a)
 		for sub := 1<<k - 1; sub < 1<<n; {
