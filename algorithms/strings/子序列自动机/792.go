@@ -1,7 +1,5 @@
 package subsequenceAutomation
 
-import "fmt"
-
 /***
 给定字符串 s 和字符串数组 words, 返回  words[i] 中是s的子序列的单词个数 。
 
@@ -28,6 +26,54 @@ words[i]和 s 都只由小写字母组成。
 
  */
 
+/****
+这样写也是可以的， 但是为了记忆，还是按照灵神的板子来吧。
+*/
+
+func numMatchingSubseq(s string, words []string) int {
+	subsequenceAutomation := func(s string) [][26]int {
+		pos := [26]int{}
+		for i := range pos {
+			pos[i] = len(s) + 1
+		}
+		nxt := make([][26]int, len(s)+1)
+		for i := len(s) - 1; i >= 0; i-- {
+			nxt[i+1] = pos
+			pos[s[i]-'a'] = i + 1
+		}
+		nxt[0] = pos // 灵神的版本 是没有保存最后一个 pos的, 处理的方法，留在了 match function 去比较一下 t[0] == s[0]
+		return nxt
+	}
+
+	nxt := subsequenceAutomation(s)
+	match := func(word, s string, nxt [][26]int) bool {
+		i, j := 0, 0
+		for ; j < len(word); j++ {
+			i = nxt[i][word[j]-'a']
+			if i == len(s)+1 {
+				break
+			}
+		}
+		// matched
+		if j == len(word) {
+			return true
+		}
+		return false
+	}
+
+	cnts := 0
+	for _, word := range words {
+		if match(word, s, nxt) {
+			//fmt.Println(word)
+			cnts++
+		}
+	}
+	return cnts
+}
+
+/***
+下面的是灵神的板子
+ */
 func numMatchingSubseq(s string, words []string) int {
 	subsequenceAutomation := func(s string) [][26]int {
 		pos := [26]int{}
@@ -66,51 +112,6 @@ func numMatchingSubseq(s string, words []string) int {
 	cnts := 0
 	for _, word := range words {
 		if match(word, s, nxt) {
-			cnts++
-		}
-	}
-	return cnts
-}
-
-/****
-这样写也是可以的， 但是为了记忆，还是按照灵神的板子来吧。
- */
-
-func numMatchingSubseq(s string, words []string) int {
-	subsequenceAutomation := func(s string) [][26]int {
-		pos := [26]int{}
-		for i := range pos {
-			pos[i] = len(s) + 2
-		}
-		nxt := make([][26]int, len(s)+1)
-		for i := len(s) - 1; i >= 0; i-- {
-			nxt[i+1] = pos
-			pos[s[i]-'a'] = i + 1
-		}
-		nxt[0] = pos // 灵神的版本 是没有保存最后一个 pos的, 处理的方法，留在了 match function 去比较一下 t[0] == s[0]
-		return nxt
-	}
-
-	nxt := subsequenceAutomation(s)
-	match := func(word, s string, nxt [][26]int) bool {
-		i, j := 0, 0
-		for ; j < len(word); j++ {
-			i = nxt[i][word[j]-'a']
-			if i == len(s)+2 {
-				break
-			}
-		}
-		// matched
-		if j == len(word) {
-			return true
-		}
-		return false
-	}
-
-	cnts := 0
-	for _, word := range words {
-		if match(word, s, nxt) {
-			fmt.Println(word)
 			cnts++
 		}
 	}

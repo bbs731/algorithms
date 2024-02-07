@@ -2,21 +2,23 @@ package subsequenceAutomation
 
 func _() {
 
+	/***
+	自己写的板子。 没有使用灵神的， 灵神的板子，在处理重复的 s 或者重复的t 的时候，有问题(第一个字符的比较需要特殊处理，循环重复的
+	时候处理难度太大了）。
+	 */
 	subsequenceAutomation := func(s string) {
 		//build nxt
 		// nxt[i][j] 表示在i的右侧, 字符 j (第一次出现）的最近位置
 		pos := [26]int{}
 		for i := range pos {
-			pos[i] = len(s) // 初始化， mark end, 在 match 的时候会判断使用
+			pos[i] = len(s) + 1
 		}
-		nxt := make([][26]int, len(s))
-
+		nxt := make([][26]int, len(s)+1)
 		for i := len(s) - 1; i >= 0; i-- {
-			nxt[i] = pos
-			pos[s[i]-'a'] = i // 其实是为了 nxt[i-1] 准备的 pos 值。
-			// 这样写边界处理的很清晰， 但是有一个问题就是 nxt[0] = pos[s[1]-'a'], 我们发现 没有 nxt[-1] 也就是说
-			// pos[s[0]-'a'] 的这个 match 关系我们没有保存，是丢掉了的。针对这个问题，就需要在 match 里对 s[0] 特殊处理。
+			nxt[i+1] = pos
+			pos[s[i]-'a'] = i + 1
 		}
+		nxt[0] = pos // 灵神的版本 是没有保存最后一个 pos的, 处理的方法，留在了 match function 去比较一下 t[0] == s[0]
 
 		// 在 match 里
 		match := func(t string) int {
@@ -24,21 +26,19 @@ func _() {
 				return 0
 			}
 			i, j := 0, 0
-			// 因为我们在 build nxt 的时候，丢弃了 pos[s[0]-'a'] 这个信息，所以需要在这里，特殊处理一下。
-			if t[0] == s[0] {
-				j = 1 // t[0] 匹配。
-			}
 
 			for ; j < len(t); j++ {
 				i = nxt[i][t[j]-'a']
-				if i == len(s) {
+				if i == len(s)+1 {
 					// 很多题，可以在这里处理，想到到的结果。
+					// 如果需要重复比较 s 这里可以重置 i = 0 然后 cnts1++ 继续比较
 					break
 				}
 			}
 
 			//if j == len(t) {
-			//	found a match
+			//	found a match for t
+			//  如果需要重复比较，把 j = 0 然后 cnts2++ 继续。
 			//}
 			return j
 		}
