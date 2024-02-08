@@ -5,7 +5,7 @@ import "math/bits"
 // 总结在这里:  https://leetcode.cn/circle/discuss/CaOJ45/
 
 func _() {
-	var n int
+	var n, i int
 	var s uint
 	// 核心的思想就是，把数字 对应成一个集合 s, 对 bit 的操作，就是对集合的操作。
 	// 下面介绍一些，基础的操作，在一个 uint （64bit) 个数之内的， 如果超过了看进阶的  type Bitset []uint 的操作
@@ -21,6 +21,18 @@ func _() {
 	//集合中的最小元素
 	_ = bits.TrailingZeros(s)
 
+	//删除集合中的最小元素
+	s &= s - 1 // 最低的 1 变成 0
+
+	//最低位从0变成1
+	s |= s + 1 // s = s | s+1
+
+	//集合删除元素
+	s = s & ^(1 << uint(i)) // s &∼(1 << i)
+
+	//集合添加元素
+	s = s | 1<<uint(i)
+
 	//二进制最低 1 及其后面的 0 叫做 lowbit
 	lowbit := s & (-s) // lowbit == 1<<bits.TrailingZeros(s)  除了 s=0 的情况
 
@@ -32,7 +44,7 @@ func _() {
 	}
 
 	//枚举集合
-	for s := 0; s < 1<<n; s++ {   // 相当于枚举从0 到 2^n-1 个集合， 0 代表空集合， 2^n -1 代表满集合
+	for s := 0; s < 1<<n; s++ { // 相当于枚举从0 到 2^n-1 个集合， 0 代表空集合， 2^n -1 代表满集合
 		// 处理s 的逻辑, 集合 s 里面的元素范围是 0 到 n-1
 	}
 
@@ -49,7 +61,7 @@ func _() {
 		}
 	}
 
-	smallestSubarrays := func (nums []int) []int{
+	smallestSubarrays := func(nums []int) []int {
 		n := len(nums)
 		ans := make([]int, n)
 		type pair struct{ or, i int }
