@@ -1,1 +1,10 @@
 心心念念的后缀数组的应用题目， 面试应该用不到，但是留给以后，让自己变强
+
+LC2261
+LC1044 https://leetcode.cn/problems/longest-duplicate-substring/
+LC1062 https://leetcode.cn/problems/longest-repeating-substring/
+LC1316 https://leetcode.cn/problems/distinct-echo-substrings/
+LC718 https://leetcode.cn/problems/maximum-length-of-repeated-subarray/
+LC1977 https://leetcode.cn/problems/number-of-ways-to-separate-numbers/
+LC1044 https://leetcode.cn/problems/longest-duplicate-substring/
+LC1408 https://leetcode.cn/problems/string-matching-in-an-array/ 「小题大做」
