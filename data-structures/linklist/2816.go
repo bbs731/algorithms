@@ -8,19 +8,28 @@ package linklist
  * }
  */
 
- /***
- 还是会，错无数次， 面试过不去。
-  */
+func doubleIt(head *ListNode) *ListNode {
+	dummy := &ListNode{}
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	d1 := make([]int, 101)
+	// copy a link list
+	for l, ll := head, dummy; l != nil; l = l.Next {
+		node := &ListNode{l.Val, nil}
+		ll.Next = node
+		ll = node
+	}
+	return sol_445(head, dummy.Next)
+}
+
+func sol_445(l1 *ListNode, l2 *ListNode) *ListNode {
+	longest := int(1e4 + 1)
+	d1 := make([]int, longest)
 	dl1 := 0
 	for l := l1; l != nil; l = l.Next {
 		//d1 = d1*10 + l.Val
 		d1[dl1] = l.Val
 		dl1++
 	}
-	d2 := make([]int, 101)
+	d2 := make([]int, longest)
 	dl2 := 0
 	for l := l2; l != nil; l = l.Next {
 		//d2 = d2*10 + l.Val
@@ -41,15 +50,15 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	dummy := &ListNode{}
 	carry := 0
 
-	for i := 0; i < 101; i++ {
+	for i := 0; i < longest; i++ {
 		d := d1[i] + d2[i] + carry
-		if d == 0 && i >= max(dl1, dl2) {   // 这里很难想。
+		if d == 0 && i >= max(dl1, dl2) { // 这里很难想。
 			break
 		}
 		if d >= 10 {
 			carry = 1
 		} else {
-			carry = 0   // 这里容易错。 忘记reset to 0
+			carry = 0 // 这里容易错。 忘记reset to 0
 		}
 		d %= 10
 		node := &ListNode{d, dummy.Next}
