@@ -2,3 +2,4 @@ https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/sol
 
 LC2223
 LC周赛383 D
+3036
