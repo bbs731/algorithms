@@ -1,16 +1,19 @@
 package z_algorithm
 
+import "cmp"
 
 func countMatchingSubarrays(nums []int, pattern []int) int {
 	m := len(pattern)
 	for i:=1; i<len(nums);i++ {
-		if nums[i] > nums[i-1] {
-			pattern = append(pattern, 1)
-		} else if nums[i] == nums[i-1]{
-			pattern = append(pattern, 0)
-		} else {
-			pattern = append(pattern, -1)
-		}
+		//好的写法，学习到了
+		pattern = append(pattern, cmp.Compare(nums[i], nums[i-1]))
+		//if nums[i] > nums[i-1] {
+		//	pattern = append(pattern, 1)
+		//} else if nums[i] == nums[i-1]{
+		//	pattern = append(pattern, 0)
+		//} else {
+		//	pattern = append(pattern, -1)
+		//}
 	}
 
 	n :=len(pattern)
