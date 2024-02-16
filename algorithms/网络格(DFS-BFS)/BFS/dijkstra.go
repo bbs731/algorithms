@@ -8,9 +8,9 @@ type dijkstraPair struct {
 type dijkstraHeap []dijkstraPair
 
 // 这是大堆还是小堆啊？
-func (h *dijkstraHeap) Len() int           { return len(*h) }
+func (h dijkstraHeap) Len() int           { return len(h) }
 func (h dijkstraHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
-func (h *dijkstraHeap) Less(i, j int) bool { return h[i].dis < h[j].dis }
+func (h dijkstraHeap) Less(i, j int) bool { return h[i].dis < h[j].dis }
 func (h *dijkstraHeap) Push(v any)         { *h = append(*h, v.(dijkstraPair)) }
 func (h *dijkstraHeap) Pop() (v any) {
 	a := *h
@@ -68,7 +68,7 @@ func shortestPathDijkstra(m, n, st int, grid [][]int) (dist []int) {
 			w := e.to
 			if newD := dist[v] + e.wt; newD < dist[w] {
 				dist[w] = newD
-				h.Push(dijkstraPair{w, dist[w]})
+				h.push(dijkstraPair{w, dist[w]})
 			}
 		}
 	}
