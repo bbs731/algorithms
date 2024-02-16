@@ -5,3 +5,9 @@ package interview_questions
  	Val int
  	Next *ListNode
  }
+
+
+ type Node struct {
+ 	Val int
+ 	Neighbors []*Node
+ }
