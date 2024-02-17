@@ -1,8 +1,10 @@
 package dp
 
 /***
-春雷， 你这个思路也是够野的啊！
+https://www.bilibili.com/video/BV16Y411v7Y6/?vd_source=84c3c489cf545fafdbeb3b3a6cd6a112
+这是 0-1 背包的 模版题目。
 
+春雷， 你这个思路也是够野的啊！
 	dp[i][sum] = dp[i+1][sum+ nums[i]] + dp[i+1][sum - nums[i]]
  */
 func findTargetSumWays(nums []int, target int) int {
@@ -23,3 +25,15 @@ func findTargetSumWays(nums []int, target int) int {
 	}
 	return dp[0][1000+target]
 }
+
+
+/***
+https://leetcode.cn/problems/YaVDxD/solutions/2157241/jiao-ni-yi-bu-bu-si-kao-dong-tai-gui-hua-aj9f/
+
+灵神说， 可以优化成一维度的数组
+
+但是我上面那种写法，  dp[.][j] 依赖  j+nums[i],  依赖 j-nums[i] 这个顺序不确定啊， 所以降不了啊。
+灵神的解法， j 是单调的，是可以降维的。
+
+ */
+
