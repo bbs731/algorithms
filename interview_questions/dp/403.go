@@ -46,7 +46,7 @@ func canCross(stones []int) bool {
 	f[0][0] = true
 
 	for i := 0; i < n-1; i++ {
-		for k := 0; k < n; k++ {
+		for k := 0; k <= i; k++ {   // 也可以枚举 上一个 i, 不过，是不是，比较难想啊！
 			if f[i][k] == false {
 				continue
 			}
