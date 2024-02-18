@@ -1,5 +1,13 @@
 package dp
 
+/***
+
+灵神题解：
+
+https://leetcode.cn/problems/special-permutations/solutions/2312798/zhuang-ya-dp-by-endlesscheng-4jkr/
+
+
+ */
 func specialPerm(nums []int) int {
 	n := len(nums)
 	const mod int = 1e9 + 7
