@@ -27,6 +27,11 @@ package dp
 输出：9
 
 解释：时刻 1，开启编号 1、2 舱室的联合屏障，能量消耗 3。时刻 1，开启编号 3 舱室的屏障，能量消耗 2 。时刻 2，维持编号 1、2 舱室的联合屏障，能量消耗 1。时刻 3，维持编号 1、2 舱室的联合屏障，能量消耗 1。时刻 5，重新开启编号 3 舱室的屏障，能量消耗 2。因此，最少需要能量 9。
+
+1 <= time.length == position.length <= 500
+1 <= time[i] <= 5
+0 <= position[i] <= 100
+
  */
 
 func defendSpaceCity(time []int, position []int) int {
