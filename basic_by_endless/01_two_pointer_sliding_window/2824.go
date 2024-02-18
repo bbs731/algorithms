@@ -1,5 +1,7 @@
 package sliding_window
 
+import "sort"
+
 func countPairs(nums []int, target int) int {
 	sort.Ints(nums)
 	n := len(nums)
