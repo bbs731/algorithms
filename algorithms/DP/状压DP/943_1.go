@@ -1,70 +1,75 @@
 package dp
 
 import "fmt"
-
 func shortestSuperstring(words []string) string {
 	n := len(words)
 	m := 1 << uint(n)
 
-	parent := make([][]int, m-1)
+	parent := make([][]int, m)
+	dp := make([][]int, m)
 	for i := range parent {
 		parent[i] = make([]int, n)
+		dp[i] = make([]int, n)
 		for j := range parent[i] {
 			parent[i][j] = -1
 		}
 	}
-
 	prefix := preCalculation(words)
 
-	var dfs func(int, int, int) int
-	dfs = func(i int, bitmask int, overlapped int) int {
-		if bitmask == m-1 {
-			return overlapped
-		}
-
-		res := overlapped
-		for k := range words {
-			if (1<<uint(k))&bitmask != 0 {
-				continue
+	for mask :=0; mask < m; mask++ {
+		for bit :=0; bit <n; bit++ {
+			if mask>>bit & 1 > 0 {
+				pmask := mask ^( 1<<bit)
+				if pmask == 0 {
+					continue
+				}
+				for i:=0; i<n; i++ {
+					if pmask >>i & 1 >  0 {
+						val := dp[pmask][i] + prefix[i][bit]
+						if val > dp[mask][bit]{
+							dp[mask][bit] = val
+							parent[mask][bit] = i
+						}
+					}
+				}
 			}
-			pl := prefix[i][k]
-			l := dfs(k, bitmask|1<<k, overlapped+pl)
-			if l > res {
-				res = l
-				parent[bitmask][i] = k
-			}
 		}
-		return res
 	}
 
-	tmp := 0
+	//tmp := 0
 	p := 0
-	for i := range words {
-		l := dfs(i, 1<<i, 0)
-		if l > tmp {
-			tmp = l
-			p = i
+	for j:=0; j<n; j++ {
+		if dp[m-1][j] > dp[m-1][p]{
+			p = j
 		}
 	}
+
 	// now start from p to build the answer
 	t := 0
 	perm := make([]int, n)
 	seen := make([]bool, n)
-	mask := 0
+	mask := m-1
 	for p != -1 {
 		perm[t] = p
 		t++
 		seen[p] = true
 		p2 := parent[mask][p]
-		mask |= 1 << p
+		mask ^= 1 << p
 		p = p2
 	}
+
 	for i := 0; i < n; i++ {
 		if seen[i] == false {
 			perm[t] = i
 			t++
 		}
 	}
+
+	for i,j :=0, t-1; i<j; i++ {
+		perm[i], perm[j] = perm[j], perm[i]
+		j--
+	}
+
 	fmt.Println(perm)
 	// construct the answer
 	ans := words[perm[0]]
@@ -127,3 +132,4 @@ func min(a, b int) int {
 	}
 	return b
 }
+
