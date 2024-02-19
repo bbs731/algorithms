@@ -48,11 +48,74 @@ package dp
 /****
 和 91 题是姊妹题目。  这次我们用正着枚举的方式
 f[i][s[i]] = f[i-1][s[i-1]](if s[i] is valid)   + f[i-2][s[i-2]] (if s[i-1,i] is valid)
+事实证明， 第二维度没什么用。 用的话，也是需要从 0 加到 9 像第一个版本的代码一样。
+
+
+
+看错了， *  代表 1~9 不能包括 0
+f 可以降维的 用一维表示。
+分类讨论一下， 最后的结果看起来，还是挺简单的！
+
+学习下 DP 分类讨论的情况。
+
  */
 
-/***
-方法是错误的， 再议。
- */
+
+func numDecodings(s string) int {
+	const mod int = 1e9 + 7
+	n := len(s)
+	f := make([]int, n+1)
+	f[0] = 1
+
+	for i := 1; i <= n; i++ {
+		if s[i-1] == '*' {
+			for k := 1; k <= 9; k++ { // 枚举 s[i-1]
+				if k != 0 {
+					f[i] += f[i - 1]
+				}
+				if i > 1 {
+					if s[i-2] == '*' {
+						for j := 1; j <= 2; j++ {
+							if j*10+k <= 26 {
+								//f[i][s[i-1]-'0'] += f[i-2][j]
+								f[i] += f[i - 2]
+							}
+						}
+					} else {
+						if s[i-2] != '0' && (int(s[i-2]-'0')*10+k <= 26) {
+							f[i] += f[i - 2]
+						}
+					}
+				}
+			}
+
+		} else {
+			if s[i-1] != '0' {
+				f[i] += f[i - 1]
+			}
+
+			if i > 1 {
+				if s[i-2] == '*' {
+					for j := 1; j <= 2; j++ {
+						if j*10+int(s[i-1]-'0') <= 26 {
+							//f[i][s[i-1]-'0'] += f[i-2][j]
+							f[i] += f[i - 2]
+							f[i] %= mod
+						}
+					}
+				} else {
+					if s[i-2] != '0' && ((s[i-2]-'0')*10+(s[i-1]-'0') <= 26) {
+						f[i] += f[i - 2]
+					}
+				}
+			}
+		}
+		f[i] %= mod
+	}
+	return f[n]
+}
+
+
 func numDecodings(s string) int {
 	const mod int = 1e9 + 7
 	n := len(s)
@@ -71,13 +134,9 @@ func numDecodings(s string) int {
 		return ans
 	}
 
-	//for i := 0; i < 10; i++ {
-	//	f[0][i] = 1
-	//}
-
 	for i := 1; i <= n; i++ {
 		if s[i-1] == '*' {
-			for k := 0; k <= 9; k++ { // 枚举 s[i-1]
+			for k := 1; k <= 9; k++ { // 枚举 s[i-1]
 				if k != 0 {
 					//for p := 0; p < 10; p++ {
 					f[i][k] += get(i - 1)
@@ -85,12 +144,6 @@ func numDecodings(s string) int {
 					//}
 				}
 				if i > 1 {
-					//for j := 1; j <= 2; j++ {
-					//	if j*10+k <= 26 {
-					//		//f[i][k] += f[i-2][j]
-					//		f[i][k] += get(i - 2)
-					//	}
-					//}
 					if s[i-2] == '*' {
 						for j := 1; j <= 2; j++ {
 							if j*10+k <= 26 {
@@ -100,7 +153,7 @@ func numDecodings(s string) int {
 							}
 						}
 					} else {
-						if s[i-2] != '0' && ((s[i-2]-'0')*10+(s[i-1]-'0') <= 26) {
+						if s[i-2] != '0' && (int(s[i-2]-'0')*10+k <= 26) {
 							f[i][k] += get(i - 2)
 							f[i][k] %= mod
 						}
@@ -137,6 +190,7 @@ func numDecodings(s string) int {
 	ans := 0
 	for i := 0; i < 10; i++ {
 		ans += f[n][i]
+		ans %=mod
 	}
 	return ans % mod
 }
