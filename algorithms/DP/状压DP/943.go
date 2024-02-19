@@ -32,6 +32,14 @@ words 中的所有字符串 互不相同
 
  */
 
+/****
+
+用 dfs 会超时。
+
+想一下，这道题， 如果用  bitmask 和 i 做 hash key 是不对的， 不能保证唯一状态。
+
+ */
+
 func shortestSuperstring(words []string) string {
 	n := len(words)
 	m := 1 << uint(n)
