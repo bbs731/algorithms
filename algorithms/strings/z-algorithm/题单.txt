@@ -3,3 +3,14 @@ https://leetcode.cn/problems/minimum-time-to-revert-word-to-initial-state-ii/sol
 LC2223
 LC周赛383 D
 3036
+
+
+
+
+
+3036. 匹配模式数组的子数组数目 II
+3008. 找出数组中的美丽下标 II 2016
+2223. 构造字符串的总得分和 2220
+3031. 将单词恢复初始状态所需的最短时间 II 2278
+
+
