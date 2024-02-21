@@ -4,6 +4,8 @@ package simulation
 这道模拟题目好难啊！
 
 下面自己的解法， 为啥是错误的?
+
+need to find a generate way to do it!
  */
 func calculate(s string) int {
 	n := len(s)
@@ -59,6 +61,8 @@ func calculate(s string) int {
 
 /***
 官网的答案太简洁了, WTF
+
+这是，对，特殊用例的解法， 有更加通用的解法吗？
  */
 func calculate(s string) int {
 	n := len(s)

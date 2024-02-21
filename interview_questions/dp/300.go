@@ -1,5 +1,7 @@
 package dp
 
+import "sort"
+
 /****
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
 
@@ -42,4 +44,24 @@ func lengthOfLIS(nums []int) int {
 		ans = max(ans, f[i])
 	}
 	return ans
+}
+
+/***
+优化的版本, 属于， 用单调栈，优化DP 的范围吗？
+
+感觉，脑袋不是特别的好使了。
+ */
+func lengthOfLIS(nums []int) int {
+	n := len(nums)
+	g := []int{}
+
+	for i := 0; i < n; i++ {
+		p := sort.SearchInts(g, nums[i])
+		if p == len(g) {
+			g = append(g, nums[i])
+		} else {
+			g[p] = nums[i]
+		}
+	}
+	return len(g)
 }

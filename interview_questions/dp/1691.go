@@ -22,18 +22,21 @@ func maxHeight(cuboids [][]int) int {
 		这个 sorting 的顺序非常的讲究啊！ 哎！！！！！！！
 	 */
 	sort.Slice(cuboids, func(i, j int) bool {
-		if cuboids[i][2] < cuboids[j][2] {
-			return true
-		}
-		if cuboids[i][2] == cuboids [j][2] {
-			if cuboids[i][1] < cuboids[j][1] {
-				return true
-			}
-			if cuboids[i][1] == cuboids[j][1] {
-				return cuboids[i][0] < cuboids[j][0]
-			}
-		}
-		return false
+		a, b := cuboids[i], cuboids[j]
+
+		return a[2] < b[2] || a[2] == b[2] && (a[1] < b[1] || a[1] == b[1] && a[0] < b[0])
+		//if cuboids[i][2] < cuboids[j][2] {
+		//	return true
+		//}
+		//if cuboids[i][2] == cuboids [j][2] {
+		//	if cuboids[i][1] < cuboids[j][1] {
+		//		return true
+		//	}
+		//	if cuboids[i][1] == cuboids[j][1] {
+		//		return cuboids[i][0] < cuboids[j][0]
+		//	}
+		//}
+		//return false
 	})
 
 	ans := 0
@@ -41,7 +44,8 @@ func maxHeight(cuboids [][]int) int {
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < i; j++ {
-			if cuboids[j][0] <= cuboids[i][0] && cuboids[j][1] <= cuboids[i][1] && cuboids[j][2] <= cuboids[i][2] {
+			a, b := cuboids[i], cuboids[j]
+			if b[0] <= a[0] && b[1] <= a[1] {
 				f[i] = max(f[i], f[j])
 			}
 		}
