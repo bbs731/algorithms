@@ -10,6 +10,10 @@ import "sort"
 
 这是啥逻辑？
 现在变成 3D 的套娃！
+
+
+这道题， 就不能用 300 和  354 那种贪心的思路， 可以用2D动态开点线段树， 优化为 O(n *lgn^2) 具体怎么做，还没学习过。
+https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/solutions/2014514/tu-jie-suan-fa-you-hua-xiang-xi-zheng-mi-b6fq/
  */
 
 func maxHeight(cuboids [][]int) int {
