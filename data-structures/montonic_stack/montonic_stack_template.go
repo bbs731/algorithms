@@ -11,7 +11,9 @@ func solve(nums []int) (ans int64) {
 	for i := range right {
 		right[i] = n // put dummy boundary
 	}
+	// 初始化 left 数组全都是-1， 也是可以的，就不用 st := []int{-1} 了, 但是，需要检查 st 是否为空了
 	st := []int{-1} // put dummy boundary
+
 	for i, v := range nums {
 
 		// 单调栈的性质主要给了我们两个信息：
