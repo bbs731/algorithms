@@ -1,7 +1,5 @@
 package binary_tree
 
-
-
 func buildTree(preorder []int, inorder []int) *TreeNode {
 
 	n := len(preorder)
@@ -9,6 +7,7 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 		return nil
 	}
 
+	// 这么写不对 这个 hash table 创建了好几遍。
 	pi := make(map[int]int)
 	for i, n := range inorder {
 		pi[n] = i
