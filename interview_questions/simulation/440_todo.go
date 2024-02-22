@@ -18,7 +18,7 @@ func getCurrent(cur, n int) int {
 	for first <= n {
 		step += min(last, n) - first + 1
 		first *= 10
-		last = last*10 + 9
+		last = last*10 + 9  // 这里，太难了吧！
 	}
 	return step
 }
