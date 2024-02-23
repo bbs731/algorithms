@@ -14,3 +14,10 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
