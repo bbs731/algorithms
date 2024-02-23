@@ -1,4 +1,4 @@
-package interview_questions
+package heap
 
 import "container/heap"
 
@@ -44,18 +44,46 @@ n == capital.length
 
  */
 
-func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
-	h := make(hp, 0)
-	heap.Init(&h)
 
-	for i, c := range capital {
-		heap.Push(&h, pair{c, i})
+ /***
+
+ 经验： 如果， 这个问题， 是可以用 TreeMap 来解决的话， 那么麻烦一点， 在 golang 里， 我们可以用一个 对顶堆来实现！
+
+
+ 真是好题， 想了一路。 地铁回家的路上！
+  */
+
+func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
+	// 对顶堆栈
+	hmin := make(hp, 0) // 这个是最大堆。 // 放入的是负数  // 这里 用 Profits 的数值
+	hmax := make(hp, 0) // 这个维护的是最小堆。 保存所有 >w 的 pair   // 这里面用 capital 的数值
+
+	heap.Init(&hmin)
+	heap.Init(&hmax)
+
+	for i, c := range capital{
+		if c <=w {
+			heap.Push(&hmin, pair{-profits[i], i})
+		} else {
+			heap.Push(&hmax, pair{c, i})
+		}
 	}
 
-	for k > 0 && h.Len() > 0 && w >= h[0].v {
+	for k > 0 {
+		for hmax.Len()>0 && w >= hmax[0].v {
+			p := heap.Pop(&hmax).(pair)
+			heap.Push(&hmin, pair{-profits[p.i], p.i})
+		}
+
+		// pop from hmin
+		if hmin.Len()>0 {
+			p := heap.Pop(&hmin).(pair)
+			w -= p.v
+		} else {
+			break
+		}
+
 		k--
-		v := heap.Pop(&h)
-		w += profits[v.(pair).i]
 	}
 	return w
 }
