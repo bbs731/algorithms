@@ -1,6 +1,9 @@
 package _400_1600
 
-import "sort"
+import (
+	"slices"
+	"sort"
+)
 
 /**
  * Definition for a binary tree node.
@@ -35,7 +38,8 @@ func closestNodes(root *TreeNode, queries []int) [][]int {
 	for i, x:=range queries {
 		ans[i] = make([]int, 2)
 		// >=x 的最小值
-		lower := sort.SearchInts(tree, x)  // 这道题，考的就是二分查找。
+		lower, _ := slices.BinarySearch(tree, x)
+		//lower := sort.SearchInts(tree, x)  // 这道题，考的就是二分查找。
 		// <=x 的最大值
 		upper := sort.SearchInts(tree, x+1) -1
 
