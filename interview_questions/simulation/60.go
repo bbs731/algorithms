@@ -5,6 +5,8 @@ import "fmt"
 
 /***
 根 440 这套题， 非常的像
+
+都是在找 kth element 的题目。 找到顺序的规律！
  */
 
 func getPermutation(n int, k int) string {
