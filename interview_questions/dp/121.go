@@ -62,6 +62,9 @@ f[i][1] =  max(f[i-1][1], f[i-1][0] - prices[i])
 max(f[n][0], f[n][1]) == f[n][0]
  */
 
+/***
+我 kao 这是 122 d的解， 怎么感觉， 你像是被答案的呢？ 
+ */
 func maxProfit(prices []int) int {
 	/***
 	这个做法对于本题来说是错误的，没有限制交易次数。
@@ -69,10 +72,10 @@ func maxProfit(prices []int) int {
 	n := len(prices)
 	inf := int(1e18)
 	f := make([][2]int, n+1)
-	//for i := range f {
-	//	f[i][1] = -inf
-	//}
-	f[0][1] = -prices[0]
+	for i := range f {
+		f[i][1] = -inf
+	}
+	//f[0][1] = -prices[0]
 	f[0][0] = 0
 
 	for i := 0; i < n; i++ {
