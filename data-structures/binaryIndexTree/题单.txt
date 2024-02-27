@@ -1,0 +1,9 @@
+315. 计算右侧小于当前元素的个数
+493. 翻转对
+327. 区间和的个数
+2426. 满足不等式的数对数目
+
+
+
+BIT 原理介绍和讲解
+https://leetcode.cn/problems/range-sum-query-mutable/solutions/2524481/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/
