@@ -16,28 +16,11 @@ n*(Sum(1/p)) = n *ln(ln(n))
 
  */
 
-func isPrime(n int) bool {
-	for i := 2; i*i <= n; i++ {
-		if n%i == 0 {
-			return false
-		}
-	}
-	return true
-}
+func CounterPrimesSieve() []bool {
 
-func CountPrimes(n int) int {
-	ans := 0
-	for i := 2; i < n; i++ {
-		if isPrime(i) {
-			ans++
-		}
-	}
-	return ans
-}
-
-func CounterPrimesSieve(n int) int {
+	n := int(1e5) + 1
 	primes := make([]bool, n)
-	for i := 0; i < n; i++ {
+	for i := 2; i < n; i++ {
 		primes[i] = true
 	}
 
@@ -48,11 +31,6 @@ func CounterPrimesSieve(n int) int {
 			}
 		}
 	}
-	ans := 0
-	for i := 2; i < n; i++ {
-		if primes[i] {
-			ans++
-		}
-	}
-	return ans
+
+	return primes
 }
