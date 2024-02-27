@@ -3,7 +3,6 @@ package union_find
 type UnionFind struct {
 	fa       []int
 	sz       []int
-	comp_cnt int
 }
 
 func NewUnionFind(n int) *UnionFind {
@@ -13,7 +12,7 @@ func NewUnionFind(n int) *UnionFind {
 		fa[i] = i
 		sz[i] = 1
 	}
-	return &UnionFind{fa, sz, n}
+	return &UnionFind{fa, sz}
 }
 
 func (u UnionFind) find(x int) int {
