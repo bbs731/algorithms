@@ -35,6 +35,10 @@ func (u UnionFind) unite(x, y int) {
 	u.sz[x] += u.sz[y]
 }
 
+func (u *UnionFind) getSize(x int)int {
+	return u.sz[u.find(x)]
+}
+
 func (u UnionFind) connected(x, y int) bool {
 	x = u.find(x)
 	y = u.find(y)
