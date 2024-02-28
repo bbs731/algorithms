@@ -18,9 +18,9 @@ func maximizeTheProfit(n int, offers [][]int) int {
 		groups[end] = append(groups[end], pair{start, gold})
 	}
 
-	f := make([]int, n+1) // 看不懂这个解， 为什么保证 ？ f 是连续的？
+	f := make([]int, n+1) // 看不懂这个解， 为什么保证 ？ f 是连续的？ 这是在值域上的DP  f[end+1] = f[end] 这句话保证了值域的连续性。
 	for end, g := range groups {
-		f[end+1] = f[end]
+		f[end+1] = f[end] // 这里保证值域是连续的。
 		for _, p := range g {
 			f[end+1] = max(f[end+1], f[p.start]+p.gold)
 		}
