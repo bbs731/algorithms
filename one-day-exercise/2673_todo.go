@@ -5,6 +5,16 @@ package one_day_exercise
 下面的做法是错误的。
  */
 func minIncrements(n int, cost []int) int {
+	ans := 0
+	for i :=n/2; i >=1; i-- {
+		l, r := cost[2*i-1], cost[2*i-2]
+		if l > r {
+			l, r = r, l
+		}
+		cost[i-1] +=r  // 把叶子节点的值，转到到parent, 然后 parent 在和他的 sibling 做为 l, r 计算（r-l), 然后再 向爷爷节点传导。
+		ans += r-l
+	}
+	return ans
 }
 
 func minIncrements(n int, cost []int) int {
