@@ -1,9 +1,9 @@
-package dfs
+package dp
 
-/****
-ai !!!!
+/***
+
+子集型回溯的样板题目！
  */
-
 
 func maxScoreWords(words []string, letters []byte, score []int) int {
 	n := len(words)

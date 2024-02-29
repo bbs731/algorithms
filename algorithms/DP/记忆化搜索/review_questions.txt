@@ -1,0 +1,7 @@
+子集型回溯的样板题目：
+https://leetcode.cn/problems/maximum-score-words-formed-by-letters/solutions/2133515/hui-su-san-wen-si-kao-hui-su-wen-ti-de-t-kw3y/
+
+1255
+1601. 最多可达成的换楼请求数目
+2044. 统计按位或能得到最大值的子集数目
+2397. 被列覆盖的最多行数
