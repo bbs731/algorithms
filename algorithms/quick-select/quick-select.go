@@ -12,15 +12,16 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/weekly/262/b/
 灵神的版本， 感觉不错。
 
 灵神写的这个，最容易记住。
-1.
+就记住这个模版就可以了。
  */
-func quickSelect(a []int) int {
-	k := len(a) / 2
+func quickSelect(a []int, l, r , k int) int {
+	//k := len(a) / 2
 	rand.Shuffle(len(a), func(i, j int) { a[i], a[j] = a[j], a[i] })
 	// [l, r] 的闭区间
-	for l, r := 0, len(a)-1; l < r; {
+	// l , r := 0, len(a) -1
+	for l < r {
 		v := a[l]
-		i, j := l, r+1
+		i, j := l, r+1  // 这个是灵神的代码， i 初始化成 l 是对的。
 		for {
 			for i++; i < r && a[i] < v; i++ {
 			}
@@ -44,32 +45,6 @@ func quickSelect(a []int) int {
 	return a[k]
 }
 
-// 利用双指针，避免最坏的 O(n^2) 的情况， 可以做到平均时间复杂度是 O(n)
-// 这段代码写的太华丽了！  这里的 kth index 从 0 开始算， 第 3th element 实际上是找排序之后，对应的下标 3 （实际上是第 4小的 element)
-// quick-select 算法的前提是 nums 数组是可以 in-place 改动的。
-func quickselect(nums []int, l, r, k int) int {
-	if l == r {
-		return nums[l]
-	}
-	pivot := nums[l]
-	i := l - 1
-	j := r + 1
-	//使用双指针的方法，这种方法能够较好地应对各种数据。
-	for i < j {
-		// 尤其是这连个循环，写得太华丽了！
-		for i++; nums[i] < pivot; i++ {
-		}
-		for j--; nums[j] > pivot; j-- {
-		}
-		if i < j {
-			nums[i], nums[j] = nums[j], nums[i]
-		}
-	}
-	if k <= j {
-		return quickselect(nums, l, j, k)
-	}
-	return quickselect(nums, j+1, r, k)
-}
 
 // quick-select  也可以写成下面分成两步的
 /*
