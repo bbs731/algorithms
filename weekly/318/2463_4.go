@@ -6,7 +6,7 @@ import (
 )
 
 /***
-	// dfs[i][j]  代表， [i, n-1] 的工厂，修理了 [j, m-1] 个机器人的最小值。
+	// dfs[i][j]  代表， [i, n-1] 的工厂，修理 [j, m-1] 个机器人的最小值。
 	// i 是工厂，  j 是机器人的下标。
 	dfs[i][j] = dfs[i+1][j] ,  dfs[i+1][j+k] + sumDist(j, j+k-1)   for all possible k
 

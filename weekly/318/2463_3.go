@@ -28,7 +28,7 @@ func minimumTotalDistance(robot []int, factory [][]int) int64 {
 		}
 	}
 
-	// f[i][j]  代表， [i, n-1] 的工厂，修理了 [j, m-1] 个机器人的最小值。
+	// f[i][j]  代表， [i, n-1] 的工厂，修理 [j, m-1] 个机器人的最小值。
 	// i 是工厂，  j 是机器人的下标。
 	var dfs func(int, int) int
 	dfs = func(i int, j int) int{
