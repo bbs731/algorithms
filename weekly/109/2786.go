@@ -1,5 +1,10 @@
 package weekly
 
+/***
+视频讲解：
+https://www.bilibili.com/video/BV1AM4y1x7r4/?spm_id_from=333.788&vd_source=84c3c489cf545fafdbeb3b3a6cd6a112
+ */
+
 func maxScore(nums []int, x int) int64 {
 	n := len(nums)
 	cache := make([][2]int, n)
