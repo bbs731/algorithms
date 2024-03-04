@@ -1,0 +1,24 @@
+1. How Raft works ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+八股文：
+1. 3-phase commit and 2 phase commit differences？
+2. LSM-B storage
+3. Local based hash and indexing for search
