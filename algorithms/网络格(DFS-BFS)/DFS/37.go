@@ -32,6 +32,8 @@ func solveSudoku(board [][]byte) {
 			}
 			return false
 		}
+
+		// 像后面的优化， 使用 spaces 模拟， 可以省去一层 loop j   //好好体会这句话， 这是枚举的力量。
 		for j := 0; j < n; j++ {
 			if board[i][j] != '.' {
 				continue

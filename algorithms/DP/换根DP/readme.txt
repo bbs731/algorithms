@@ -8,3 +8,6 @@ https://leetcode.cn/problems/sum-of-distances-in-tree/solutions/2345592/tu-jie-y
 2581. 统计可能的树根数目
 Codeforces 771C. Bear and Tree Jumps（本题进阶版）
 
+
+2246
+https://leetcode.cn/problems/longest-path-with-different-adjacent-characters/solutions/1427611/by-endlesscheng-92fw/
