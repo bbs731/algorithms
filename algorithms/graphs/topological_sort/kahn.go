@@ -24,6 +24,7 @@ func (*graph) topoSort(n int, edges [][]int) []int {
 
 	q := make([]int, 0, len(g))
 	orders := q
+	l := make([]int, 0, len(g))
 
 	for i, d := range deg {
 		if d == 0 {
@@ -35,6 +36,7 @@ func (*graph) topoSort(n int, edges [][]int) []int {
 
 	for len(q) > 0 {
 		v := q[0]
+		l = append(l, v)
 		q = q[1:]
 
 		for _, w := range g[v] {
@@ -48,7 +50,11 @@ func (*graph) topoSort(n int, edges [][]int) []int {
 	}
 
 	// NOTE: 若 cap(q) 大于 0 则说明图中有环
+	// 这个看不懂啊！ 看207 模板题目的例子吧。用一个 list 保存 toplogical sort 的结果。
 	orders = orders[:len(g)-cap(q)]
+
+	// 如果 l == len(g) == n 代表存在拓扑排序， 否则代表有环啊！
+	l == n
 	// NOTE: 若要重复求拓扑排序记得拷贝一份 deg
 
 	{
