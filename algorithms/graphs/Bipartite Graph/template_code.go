@@ -6,6 +6,11 @@ package Bipartite_Graph
 https://github.com/EndlessCheng/codeforces-go/blob/master/copypasta/graph.go
 
 判断，是否是 bipartite graph
+
+适用于无向图，没问题，建图：
+g[v] = append(g[v], w)
+g[w]= append(g[w], v)
+
  */
 
 func isBipartite(g [][]int) bool {
