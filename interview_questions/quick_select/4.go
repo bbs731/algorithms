@@ -4,6 +4,11 @@ import "sort"
 
 /***
 经典的题目啊！多看吧！
+
+
+这道题， 和 quick-select template 的区别是 k 的 index 是从 1 开始的。 这个会方便我们的计算, 对于这道题而言。
+具体看下面的 comments
+
  */
 func searchAposition(nums1 []int, nums2 []int, k int) int {
 	m := len(nums1)
@@ -21,6 +26,10 @@ func searchAposition(nums1 []int, nums2 []int, k int) int {
 		if k == 1 {
 			return min(nums1[h1], nums2[h2])
 		}
+
+		// 如果我们允许 k 的 index 从 0 开始， 那么， 就有可能得到 half = (k=1)/2 = 0
+		// 那么  index1 := min(h1 + 0，m) - 1  因为 h1 值域从 0 开始，就有可能 index = -1 造成 index 越界。
+		// 所以 k 的 index 从 1 开始，对于这道题来说，是有好处的。  half 不会取到值 0
 
 		half := k / 2
 
