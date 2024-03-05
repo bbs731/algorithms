@@ -13,15 +13,19 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/weekly/262/b/
 
 灵神写的这个，最容易记住。
 就记住这个模版就可以了。
+
+如果 l, r 的区间是 [0, n-1] 那么 k 的取值也是 [0, n-1] 之间， 就是说 k 的 index 是从 0 开始的。
+k 的 index 从 0 开始
+
  */
-func quickSelect(a []int, l, r , k int) int {
+func quickSelect(a []int, l, r, k int) int {
 	//k := len(a) / 2
 	rand.Shuffle(len(a), func(i, j int) { a[i], a[j] = a[j], a[i] })
 	// [l, r] 的闭区间
 	// l , r := 0, len(a) -1
 	for l < r {
 		v := a[l]
-		i, j := l, r+1  // 这个是灵神的代码， i 初始化成 l 是对的。
+		i, j := l, r+1 // 这个是灵神的代码， i 初始化成 l 是对的。
 		for {
 			for i++; i < r && a[i] < v; i++ {
 			}
@@ -44,7 +48,6 @@ func quickSelect(a []int, l, r , k int) int {
 	}
 	return a[k]
 }
-
 
 // quick-select  也可以写成下面分成两步的
 /*

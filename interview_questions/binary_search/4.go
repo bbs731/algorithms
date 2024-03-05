@@ -80,9 +80,9 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 
 相当于 get KthElement 的 2D 版本吗？
 
-
 这道题，你直接用 二分查找，就是一个死啊， 有重复的元素。
 
+这个 k 的 值域是从 1 开始的。
  */
 func getKthElement(nums1, nums2 []int, k int) int {
 	index1, index2 := 0, 0
