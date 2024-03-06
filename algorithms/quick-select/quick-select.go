@@ -15,7 +15,7 @@ https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/weekly/262/b/
 就记住这个模版就可以了。
 
 如果 l, r 的区间是 [0, n-1] 那么 k 的取值也是 [0, n-1] 之间， 就是说 k 的 index 是从 0 开始的。
-k 的 index 从 0 开始
+k 的 index 从 0 开始.  例子，看题目 LCR159 的描述，是非常的清楚的。
 
  */
 func quickSelect(a []int, l, r, k int) int {
