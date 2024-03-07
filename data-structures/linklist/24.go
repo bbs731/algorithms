@@ -34,3 +34,32 @@ func swapPairs(head *ListNode) *ListNode {
 
 	return dummy.Next
 }
+
+/***
+是不是有一百种写法， 每个人的思维都是不一样的。
+
+但是犯错，也是有一百种样式！
+ */
+
+func swapPairs(head *ListNode) *ListNode {
+	dummy := &ListNode{
+		0,
+		head,
+	}
+
+	// 灵神，引入的 p0 的这个概念，太牛了！
+	var p0, prev, cur *ListNode = dummy, nil, head
+	for cur != nil && cur.Next != nil {
+		next := cur.Next
+		cur.Next = prev
+		prev = cur
+		cur = next.Next
+		next.Next = prev
+
+		p0.Next.Next = cur
+		p0.Next = next
+		p0 = prev
+	}
+
+	return dummy.Next
+}
