@@ -54,3 +54,34 @@ func maxSlidingWindow(nums []int, k int) []int {
 	}
 	return ans
 }
+
+/***
+这个版本， 更自然吗？
+ */
+func maxSlidingWindow(nums []int, k int) []int {
+	st := []int{}
+	n := len(nums)
+	l := make([]int, 0)
+	left := 0
+	for i := 0; i < n; i++ {
+		for len(st) > 0 && nums[i] > nums[st[len(st)-1]] {
+			// pop stack
+			st = st[:len(st)-1]
+		}
+		st = append(st, i)
+
+		// need to move left
+		if i-left+1 > k {
+			if st[0] == left {
+				// need to pop stack as well
+				st = st[1:]
+			}
+			left++
+		}
+
+		if i >= k-1 {
+			l = append(l, nums[st[0]])
+		}
+	}
+	return l
+}
