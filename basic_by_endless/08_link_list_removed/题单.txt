@@ -1,0 +1,11 @@
+
+
+Python/Java/C++/Go 等语言实现见 https://github.com/EndlessCheng/codeforces-go/blob/master/leetcode/README.md
+涉及到的力扣题目 + 代码：
+237. 删除链表中的节点 https://leetcode.cn/problems/delete-node-in-a-linked-list/solutions/2004056/ru-he-shan-chu-jie-dian-liu-fen-zhong-ga-x3kn/
+19. 删除链表的倒数第 N 个结点 https://leetcode.cn/problems/remove-nth-node-from-end-of-list/solutions/2004057/ru-he-shan-chu-jie-dian-liu-fen-zhong-ga-xpfs/
+83. 删除排序链表中的重复元素 https://leetcode.cn/problems/remove-duplicates-from-sorted-list/solutions/2004062/ru-he-qu-zhong-yi-ge-shi-pin-jiang-tou-p-98g7/
+82. 删除排序链表中的重复元素 II https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/solutions/2004067/ru-he-qu-zhong-yi-ge-shi-pin-jiang-tou-p-2ddn/
+课后作业：
+203. 移除链表元素 https://leetcode.cn/problems/remove-linked-list-elements/
+
