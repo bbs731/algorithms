@@ -37,6 +37,9 @@ func minScore(n int, roads [][]int) int {
 	return ans
 }
 
+/****
+灵神的答案！
+ */
 func minScore(n int, roads [][]int) int {
 	type pair struct {
 		to, d int
